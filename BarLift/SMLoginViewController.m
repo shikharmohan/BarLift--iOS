@@ -9,6 +9,8 @@
 #import "SMLoginViewController.h"
 
 @interface SMLoginViewController ()
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 
 @end
 
@@ -26,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.activityIndicator.hidden = YES;
     // Do any additional setup after loading the view.
 }
 
@@ -45,5 +48,43 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - IBActions
+- (IBAction)loginButtonPressed:(UIButton *)sender
+{
+    
+    
+    self.activityIndicator.hidden = NO;
+    [self.activityIndicator startAnimating];
+    NSArray *permissionsArray = @[@"public_profile", @"email", @"user_friends", @"user_location", @"user_birthday"];
+    
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+        [self.activityIndicator stopAnimating];
+        self.activityIndicator.hidden = YES;
+        if(!user)
+        {
+            if(!error)
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Facebook Login Was Cancelled" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+            else
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:[error description] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }
+        else
+        {
+            [self performSegueWithIdentifier:@"loginToDealViewSegue" sender:self];
+        }
+        
+    }];
+}
+
+
+#pragma mark - Helper Methods
+
+
 
 @end
