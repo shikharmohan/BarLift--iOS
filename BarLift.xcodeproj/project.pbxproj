@@ -21,6 +21,11 @@
 		01E5F0A819C39110001B6D35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08A19C39110001B6D35 /* UIKit.framework */; };
 		01E5F0B019C39110001B6D35 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01E5F0AE19C39110001B6D35 /* InfoPlist.strings */; };
 		01E5F0B219C39110001B6D35 /* BarLiftTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E5F0B119C39110001B6D35 /* BarLiftTests.m */; };
+		01E5F0BE19C3912F001B6D35 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F0BB19C3912F001B6D35 /* Bolts.framework */; };
+		01E5F0BF19C3912F001B6D35 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F0BC19C3912F001B6D35 /* Parse.framework */; };
+		01E5F0C019C3912F001B6D35 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F0BD19C3912F001B6D35 /* ParseFacebookUtils.framework */; };
+		01E5F0C219C39877001B6D35 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F0C119C39877001B6D35 /* FacebookSDK.framework */; };
+		01E5F0C519C39D13001B6D35 /* SMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E5F0C419C39D13001B6D35 /* SMLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,12 @@
 		01E5F0AD19C39110001B6D35 /* BarLiftTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BarLiftTests-Info.plist"; sourceTree = "<group>"; };
 		01E5F0AF19C39110001B6D35 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01E5F0B119C39110001B6D35 /* BarLiftTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarLiftTests.m; sourceTree = "<group>"; };
+		01E5F0BB19C3912F001B6D35 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		01E5F0BC19C3912F001B6D35 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		01E5F0BD19C3912F001B6D35 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		01E5F0C119C39877001B6D35 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		01E5F0C319C39D13001B6D35 /* SMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLoginViewController.h; sourceTree = "<group>"; };
+		01E5F0C419C39D13001B6D35 /* SMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +73,11 @@
 			files = (
 				01E5F08919C39110001B6D35 /* CoreGraphics.framework in Frameworks */,
 				01E5F08B19C39110001B6D35 /* UIKit.framework in Frameworks */,
+				01E5F0C019C3912F001B6D35 /* ParseFacebookUtils.framework in Frameworks */,
 				01E5F08719C39110001B6D35 /* Foundation.framework in Frameworks */,
+				01E5F0BE19C3912F001B6D35 /* Bolts.framework in Frameworks */,
+				01E5F0BF19C3912F001B6D35 /* Parse.framework in Frameworks */,
+				01E5F0C219C39877001B6D35 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +116,10 @@
 		01E5F08519C39110001B6D35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				01E5F0C119C39877001B6D35 /* FacebookSDK.framework */,
+				01E5F0BB19C3912F001B6D35 /* Bolts.framework */,
+				01E5F0BC19C3912F001B6D35 /* Parse.framework */,
+				01E5F0BD19C3912F001B6D35 /* ParseFacebookUtils.framework */,
 				01E5F08619C39110001B6D35 /* Foundation.framework */,
 				01E5F08819C39110001B6D35 /* CoreGraphics.framework */,
 				01E5F08A19C39110001B6D35 /* UIKit.framework */,
@@ -112,6 +131,7 @@
 		01E5F08C19C39110001B6D35 /* BarLift */ = {
 			isa = PBXGroup;
 			children = (
+				01E5F0C619C39D18001B6D35 /* Login */,
 				01E5F09519C39110001B6D35 /* SMAppDelegate.h */,
 				01E5F09619C39110001B6D35 /* SMAppDelegate.m */,
 				01E5F09819C39110001B6D35 /* Main.storyboard */,
@@ -150,6 +170,15 @@
 				01E5F0AE19C39110001B6D35 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		01E5F0C619C39D18001B6D35 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				01E5F0C319C39D13001B6D35 /* SMLoginViewController.h */,
+				01E5F0C419C39D13001B6D35 /* SMLoginViewController.m */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +281,7 @@
 			files = (
 				01E5F09719C39110001B6D35 /* SMAppDelegate.m in Sources */,
 				01E5F09D19C39110001B6D35 /* SMViewController.m in Sources */,
+				01E5F0C519C39D13001B6D35 /* SMLoginViewController.m in Sources */,
 				01E5F09319C39110001B6D35 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +407,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BarLift/BarLift-Prefix.pch";
 				INFOPLIST_FILE = "BarLift/BarLift-Info.plist";
@@ -390,6 +424,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BarLift/BarLift-Prefix.pch";
 				INFOPLIST_FILE = "BarLift/BarLift-Info.plist";
