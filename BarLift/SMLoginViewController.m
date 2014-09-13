@@ -76,7 +76,15 @@
         }
         else
         {
+            [self updateUserInformation];
+            PFUser* user = [PFUser currentUser];
+            
+            if(!user[@"university_name"]){
+                [self performSegueWithIdentifier:@"loginToUnivSegue" sender:self];
+            }
+            else{
             [self performSegueWithIdentifier:@"loginToDealViewSegue" sender:self];
+            }
         }
         
     }];
@@ -84,7 +92,44 @@
 
 
 #pragma mark - Helper Methods
-
+-(void) updateUserInformation
+{
+    FBRequest *request = [FBRequest requestForMe];
+    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if(!error){
+            NSDictionary *userDictionary = (NSDictionary *)result;
+            NSMutableDictionary *userProfile = [[NSMutableDictionary alloc] initWithCapacity:8];
+            if(userDictionary[@"name"]){
+                userProfile[@"name"] = userDictionary[@"name"];
+            }
+            if(userDictionary[@"email"]){
+                PFUser *user = [PFUser currentUser];
+                user[@"email"] = userDictionary[@"email"];
+                
+            }
+            if(userDictionary[@"first_name"]){
+                userProfile[@"first_name"] = userDictionary[@"first_name"];
+            }
+            if(userDictionary[@"location"][@"name"]){
+                userProfile[@"location"] = userDictionary[@"location"][@"name"];
+            }
+            if(userDictionary[@"gender"]){
+                userProfile[@"gender"] = userDictionary[@"gender"];
+            }
+            if(userDictionary[@"birthday"]){
+                userProfile[@"birthday"] = userDictionary[@"birthday"];
+            }
+            if(userDictionary[@"id"]){
+                userProfile[@"fb_id"] = userDictionary[@"id"];
+            }
+            [[PFUser currentUser] setObject:userProfile forKey:@"profile"];
+            [[PFUser currentUser] saveInBackground];
+        }
+        else{
+            NSLog(@"Error in Facebook Request %@", error);
+        }
+    }];
+}
 
 
 @end

@@ -20,6 +20,8 @@
 		0113600C19C3A81100987370 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FFF19C3A81100987370 /* Social.framework */; };
 		0113600D19C3A81100987370 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0113600019C3A81100987370 /* StoreKit.framework */; };
 		0113600E19C3A81100987370 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0113600119C3A81100987370 /* SystemConfiguration.framework */; };
+		0113601E19C3D04600987370 /* SMUniversityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0113601D19C3D04600987370 /* SMUniversityTableViewController.m */; };
+		0113602419C4022200987370 /* SMUniversityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0113602319C4022200987370 /* SMUniversityTableViewCell.m */; };
 		01E5F08719C39110001B6D35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08619C39110001B6D35 /* Foundation.framework */; };
 		01E5F08919C39110001B6D35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08819C39110001B6D35 /* CoreGraphics.framework */; };
 		01E5F08B19C39110001B6D35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08A19C39110001B6D35 /* UIKit.framework */; };
@@ -66,6 +68,10 @@
 		01135FFF19C3A81100987370 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		0113600019C3A81100987370 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0113600119C3A81100987370 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0113601C19C3D04600987370 /* SMUniversityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUniversityTableViewController.h; sourceTree = "<group>"; };
+		0113601D19C3D04600987370 /* SMUniversityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUniversityTableViewController.m; sourceTree = "<group>"; };
+		0113602219C4022200987370 /* SMUniversityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUniversityTableViewCell.h; sourceTree = "<group>"; };
+		0113602319C4022200987370 /* SMUniversityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUniversityTableViewCell.m; sourceTree = "<group>"; };
 		01E5F08319C39110001B6D35 /* BarLift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarLift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E5F08619C39110001B6D35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01E5F08819C39110001B6D35 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -136,6 +142,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0113601219C3BA4F00987370 /* University Info */ = {
+			isa = PBXGroup;
+			children = (
+				0113601C19C3D04600987370 /* SMUniversityTableViewController.h */,
+				0113601D19C3D04600987370 /* SMUniversityTableViewController.m */,
+				0113602219C4022200987370 /* SMUniversityTableViewCell.h */,
+				0113602319C4022200987370 /* SMUniversityTableViewCell.m */,
+			);
+			name = "University Info";
+			sourceTree = "<group>";
+		};
 		01E5F07A19C39110001B6D35 = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +208,7 @@
 				01E5F09519C39110001B6D35 /* SMAppDelegate.h */,
 				01E5F09619C39110001B6D35 /* SMAppDelegate.m */,
 				01E5F09819C39110001B6D35 /* Main.storyboard */,
+				0113601219C3BA4F00987370 /* University Info */,
 				01E5F09B19C39110001B6D35 /* SMViewController.h */,
 				01E5F09C19C39110001B6D35 /* SMViewController.m */,
 				01E5F09E19C39110001B6D35 /* Images.xcassets */,
@@ -346,9 +364,11 @@
 			files = (
 				01E5F09719C39110001B6D35 /* SMAppDelegate.m in Sources */,
 				01E5F0CA19C39E24001B6D35 /* SMDealViewController.m in Sources */,
+				0113602419C4022200987370 /* SMUniversityTableViewCell.m in Sources */,
 				01E5F09D19C39110001B6D35 /* SMViewController.m in Sources */,
 				01E5F0C519C39D13001B6D35 /* SMLoginViewController.m in Sources */,
 				01E5F09319C39110001B6D35 /* main.m in Sources */,
+				0113601E19C3D04600987370 /* SMUniversityTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
