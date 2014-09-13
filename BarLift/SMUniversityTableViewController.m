@@ -65,7 +65,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return helper.count;
+    return [helper count];
 }
 
 
@@ -80,6 +80,15 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath   *)indexPath
+{
+    [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+    PFUser *user = [PFUser currentUser];
+    [user setObject:[helper objectAtIndex:indexPath.row] forKey:@"university_name"];
+    [user saveInBackground];
+    [self performSegueWithIdentifier:@"universityToDealSegue" sender:self];
+    
+}
 
 /*
 // Override to support conditional editing of the table view.
