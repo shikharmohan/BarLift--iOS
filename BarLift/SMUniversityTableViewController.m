@@ -20,9 +20,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationItem setHidesBackButton:YES];
+
+    //make profile pic uiimageview circle shaped
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height/2;
     self.profileImage.layer.masksToBounds = YES;
     self.profileImage.layer.borderWidth = NO;
+    
+    //get fb profile pic
     PFQuery *query = [PFQuery queryWithClassName:kSMPhotoClassKey];
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -36,7 +41,9 @@
         }
     }];
     
+    //set fb name
     self.firstName.text = [PFUser currentUser][@"profile"][@"name"];
+    //get list of universities
     [self performSelector:@selector(retrieveFromParse)];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
