@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0103D20219C672F500E41EAC /* SMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0103D20119C672F500E41EAC /* SMConstants.m */; };
 		0113600219C3A81100987370 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FF519C3A81100987370 /* Accounts.framework */; };
 		0113600319C3A81100987370 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FF619C3A81100987370 /* AdSupport.framework */; };
 		0113600419C3A81100987370 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FF719C3A81100987370 /* AudioToolbox.framework */; };
@@ -55,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0103D20019C672F500E41EAC /* SMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMConstants.h; sourceTree = "<group>"; };
+		0103D20119C672F500E41EAC /* SMConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMConstants.m; sourceTree = "<group>"; };
 		01135FF519C3A81100987370 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		01135FF619C3A81100987370 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		01135FF719C3A81100987370 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -142,6 +145,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0103D20319C672F900E41EAC /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				0103D20019C672F500E41EAC /* SMConstants.h */,
+				0103D20119C672F500E41EAC /* SMConstants.m */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		0113601219C3BA4F00987370 /* University Info */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +219,7 @@
 				01E5F0C619C39D18001B6D35 /* Login */,
 				01E5F09519C39110001B6D35 /* SMAppDelegate.h */,
 				01E5F09619C39110001B6D35 /* SMAppDelegate.m */,
+				0103D20319C672F900E41EAC /* Constants */,
 				01E5F09819C39110001B6D35 /* Main.storyboard */,
 				0113601219C3BA4F00987370 /* University Info */,
 				01E5F09B19C39110001B6D35 /* SMViewController.h */,
@@ -367,6 +380,7 @@
 				0113602419C4022200987370 /* SMUniversityTableViewCell.m in Sources */,
 				01E5F09D19C39110001B6D35 /* SMViewController.m in Sources */,
 				01E5F0C519C39D13001B6D35 /* SMLoginViewController.m in Sources */,
+				0103D20219C672F500E41EAC /* SMConstants.m in Sources */,
 				01E5F09319C39110001B6D35 /* main.m in Sources */,
 				0113601E19C3D04600987370 /* SMUniversityTableViewController.m in Sources */,
 			);
@@ -434,7 +448,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Shikhar Mohan (T2BTRH7AEN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Shikhar Mohan (T2BTRH7AEN)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -452,6 +467,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "6bf4a09d-3dde-416e-99b6-f707de161046";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -472,7 +488,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Shikhar Mohan (T2BTRH7AEN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Shikhar Mohan (T2BTRH7AEN)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -483,6 +500,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "6bf4a09d-3dde-416e-99b6-f707de161046";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

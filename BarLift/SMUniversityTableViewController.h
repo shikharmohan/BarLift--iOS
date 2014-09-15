@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SMUniversityTableViewCell.h"
 
-@interface SMUniversityTableViewController : UITableViewController <UITableViewDelegate>{
+@interface SMUniversityTableViewController : UIViewController <UITableViewDelegate>{
     NSMutableArray *helper;
 }
+
 @property (weak, nonatomic) IBOutlet UITableView *universityTableView;
 
 @end

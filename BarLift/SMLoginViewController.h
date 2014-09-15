@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMLoginViewController : UIViewController
+@interface SMLoginViewController : UIViewController <NSURLConnectionDataDelegate>
 
 @end
