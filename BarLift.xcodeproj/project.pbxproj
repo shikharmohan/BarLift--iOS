@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0103D20219C672F500E41EAC /* SMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0103D20119C672F500E41EAC /* SMConstants.m */; };
+		0103D20519C6919900E41EAC /* deal_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103D20419C6919900E41EAC /* deal_background.png */; };
 		0113600219C3A81100987370 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FF519C3A81100987370 /* Accounts.framework */; };
 		0113600319C3A81100987370 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FF619C3A81100987370 /* AdSupport.framework */; };
 		0113600419C3A81100987370 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FF719C3A81100987370 /* AudioToolbox.framework */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		0103D20019C672F500E41EAC /* SMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMConstants.h; sourceTree = "<group>"; };
 		0103D20119C672F500E41EAC /* SMConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMConstants.m; sourceTree = "<group>"; };
+		0103D20419C6919900E41EAC /* deal_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deal_background.png; sourceTree = "<group>"; };
 		01135FF519C3A81100987370 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		01135FF619C3A81100987370 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		01135FF719C3A81100987370 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -233,6 +235,7 @@
 		01E5F08D19C39110001B6D35 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0103D20419C6919900E41EAC /* deal_background.png */,
 				01E5F08E19C39110001B6D35 /* BarLift-Info.plist */,
 				01E5F08F19C39110001B6D35 /* InfoPlist.strings */,
 				01E5F09219C39110001B6D35 /* main.m */,
@@ -354,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0103D20519C6919900E41EAC /* deal_background.png in Resources */,
 				01E5F09F19C39110001B6D35 /* Images.xcassets in Resources */,
 				01E5F09119C39110001B6D35 /* InfoPlist.strings in Resources */,
 				01E5F09A19C39110001B6D35 /* Main.storyboard in Resources */,

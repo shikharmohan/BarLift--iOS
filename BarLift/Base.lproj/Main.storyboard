@@ -127,7 +127,7 @@
             </objects>
             <point key="canvasLocation" x="138" y="-867"/>
         </scene>
-        <!--Deal View Controller-->
+        <!--Deal View Controller - Today's Deal-->
         <scene sceneID="Txl-m2-gIv">
             <objects>
                 <viewController id="9HS-NX-wdP" customClass="SMDealViewController" sceneMemberID="viewController">
@@ -138,9 +138,15 @@
                     <view key="view" contentMode="scaleToFill" id="BPB-ka-1VD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="deal_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="sq1-pa-v6H">
+                                <rect key="frame" x="0.0" y="21" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Oqa-an-x0w"/>
+                    <navigationItem key="navigationItem" title="Today's Deal" id="Oqa-an-x0w"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Lc-PP-VFG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -165,6 +171,9 @@
             <point key="canvasLocation" x="-202" y="-80"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="deal_background.png" width="319" height="547"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
