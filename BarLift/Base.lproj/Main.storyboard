@@ -44,7 +44,7 @@
             </objects>
             <point key="canvasLocation" x="216" y="-80"/>
         </scene>
-        <!--University Table View Controller - Select Your University-->
+        <!--University Table View Controller - Welcome to BarLift-->
         <scene sceneID="Yv0-eI-ODF">
             <objects>
                 <viewController id="kbR-A7-xVb" customClass="SMUniversityTableViewController" sceneMemberID="viewController">
@@ -69,7 +69,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqx-AY-cBQ">
-                                                    <rect key="frame" x="3" y="18" width="314" height="21"/>
+                                                    <rect key="frame" x="7" y="18" width="306" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
@@ -92,18 +92,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C7g-Xo-VA9">
-                                        <rect key="frame" x="103" y="75" width="114" height="109"/>
+                                        <rect key="frame" x="86" y="20" width="149" height="146"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shikhar Mohan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Zc-40-Z2k">
-                                        <rect key="frame" x="102" y="202" width="116" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shikhar Mohan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Zc-40-Z2k">
+                                        <rect key="frame" x="102" y="174" width="116" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to BarLift!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PoY-Ck-gfb">
-                                        <rect key="frame" x="42" y="14" width="236" height="61"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Your University" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PoY-Ck-gfb">
+                                        <rect key="frame" x="42" y="203" width="236" height="61"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -115,8 +115,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Select Your University" id="TDs-z3-0I1"/>
+                    <navigationItem key="navigationItem" title="Welcome to BarLift" id="TDs-z3-0I1"/>
                     <connections>
+                        <outlet property="firstName" destination="5Zc-40-Z2k" id="5gJ-vR-7CP"/>
+                        <outlet property="profileImage" destination="C7g-Xo-VA9" id="ZfG-QA-Abq"/>
                         <outlet property="universityTableView" destination="Zti-YS-D6u" id="BhD-YK-rOQ"/>
                         <segue destination="9HS-NX-wdP" kind="push" identifier="universityToDealSegue" id="Sju-t6-8B1"/>
                     </connections>

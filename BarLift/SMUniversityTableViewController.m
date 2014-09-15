@@ -9,6 +9,8 @@
 #import "SMUniversityTableViewController.h"
 
 @interface SMUniversityTableViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *firstName;
 
 @end
 
@@ -18,12 +20,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height/2;
+    self.profileImage.layer.masksToBounds = YES;
+    self.profileImage.layer.borderWidth = NO;
+    PFQuery *query = [PFQuery queryWithClassName:kSMPhotoClassKey];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if([objects count] > 0)
+        {
+            PFObject *photo = objects[0];
+            PFFile *pictureFile = photo[@"profile_image"];
+            [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                self.profileImage.image = [UIImage imageWithData:data];
+            }];
+        }
+    }];
+    
+    self.firstName.text = [PFUser currentUser][@"profile"][@"name"];
     [self performSelector:@selector(retrieveFromParse)];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+    
 }
 
 - (void) retrieveFromParse
