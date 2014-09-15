@@ -7,8 +7,12 @@
 //
 
 #import "SMDealViewController.h"
-
+#import "SMBarInfoTranslucentView.h"
 @interface SMDealViewController ()
+@property (strong, nonatomic) IBOutlet SMBarInfoTranslucentView *barInfoView;
+@property (weak, nonatomic) IBOutlet UILabel *barAddressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *barNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *barLogoImageView;
 
 @end
 
@@ -38,8 +42,26 @@
 
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
 
+    //creating bar info view
+    self.barInfoView.translucentAlpha = 1;
+    self.barInfoView.translucentStyle = UIBarStyleBlackTranslucent;
+    self.barInfoView.translucentTintColor = [UIColor clearColor];
+    self.barInfoView.backgroundColor = [UIColor clearColor];
+    
+    [self setBarInformation];
+    NSLog(@"View did load called");
+
+    
     // Do any additional setup after loading the view.
 }
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(setBarInformation) name: @"UpdateUINotification" object: nil];
+    NSLog(@"View did appear called");
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -57,5 +79,31 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Helper Methods
+- (void) setBarInformation
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"Deal"];
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'"]; // Set date and time styles
+    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
+    NSString *dateString = [dateFormatter stringFromDate:date];
+    [query whereKey:@"deal_date" equalTo:dateString];
+    [query whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if(!error){
+            self.barNameLabel.text = object[@"location_name"];
+            self.barAddressLabel.text = object[@"address"];
+            //Calculate the expected size based on the font and linebreak mode of your label
+            // FLT_MAX here simply means no constraint in height
+        }
+        else{
+            NSLog(@"Parse query for bars didnt work, %@", error);
+        }
+    }];
+}
+
+
 
 @end

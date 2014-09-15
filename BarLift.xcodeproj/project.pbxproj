@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0103D20219C672F500E41EAC /* SMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0103D20119C672F500E41EAC /* SMConstants.m */; };
 		0103D20519C6919900E41EAC /* deal_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103D20419C6919900E41EAC /* deal_background.png */; };
+		0103D20819C6984100E41EAC /* SMBarInfoTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0103D20719C6984100E41EAC /* SMBarInfoTranslucentView.m */; };
+		0103D20B19C6C6FD00E41EAC /* bar-louie-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103D20A19C6C6FD00E41EAC /* bar-louie-logo.png */; };
 		0113600219C3A81100987370 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FF519C3A81100987370 /* Accounts.framework */; };
 		0113600319C3A81100987370 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FF619C3A81100987370 /* AdSupport.framework */; };
 		0113600419C3A81100987370 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FF719C3A81100987370 /* AudioToolbox.framework */; };
@@ -60,6 +62,9 @@
 		0103D20019C672F500E41EAC /* SMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMConstants.h; sourceTree = "<group>"; };
 		0103D20119C672F500E41EAC /* SMConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMConstants.m; sourceTree = "<group>"; };
 		0103D20419C6919900E41EAC /* deal_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deal_background.png; sourceTree = "<group>"; };
+		0103D20619C6984100E41EAC /* SMBarInfoTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMBarInfoTranslucentView.h; sourceTree = "<group>"; };
+		0103D20719C6984100E41EAC /* SMBarInfoTranslucentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBarInfoTranslucentView.m; sourceTree = "<group>"; };
+		0103D20A19C6C6FD00E41EAC /* bar-louie-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-louie-logo.png"; sourceTree = "<group>"; };
 		01135FF519C3A81100987370 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		01135FF619C3A81100987370 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		01135FF719C3A81100987370 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -156,6 +161,15 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
+		0103D20919C6984700E41EAC /* BarInfo Translucent */ = {
+			isa = PBXGroup;
+			children = (
+				0103D20619C6984100E41EAC /* SMBarInfoTranslucentView.h */,
+				0103D20719C6984100E41EAC /* SMBarInfoTranslucentView.m */,
+			);
+			name = "BarInfo Translucent";
+			sourceTree = "<group>";
+		};
 		0113601219C3BA4F00987370 /* University Info */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +231,7 @@
 		01E5F08C19C39110001B6D35 /* BarLift */ = {
 			isa = PBXGroup;
 			children = (
+				0103D20919C6984700E41EAC /* BarInfo Translucent */,
 				01E5F0C719C39E11001B6D35 /* Deal */,
 				01E5F0C619C39D18001B6D35 /* Login */,
 				01E5F09519C39110001B6D35 /* SMAppDelegate.h */,
@@ -235,6 +250,7 @@
 		01E5F08D19C39110001B6D35 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0103D20A19C6C6FD00E41EAC /* bar-louie-logo.png */,
 				0103D20419C6919900E41EAC /* deal_background.png */,
 				01E5F08E19C39110001B6D35 /* BarLift-Info.plist */,
 				01E5F08F19C39110001B6D35 /* InfoPlist.strings */,
@@ -359,6 +375,7 @@
 			files = (
 				0103D20519C6919900E41EAC /* deal_background.png in Resources */,
 				01E5F09F19C39110001B6D35 /* Images.xcassets in Resources */,
+				0103D20B19C6C6FD00E41EAC /* bar-louie-logo.png in Resources */,
 				01E5F09119C39110001B6D35 /* InfoPlist.strings in Resources */,
 				01E5F09A19C39110001B6D35 /* Main.storyboard in Resources */,
 			);
@@ -387,6 +404,7 @@
 				0103D20219C672F500E41EAC /* SMConstants.m in Sources */,
 				01E5F09319C39110001B6D35 /* main.m in Sources */,
 				0113601E19C3D04600987370 /* SMUniversityTableViewController.m in Sources */,
+				0103D20819C6984100E41EAC /* SMBarInfoTranslucentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

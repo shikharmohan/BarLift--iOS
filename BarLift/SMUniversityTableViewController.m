@@ -116,7 +116,6 @@
     [user setObject:[helper objectAtIndex:indexPath.row] forKey:@"university_name"];
     [user saveInBackground];
     [self performSegueWithIdentifier:@"universityToDealSegue" sender:self];
-    
 }
 
 /*

@@ -34,16 +34,15 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    
-    if([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]] && [PFUser currentUser][@"university_name"])
+    [super viewDidAppear:animated];
+    if([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
         [self updateUserInformation];
+        if(![PFUser currentUser][@"university_name"]){
+            [self performSegueWithIdentifier:@"loginToUnivSegue" sender:self];
+        }
+        NSLog(@"Taking you to deal");
         [self performSegueWithIdentifier:@"loginToDealViewSegue" sender:self];
-    }
-    else if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]] && ![PFUser currentUser][@"university_name"])
-    {
-        [self updateUserInformation];
-        [self performSegueWithIdentifier:@"loginToUnivSegue" sender:self];
     }
 }
 

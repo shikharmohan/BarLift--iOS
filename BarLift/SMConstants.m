@@ -11,7 +11,7 @@
 @implementation SMConstants
 
 #pragma mark - Photo Class
-NSString *const kSMPhotoClassKey = @"Photo";
+NSString *const kSMPhotoClassKey = @"ProfilePhoto";
 NSString *const kSMPhotoUserKey = @"user";
 NSString *const kSMPhotoPictureKey = @"profile_image";
 
