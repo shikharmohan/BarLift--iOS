@@ -30,6 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.barLogoImageView.layer.cornerRadius = self.barLogoImageView.frame.size.height/2;
+    self.barLogoImageView.layer.masksToBounds = YES;
+    self.barLogoImageView.layer.borderWidth = NO;
     [self.navigationItem setHidesBackButton:YES];
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
         // iOS 6.1 or earlier
