@@ -49,7 +49,7 @@
     self.barInfoView.backgroundColor = [UIColor clearColor];
     
     [self setBarInformation];
-    NSLog(@"View did load called");
+    NSLog(@"View DEAL did load called");
 
     
     // Do any additional setup after loading the view.
@@ -59,7 +59,7 @@
 {
     [super viewDidAppear:animated];
 [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(setBarInformation) name: @"UpdateUINotification" object: nil];
-    NSLog(@"View did appear called");
+    NSLog(@"View DEAL did appear called");
 }
 
 

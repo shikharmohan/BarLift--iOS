@@ -143,8 +143,8 @@
                                 <rect key="frame" x="0.0" y="21" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DoQ-WI-XDF" customClass="SMBarInfoTranslucentView">
-                                <rect key="frame" x="10" y="75" width="300" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DoQ-WI-XDF" customClass="SMBarInfoTranslucentView">
+                                <rect key="frame" x="10" y="75" width="300" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar-louie-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="aKI-cx-qdj">
@@ -183,9 +183,9 @@
                                     <constraint firstItem="Ysb-yt-cPw" firstAttribute="leading" secondItem="DoQ-WI-XDF" secondAttribute="leading" constant="86" id="8Pp-d8-14e"/>
                                     <constraint firstItem="Yd6-oW-eqv" firstAttribute="leading" secondItem="aKI-cx-qdj" secondAttribute="trailing" constant="8" symbolic="YES" id="9TI-ON-QeO"/>
                                     <constraint firstItem="aKI-cx-qdj" firstAttribute="top" secondItem="DoQ-WI-XDF" secondAttribute="top" constant="15" id="AVq-kN-p7r"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ysb-yt-cPw" secondAttribute="bottom" constant="3" id="Idc-Be-dY7"/>
+                                    <constraint firstAttribute="bottom" secondItem="aKI-cx-qdj" secondAttribute="bottom" constant="20" id="GkI-y3-U5T"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ysb-yt-cPw" secondAttribute="bottom" constant="10" id="Idc-Be-dY7"/>
                                     <constraint firstItem="Ysb-yt-cPw" firstAttribute="leading" secondItem="aKI-cx-qdj" secondAttribute="trailing" constant="8" symbolic="YES" id="OAy-q3-QUe"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ysb-yt-cPw" secondAttribute="bottom" constant="3" id="QRQ-MD-jNM"/>
                                     <constraint firstItem="Yd6-oW-eqv" firstAttribute="leading" secondItem="DoQ-WI-XDF" secondAttribute="leading" constant="86" id="RIi-WZ-vq6"/>
                                     <constraint firstItem="Ysb-yt-cPw" firstAttribute="top" secondItem="Yd6-oW-eqv" secondAttribute="bottom" constant="8" id="YxO-IM-8Vy"/>
                                     <constraint firstItem="Yd6-oW-eqv" firstAttribute="top" secondItem="DoQ-WI-XDF" secondAttribute="top" constant="20" symbolic="YES" id="fp8-xh-FUQ"/>

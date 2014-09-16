@@ -34,13 +34,10 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    NSLog(@"LoginView did appear called %@", [PFUser currentUser]);
     if([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
         [self updateUserInformation];
-        if(![PFUser currentUser][@"university_name"]){
-            [self performSegueWithIdentifier:@"loginToUnivSegue" sender:self];
-        }
         NSLog(@"Taking you to deal");
         [self performSegueWithIdentifier:@"loginToDealViewSegue" sender:self];
     }
@@ -91,14 +88,8 @@
         else
         {
             [self updateUserInformation];
-            PFUser* user = [PFUser currentUser];
-            
-            if(!user[@"university_name"]){
-                [self performSegueWithIdentifier:@"loginToUnivSegue" sender:self];
-            }
-            else{
-            [self performSegueWithIdentifier:@"loginToDealViewSegue" sender:self];
-            }
+            [self performSegueWithIdentifier:@"loginToUnivSegue" sender:self];
+
         }
         
     }];
@@ -147,7 +138,15 @@
             }
             
             [[PFUser currentUser] setObject:userProfile forKey:@"profile"];
-            [[PFUser currentUser] saveInBackground];
+            [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if(succeeded){
+                    NSLog(@"User saved successfully");
+                }
+                else{
+                    NSLog(@"User not saved%@", error);
+                }
+            }];
+            
             [self requestImage];
         }
         else{
@@ -158,6 +157,7 @@
 
 -(void)uploadPFFileToParse:(UIImage *)image
 {
+    NSLog(@"upload called");
     NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
     if(!imageData){
         NSLog(@"Image Data not found");
@@ -170,7 +170,12 @@
             [photo setObject:[PFUser currentUser] forKey:kSMPhotoUserKey];
             [photo setObject:photoFile forKey:kSMPhotoPictureKey];
             [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                NSLog(@"Profile picture was saved successfully");
+                if(succeeded){
+                    NSLog(@"Profile picture was saved successfully");
+                }
+                else{
+                    NSLog(@"Picture not saved: %@", error);
+                }
             }];
         }
     }];
