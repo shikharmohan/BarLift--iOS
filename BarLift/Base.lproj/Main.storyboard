@@ -147,7 +147,7 @@
                                 <rect key="frame" x="10" y="75" width="300" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barlift-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="aKI-cx-qdj">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aKI-cx-qdj">
                                         <rect key="frame" x="8" y="15" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <constraints>
@@ -237,7 +237,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="barlift-logo.png" width="70" height="69"/>
         <image name="deal_background.png" width="319" height="547"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

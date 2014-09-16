@@ -96,6 +96,9 @@
     [query whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if(!error){
+            NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: object[@"image_url"]]];
+            UIImageView *imView = [[UIImageView alloc] initWithImage:[UIImage imageWithData: imageData]];
+            self.barLogoImageView.image = imView.image;
             self.barNameLabel.text = object[@"location_name"];
             self.barAddressLabel.text = object[@"address"];
             //Calculate the expected size based on the font and linebreak mode of your label
