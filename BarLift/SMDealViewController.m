@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *barAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *barNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *barLogoImageView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @end
 
@@ -58,10 +60,9 @@
     self.barInfoView.translucentStyle = UIBarStyleBlackTranslucent;
     self.barInfoView.translucentTintColor = [UIColor clearColor];
     self.barInfoView.backgroundColor = [UIColor clearColor];
-    
+
     [self setBarInformation];
     NSLog(@"View DEAL did load called");
-
     
     // Do any additional setup after loading the view.
 }
