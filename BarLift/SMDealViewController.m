@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *dealImageView;
 @property (weak, nonatomic) IBOutlet UILabel *dealNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dealDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @property (strong,nonatomic) NSMutableArray *activities;
 @property (strong, nonatomic) PFObject *currentDeal;
@@ -30,6 +31,7 @@
 @property (nonatomic) BOOL isHotByCurrentUser;
 @property (nonatomic) BOOL isDeclinedByCurrentUser;
 
+//toolbar
 
 @end
 
@@ -46,47 +48,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-
-    //add background image
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"deal_background.png"] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-
-    //bar info view set up
-    self.barLogoImageView.layer.cornerRadius = self.barLogoImageView.frame.size.height/2;
-    self.barLogoImageView.layer.masksToBounds = YES;
-    self.barLogoImageView.layer.borderWidth = NO;
-    [self.navigationItem setHidesBackButton:YES];
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        // iOS 6.1 or earlier
-        self.navigationController.navigationBar.tintColor = [UIColor redColor];
-    } else {
-        // iOS 7.0 or later
-        self.navigationController.navigationBar.barTintColor = [UIColor redColor];
-        self.navigationController.navigationBar.translucent = YES;
-    }
-
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-
-    self.barInfoView.translucentAlpha = 1;
-    self.barInfoView.translucentStyle = UIBarStyleBlackTranslucent;
-    self.barInfoView.translucentTintColor = [UIColor clearColor];
-    self.barInfoView.backgroundColor = [UIColor clearColor];
-
+    [self setUpView];
     [self setBarInformation];
-    [self getRandomDealImage];
-    //deal/friend info border
-    NSInteger borderThickness = 1;
-    UIView *bottomBorder = [UIView new];
-    bottomBorder.backgroundColor = [UIColor grayColor];
-    bottomBorder.frame = CGRectMake(0, self.dealInfoView.frame.size.height - borderThickness, self.dealInfoView.frame.size.width, borderThickness);
-    [self.dealInfoView addSubview:bottomBorder];
+
     
-    NSLog(@"View DEAL did load called");
+  
     
     // Do any additional setup after loading the view.
 }
@@ -98,6 +64,50 @@
     NSLog(@"View DEAL did appear called");
 }
 
+- (void) setUpView
+{
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    //add background image
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"deal_background.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    
+    //navigation bar set up
+    [self.navigationItem setHidesBackButton:YES];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        // iOS 6.1 or earlier
+        self.navigationController.navigationBar.tintColor = [UIColor redColor];
+    } else {
+        // iOS 7.0 or later
+        self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+        self.navigationController.navigationBar.translucent = YES;
+    }
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    
+    
+    //bar info view set up
+    self.barLogoImageView.layer.cornerRadius = self.barLogoImageView.frame.size.height/2;
+    self.barLogoImageView.layer.masksToBounds = YES;
+    self.barLogoImageView.layer.borderWidth = NO;
+    self.barInfoView.translucentAlpha = 1;
+    self.barInfoView.translucentStyle = UIBarStyleBlackTranslucent;
+    self.barInfoView.translucentTintColor = [UIColor clearColor];
+    self.barInfoView.backgroundColor = [UIColor clearColor];
+    
+    //deal/friend info border
+    NSInteger borderThickness = 1;
+    UIView *bottomBorder = [UIView new];
+    bottomBorder.backgroundColor = [UIColor grayColor];
+    bottomBorder.frame = CGRectMake(0, self.dealInfoView.frame.size.height - borderThickness, self.dealInfoView.frame.size.width, borderThickness);
+    [self.dealInfoView addSubview:bottomBorder];
+
+
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -138,12 +148,15 @@
             self.barAddressLabel.text = object[@"address"];
             self.dealNameLabel.text = object[@"name"];
             self.dealDescriptionLabel.text = [object objectForKey:@"description"];
+            [self getRandomDealImage];
             
             //Calculate the expected size based on the font and linebreak mode of your label
             // FLT_MAX here simply means no constraint in height
         }
         else{
             self.dealNameLabel.text = @"Sorry No Deal Today";
+            self.descriptionLabel.text = @"";
+            self.dealDescriptionLabel.text = @"";
             self.currentDeal = NULL;
             NSLog(@"Parse query for bars didnt work, %@", error);
         }

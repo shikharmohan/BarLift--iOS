@@ -155,7 +155,7 @@
                                     <constraint firstAttribute="height" constant="55" id="Sdc-Lf-iTj"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem image="fire9.png" style="plain" id="zp0-6H-r1g">
+                                    <barButtonItem title="Item" style="plain" id="zp0-6H-r1g">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="faO-Yc-9ZG">
                                             <rect key="frame" x="16" y="7" width="73" height="41"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -269,7 +269,7 @@
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="ZbG-17-irm" userLabel="Deal Description">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="ZbG-17-irm" userLabel="Deal Description">
                                                         <rect key="frame" x="20" y="142" width="260" height="43"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -356,6 +356,7 @@
                         <outlet property="dealImageView" destination="KNV-X6-g3E" id="OCF-fs-jmf"/>
                         <outlet property="dealInfoView" destination="dip-0I-UdN" id="Zq7-ce-384"/>
                         <outlet property="dealNameLabel" destination="ZWm-7B-dw7" id="7i6-3m-Xw8"/>
+                        <outlet property="descriptionLabel" destination="eoR-NO-zyM" id="nt8-Af-jjm"/>
                         <outlet property="friendInfoView" destination="dUy-BZ-NE6" id="eT9-9M-x9J"/>
                         <outlet property="scrollView" destination="AMZ-pD-c41" id="4ve-hL-00a"/>
                     </connections>
@@ -388,7 +389,6 @@
         <image name="barliftlogo.png" width="280" height="129"/>
         <image name="checkmark16.png" width="128" height="128"/>
         <image name="cross37.png" width="32" height="32"/>
-        <image name="fire9.png" width="32" height="32"/>
         <image name="settings18.png" width="24" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
