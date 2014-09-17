@@ -11,6 +11,7 @@
 @interface SMLoginViewController ()
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSMutableData *imageData;
+@property (weak, nonatomic) IBOutlet UINavigationItem *loginNavigationItem;
 
 @end
 
@@ -28,6 +29,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //add background image
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"deal_background.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+
     self.activityIndicator.hidden = YES;
     // Do any additional setup after loading the view.
 }
@@ -41,6 +51,18 @@
         NSLog(@"Taking you to deal");
         [self performSegueWithIdentifier:@"loginToDealViewSegue" sender:self];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidDisappear: (BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning

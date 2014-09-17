@@ -11,6 +11,7 @@
 @interface SMUniversityTableViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
+@property (weak, nonatomic) IBOutlet UIView *profileView;
 
 @end
 
@@ -21,7 +22,20 @@
 {
     [super viewDidLoad];
     [self.navigationItem setHidesBackButton:YES];
-
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        // iOS 6.1 or earlier
+        self.navigationController.navigationBar.tintColor = [UIColor redColor];
+    } else {
+        // iOS 7.0 or later
+        self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+        self.navigationController.navigationBar.translucent = YES;
+    }
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"deal_background.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.profileView.backgroundColor = [UIColor colorWithPatternImage:image];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     //make profile pic uiimageview circle shaped
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height/2;
     self.profileImage.layer.masksToBounds = YES;
