@@ -12,6 +12,7 @@
 		0103D20819C6984100E41EAC /* SMBarInfoTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0103D20719C6984100E41EAC /* SMBarInfoTranslucentView.m */; };
 		0103D20E19C7E32900E41EAC /* barlift-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103D21019C7E32900E41EAC /* barlift-logo.png */; };
 		0103D21119C7E33200E41EAC /* bar-louie-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103D21319C7E33200E41EAC /* bar-louie-logo.png */; };
+		0103D21519C9582000E41EAC /* settings18.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103D21419C9582000E41EAC /* settings18.png */; };
 		0113600219C3A81100987370 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FF519C3A81100987370 /* Accounts.framework */; };
 		0113600319C3A81100987370 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FF619C3A81100987370 /* AdSupport.framework */; };
 		0113600419C3A81100987370 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01135FF719C3A81100987370 /* AudioToolbox.framework */; };
@@ -67,6 +68,7 @@
 		0103D20719C6984100E41EAC /* SMBarInfoTranslucentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBarInfoTranslucentView.m; sourceTree = "<group>"; };
 		0103D20F19C7E32900E41EAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Base; path = "Base.lproj/barlift-logo.png"; sourceTree = "<group>"; };
 		0103D21219C7E33200E41EAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Base; path = "Base.lproj/bar-louie-logo.png"; sourceTree = "<group>"; };
+		0103D21419C9582000E41EAC /* settings18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings18.png; sourceTree = "<group>"; };
 		01135FF519C3A81100987370 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		01135FF619C3A81100987370 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		01135FF719C3A81100987370 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -252,6 +254,7 @@
 		01E5F08D19C39110001B6D35 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0103D21419C9582000E41EAC /* settings18.png */,
 				0103D21019C7E32900E41EAC /* barlift-logo.png */,
 				0103D21319C7E33200E41EAC /* bar-louie-logo.png */,
 				0103D20419C6919900E41EAC /* deal_background.png */,
@@ -378,6 +381,7 @@
 			files = (
 				0103D20519C6919900E41EAC /* deal_background.png in Resources */,
 				01E5F09F19C39110001B6D35 /* Images.xcassets in Resources */,
+				0103D21519C9582000E41EAC /* settings18.png in Resources */,
 				0103D21119C7E33200E41EAC /* bar-louie-logo.png in Resources */,
 				0103D20E19C7E32900E41EAC /* barlift-logo.png in Resources */,
 				01E5F09119C39110001B6D35 /* InfoPlist.strings in Resources */,

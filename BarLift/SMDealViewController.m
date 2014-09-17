@@ -10,11 +10,19 @@
 #import "SMBarInfoTranslucentView.h"
 @interface SMDealViewController ()
 @property (strong, nonatomic) IBOutlet SMBarInfoTranslucentView *barInfoView;
+@property (weak, nonatomic) IBOutlet UIView *dealInfoView;
+@property (weak, nonatomic) IBOutlet UIView *friendInfoView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+
 @property (weak, nonatomic) IBOutlet UILabel *barAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *barNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *barLogoImageView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIView *contentView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *dealImageView;
+@property (weak, nonatomic) IBOutlet UILabel *dealNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dealDescriptionLabel;
+
 
 @end
 
@@ -33,6 +41,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
+    //add background image
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:@"deal_background.png"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -40,6 +49,7 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 
+    //bar info view set up
     self.barLogoImageView.layer.cornerRadius = self.barLogoImageView.frame.size.height/2;
     self.barLogoImageView.layer.masksToBounds = YES;
     self.barLogoImageView.layer.borderWidth = NO;
@@ -55,13 +65,20 @@
 
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
 
-    //creating bar info view
     self.barInfoView.translucentAlpha = 1;
     self.barInfoView.translucentStyle = UIBarStyleBlackTranslucent;
     self.barInfoView.translucentTintColor = [UIColor clearColor];
     self.barInfoView.backgroundColor = [UIColor clearColor];
 
     [self setBarInformation];
+    [self getRandomDealImage];
+    //deal/friend info border
+    NSInteger borderThickness = 1;
+    UIView *bottomBorder = [UIView new];
+    bottomBorder.backgroundColor = [UIColor grayColor];
+    bottomBorder.frame = CGRectMake(0, self.dealInfoView.frame.size.height - borderThickness, self.dealInfoView.frame.size.width, borderThickness);
+    [self.dealInfoView addSubview:bottomBorder];
+    
     NSLog(@"View DEAL did load called");
     
     // Do any additional setup after loading the view.
@@ -107,9 +124,13 @@
         if(!error){
             NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: object[@"image_url"]]];
             UIImageView *imView = [[UIImageView alloc] initWithImage:[UIImage imageWithData: imageData]];
+            NSLog(@"%@", [object objectForKey:@"name"]);
             self.barLogoImageView.image = imView.image;
             self.barNameLabel.text = object[@"location_name"];
             self.barAddressLabel.text = object[@"address"];
+            self.dealNameLabel.text = object[@"name"];
+            self.dealDescriptionLabel.text = [object objectForKey:@"description"];
+            
             //Calculate the expected size based on the font and linebreak mode of your label
             // FLT_MAX here simply means no constraint in height
         }
@@ -119,6 +140,22 @@
     }];
 }
 
+- (void) getRandomDealImage
+{
+    [PFConfig getConfigInBackgroundWithBlock:^(PFConfig *config, NSError *error) {
+        if(!error){
+            NSArray *dealPictureIDs = config[@"deal_pic_names"];
+            NSUInteger randomIndex = arc4random() % [dealPictureIDs count];
+            PFFile *picture = config[dealPictureIDs[randomIndex]];
+            [picture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                self.dealImageView.image = [UIImage imageWithData:data];
+            }];
+        }
+        else{
+            NSLog(@"could not load random image %@", error);
+            self.dealImageView.image = [UIImage imageNamed:@"barlift-logo.png"];
+        }
+    }];
 
-
+}
 @end
