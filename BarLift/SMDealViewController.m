@@ -23,6 +23,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *dealNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dealDescriptionLabel;
 
+@property (strong,nonatomic) NSMutableArray *activities;
+@property (strong, nonatomic) PFObject *currentDeal;
+
+@property (nonatomic) BOOL isAcceptedByCurrentUser;
+@property (nonatomic) BOOL isHotByCurrentUser;
+@property (nonatomic) BOOL isDeclinedByCurrentUser;
+
 
 @end
 
@@ -122,6 +129,7 @@
     [query whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if(!error){
+            self.currentDeal = object;
             NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: object[@"image_url"]]];
             UIImageView *imView = [[UIImageView alloc] initWithImage:[UIImage imageWithData: imageData]];
             NSLog(@"%@", [object objectForKey:@"name"]);
@@ -135,6 +143,8 @@
             // FLT_MAX here simply means no constraint in height
         }
         else{
+            self.dealNameLabel.text = @"Sorry No Deal Today";
+            self.currentDeal = NULL;
             NSLog(@"Parse query for bars didnt work, %@", error);
         }
     }];
@@ -142,20 +152,163 @@
 
 - (void) getRandomDealImage
 {
-    [PFConfig getConfigInBackgroundWithBlock:^(PFConfig *config, NSError *error) {
-        if(!error){
-            NSArray *dealPictureIDs = config[@"deal_pic_names"];
-            NSUInteger randomIndex = arc4random() % [dealPictureIDs count];
-            PFFile *picture = config[dealPictureIDs[randomIndex]];
-            [picture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                self.dealImageView.image = [UIImage imageWithData:data];
-            }];
-        }
-        else{
-            NSLog(@"could not load random image %@", error);
-            self.dealImageView.image = [UIImage imageNamed:@"barlift-logo.png"];
-        }
-    }];
+    if(!self.currentDeal){
+        [PFConfig getConfigInBackgroundWithBlock:^(PFConfig *config, NSError *error) {
+            if(!error){
+                NSArray *dealPictureIDs = config[@"deal_pic_names"];
+                NSUInteger randomIndex = arc4random() % [dealPictureIDs count];
+                PFFile *picture = config[dealPictureIDs[randomIndex]];
+                [picture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                    self.dealImageView.image = [UIImage imageWithData:data];
+                }];
+            }
+            else{
+                NSLog(@"could not load random image %@", error);
+                self.dealImageView.image = [UIImage imageNamed:@"barlift-logo.png"];
+            }
+        }];
+    }
 
 }
+
+- (void) saveAccept
+{
+    PFObject *acceptActivity = [PFObject objectWithClassName:@"Activity"];
+    [acceptActivity setObject:@"accept" forKey:@"type"];
+    [acceptActivity setObject:[PFUser currentUser] forKey:@"user"];
+    [acceptActivity setObject:self.currentDeal forKey:@"deal"];
+    [self.currentDeal incrementKey:@"deal_qty" byAmount:@-1];
+    [self.currentDeal incrementKey:@"num_accepted" byAmount:@1];
+    [self.currentDeal saveInBackground];
+    [acceptActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if(succeeded){
+            self.isAcceptedByCurrentUser = YES;
+            self.isDeclinedByCurrentUser = NO;
+            self.isHotByCurrentUser = NO;
+            [self.activities addObject:acceptActivity];
+        }
+        else{
+         NSLog(@"Could not save accept activity %@", error);
+        }
+    }];
+}
+
+- (void) saveDecline
+{
+    PFObject *declineActivity = [PFObject objectWithClassName:@"Activity"];
+    [declineActivity setObject:@"decline" forKey:@"type"];
+    [declineActivity setObject:[PFUser currentUser] forKey:@"user"];
+    [declineActivity setObject:self.currentDeal forKey:@"deal"];
+    [self.currentDeal incrementKey:@"num_declined" byAmount:@1];
+    [self.currentDeal saveInBackground];
+    [declineActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if(succeeded){
+            self.isAcceptedByCurrentUser = NO;
+            self.isDeclinedByCurrentUser = YES;
+            self.isHotByCurrentUser = NO;
+            [self.activities addObject:declineActivity];
+        }
+        else{
+            NSLog(@"Could not save decline activity %@", error);
+        }
+
+    }];
+}
+
+- (void) saveHot
+{
+    PFObject *hotActivity = [PFObject objectWithClassName:@"Activity"];
+    [hotActivity setObject:@"hot" forKey:@"type"];
+    [hotActivity setObject:[PFUser currentUser] forKey:@"user"];
+    [hotActivity setObject:self.currentDeal forKey:@"deal"];
+    [self.currentDeal incrementKey:@"num_hot" byAmount:@1];
+    [self.currentDeal saveInBackground];
+    [hotActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if(succeeded){
+            self.isAcceptedByCurrentUser = NO;
+            self.isDeclinedByCurrentUser = NO;
+            self.isHotByCurrentUser = YES;
+            [self.activities addObject:hotActivity];
+        }
+        else{
+            NSLog(@"Could not save decline activity %@", error);
+        }
+        
+    }];
+}
+
+- (void) checkAccept
+{
+    if(self.isAcceptedByCurrentUser){
+        return;
+    }
+    else if(self.isDeclinedByCurrentUser){
+        for(PFObject *activity in self.activities){
+            [activity deleteInBackground];
+        }
+        [self.activities removeLastObject];
+        [self saveAccept];
+    }
+    else if(self.isHotByCurrentUser){
+        for(PFObject *activity in self.activities){
+            [activity deleteInBackground];
+        }
+        [self.activities removeLastObject];
+        [self saveAccept];
+    }
+    else
+    {
+        [self saveAccept];
+    }
+}
+
+- (void) checkDecline
+{
+    if(self.isDeclinedByCurrentUser){
+        return;
+    }
+    else if(self.isAcceptedByCurrentUser){
+        for(PFObject *activity in self.activities){
+            [activity deleteInBackground];
+        }
+        [self.activities removeLastObject];
+        [self saveDecline];
+    }
+    else if(self.isHotByCurrentUser){
+        for(PFObject *activity in self.activities){
+            [activity deleteInBackground];
+        }
+        [self.activities removeLastObject];
+        [self saveDecline];
+    }
+    else
+    {
+        [self saveDecline];
+    }
+}
+- (void) checkHot
+{
+    if(self.isHotByCurrentUser){
+        return;
+    }
+    else if(self.isAcceptedByCurrentUser){
+        for(PFObject *activity in self.activities){
+            [activity deleteInBackground];
+        }
+        [self.activities removeLastObject];
+        [self saveHot];
+    }
+    else if(self.isDeclinedByCurrentUser){
+        for(PFObject *activity in self.activities){
+            [activity deleteInBackground];
+        }
+        [self.activities removeLastObject];
+        [self saveHot];
+    }
+    else
+    {
+        [self saveHot];
+    }
+}
+
 @end
