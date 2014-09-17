@@ -32,6 +32,10 @@
 @property (nonatomic) BOOL isDeclinedByCurrentUser;
 
 //toolbar
+@property (strong, nonatomic) IBOutlet UIToolbar *dealToolbar;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *hotBarButtonItem;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *acceptBarButtonItem;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *declineBarButtonItem;
 
 @end
 
@@ -105,8 +109,6 @@
     bottomBorder.backgroundColor = [UIColor grayColor];
     bottomBorder.frame = CGRectMake(0, self.dealInfoView.frame.size.height - borderThickness, self.dealInfoView.frame.size.width, borderThickness);
     [self.dealInfoView addSubview:bottomBorder];
-
-
 }
 
 - (void)didReceiveMemoryWarning
