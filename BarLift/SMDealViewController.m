@@ -22,7 +22,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -30,6 +29,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"deal_background.png"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+
     self.barLogoImageView.layer.cornerRadius = self.barLogoImageView.frame.size.height/2;
     self.barLogoImageView.layer.masksToBounds = YES;
     self.barLogoImageView.layer.borderWidth = NO;

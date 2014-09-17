@@ -139,11 +139,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="deal_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="sq1-pa-v6H">
-                                <rect key="frame" x="0.0" y="21" width="320" height="548"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DoQ-WI-XDF" customClass="SMBarInfoTranslucentView">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DoQ-WI-XDF" customClass="SMBarInfoTranslucentView">
                                 <rect key="frame" x="10" y="75" width="300" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -183,7 +179,6 @@
                                     <constraint firstItem="Ysb-yt-cPw" firstAttribute="leading" secondItem="DoQ-WI-XDF" secondAttribute="leading" constant="86" id="8Pp-d8-14e"/>
                                     <constraint firstItem="Yd6-oW-eqv" firstAttribute="leading" secondItem="aKI-cx-qdj" secondAttribute="trailing" constant="8" symbolic="YES" id="9TI-ON-QeO"/>
                                     <constraint firstItem="aKI-cx-qdj" firstAttribute="top" secondItem="DoQ-WI-XDF" secondAttribute="top" constant="15" id="AVq-kN-p7r"/>
-                                    <constraint firstAttribute="bottom" secondItem="aKI-cx-qdj" secondAttribute="bottom" constant="20" id="GkI-y3-U5T"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ysb-yt-cPw" secondAttribute="bottom" constant="10" id="Idc-Be-dY7"/>
                                     <constraint firstItem="Ysb-yt-cPw" firstAttribute="leading" secondItem="aKI-cx-qdj" secondAttribute="trailing" constant="8" symbolic="YES" id="OAy-q3-QUe"/>
                                     <constraint firstItem="Yd6-oW-eqv" firstAttribute="leading" secondItem="DoQ-WI-XDF" secondAttribute="leading" constant="86" id="RIi-WZ-vq6"/>
@@ -196,13 +191,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="sq1-pa-v6H" secondAttribute="trailing" id="4U7-xG-gYU"/>
                             <constraint firstItem="DoQ-WI-XDF" firstAttribute="top" secondItem="05c-QV-z7C" secondAttribute="bottom" constant="11" id="58Y-vj-I1f"/>
-                            <constraint firstItem="DoQ-WI-XDF" firstAttribute="centerX" secondItem="sq1-pa-v6H" secondAttribute="centerX" id="ABP-tL-YNS"/>
                             <constraint firstItem="DoQ-WI-XDF" firstAttribute="leading" secondItem="BPB-ka-1VD" secondAttribute="leading" constant="10" id="BGf-0n-yxJ"/>
-                            <constraint firstItem="sq1-pa-v6H" firstAttribute="leading" secondItem="BPB-ka-1VD" secondAttribute="leading" id="Por-sD-Rld"/>
-                            <constraint firstItem="sq1-pa-v6H" firstAttribute="top" secondItem="BPB-ka-1VD" secondAttribute="top" constant="21" id="Xbn-dh-Jql"/>
-                            <constraint firstAttribute="bottom" secondItem="sq1-pa-v6H" secondAttribute="bottom" constant="-1" id="afZ-Tv-3Ng"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Today's Deal" id="Oqa-an-x0w"/>
@@ -236,9 +226,6 @@
             <point key="canvasLocation" x="-202" y="-80"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="deal_background.png" width="319" height="547"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
