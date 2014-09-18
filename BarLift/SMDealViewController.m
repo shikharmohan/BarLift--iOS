@@ -11,7 +11,10 @@
 #import "SMPopUpViewController.h"
 #import "UIToolbar+EEToolbarCenterButton.h"
 #import "SMProgressView.h"
+#import "Reachability.h"
 @interface SMDealViewController ()
+@property (strong, nonatomic) Reachability *internetReachableFoo;
+
 @property (strong, nonatomic) IBOutlet SMBarInfoTranslucentView *barInfoView;
 @property (weak, nonatomic) IBOutlet UIView *dealInfoView;
 @property (weak, nonatomic) IBOutlet UIView *friendInfoView;
@@ -57,6 +60,7 @@
 {
     [super viewDidLoad];
     [self setUpView];
+    [self testInternetConnection];
     [self setBarInformation];
    //self.dealToolbar.centerButtonFeatureEnabled = YES;
     //[self addCenterButton];
@@ -174,8 +178,9 @@
     {
         self.activities = [[NSMutableArray alloc] initWithCapacity:1];
     }
-    [self checkAccept];
-    self.acceptButton.enabled = NO;
+    if(self.currentDeal){
+        [self checkAccept];
+    }    self.acceptButton.enabled = NO;
     self.declineButton.enabled = YES;
 
 }
@@ -186,7 +191,9 @@
     {
         self.activities = [[NSMutableArray alloc] initWithCapacity:1];
     }
+    if(self.currentDeal){
     [self checkDecline];
+    }
     self.acceptButton.enabled = YES;
     self.declineButton.enabled = NO;
     [self performSegueWithIdentifier:@"declineSegue" sender:self];
@@ -380,5 +387,34 @@
 //        [self saveElsewhere];
 //    }
 //}
+
+#pragma mark - Reachability
+// Checks if we have an internet connection or not
+- (void)testInternetConnection
+{
+    self.internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    self.internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Yayyy, we have the interwebs!");
+        });
+    };
+    
+    // Internet is not reachable
+    self.internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Network Connection Issue" message:@"Please check your connection and try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+            NSLog(@"Someone broke the internet :(");
+        });
+    };
+    
+    [self.internetReachableFoo startNotifier];
+}
 
 @end

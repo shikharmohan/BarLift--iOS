@@ -7,11 +7,12 @@
 //
 
 #import "SMLoginViewController.h"
-
+#import "Reachability.h"
 @interface SMLoginViewController ()
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSMutableData *imageData;
 @property (weak, nonatomic) IBOutlet UINavigationItem *loginNavigationItem;
+@property (strong, nonatomic) Reachability *internetReachableFoo;
 
 @end
 
@@ -29,7 +30,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     //add background image
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:@"deal_background.png"] drawInRect:self.view.bounds];
@@ -39,6 +39,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 
     self.activityIndicator.hidden = YES;
+    [self testInternetConnection];
     // Do any additional setup after loading the view.
 }
 
@@ -233,6 +234,35 @@
     UIImage *profileImage = [UIImage imageWithData:self.imageData];
     [self uploadPFFileToParse:profileImage];
     
+}
+
+#pragma mark - Reachability
+// Checks if we have an internet connection or not
+- (void)testInternetConnection
+{
+    self.internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    self.internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Yayyy, we have the interwebs!");
+        });
+    };
+    
+    // Internet is not reachable
+    self.internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Network Connection Issue" message:@"Please check your connection and try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+            NSLog(@"Someone broke the internet :(");
+        });
+    };
+    
+    [self.internetReachableFoo startNotifier];
 }
 
 
