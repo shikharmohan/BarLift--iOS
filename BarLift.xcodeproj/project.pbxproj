@@ -44,6 +44,7 @@
 		01938D3B19CAA36900E40326 /* SMPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D3A19CAA36900E40326 /* SMPopUpViewController.m */; };
 		01938D3F19CABADC00E40326 /* SMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D3E19CABADC00E40326 /* SMProgressView.m */; };
 		01938D4319CB5E1D00E40326 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D4219CB5E1D00E40326 /* Reachability.m */; };
+		01938D4919CB8E9000E40326 /* SMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D4819CB8E9000E40326 /* SMSettingsViewController.m */; };
 		01E5F08719C39110001B6D35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08619C39110001B6D35 /* Foundation.framework */; };
 		01E5F08919C39110001B6D35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08819C39110001B6D35 /* CoreGraphics.framework */; };
 		01E5F08B19C39110001B6D35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08A19C39110001B6D35 /* UIKit.framework */; };
@@ -123,6 +124,8 @@
 		01938D3E19CABADC00E40326 /* SMProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMProgressView.m; sourceTree = "<group>"; };
 		01938D4119CB5E1D00E40326 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		01938D4219CB5E1D00E40326 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		01938D4719CB8E9000E40326 /* SMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSettingsViewController.h; sourceTree = "<group>"; };
+		01938D4819CB8E9000E40326 /* SMSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSettingsViewController.m; sourceTree = "<group>"; };
 		01E5F08319C39110001B6D35 /* BarLift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarLift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E5F08619C39110001B6D35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01E5F08819C39110001B6D35 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -245,10 +248,37 @@
 		01938D4019CB5DD100E40326 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
+				01938D4419CB69C800E40326 /* New Group */,
 				01938D4119CB5E1D00E40326 /* Reachability.h */,
 				01938D4219CB5E1D00E40326 /* Reachability.m */,
 			);
 			name = Reachability;
+			sourceTree = "<group>";
+		};
+		01938D4419CB69C800E40326 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
+		01938D4519CB69D900E40326 /* Helper Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				01938D4019CB5DD100E40326 /* Reachability */,
+				01938D2719CA732700E40326 /* CenterToolbarButton */,
+				0103D20919C6984700E41EAC /* BarInfo Translucent */,
+			);
+			name = "Helper Libraries";
+			sourceTree = "<group>";
+		};
+		01938D4619CB8E7A00E40326 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				01938D4719CB8E9000E40326 /* SMSettingsViewController.h */,
+				01938D4819CB8E9000E40326 /* SMSettingsViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		01E5F07A19C39110001B6D35 = {
@@ -301,9 +331,8 @@
 		01E5F08C19C39110001B6D35 /* BarLift */ = {
 			isa = PBXGroup;
 			children = (
-				01938D4019CB5DD100E40326 /* Reachability */,
-				01938D2719CA732700E40326 /* CenterToolbarButton */,
-				0103D20919C6984700E41EAC /* BarInfo Translucent */,
+				01938D4619CB8E7A00E40326 /* Settings */,
+				01938D4519CB69D900E40326 /* Helper Libraries */,
 				01E5F0C719C39E11001B6D35 /* Deal */,
 				01E5F0C619C39D18001B6D35 /* Login */,
 				01E5F09519C39110001B6D35 /* SMAppDelegate.h */,
@@ -503,6 +532,7 @@
 				01E5F09D19C39110001B6D35 /* SMViewController.m in Sources */,
 				01E5F0C519C39D13001B6D35 /* SMLoginViewController.m in Sources */,
 				01938D3F19CABADC00E40326 /* SMProgressView.m in Sources */,
+				01938D4919CB8E9000E40326 /* SMSettingsViewController.m in Sources */,
 				01938D2519CA731F00E40326 /* EEToolbarCenterButtonOverlay.m in Sources */,
 				0103D20219C672F500E41EAC /* SMConstants.m in Sources */,
 				01938D2619CA731F00E40326 /* UIToolbar+EEToolbarCenterButton.m in Sources */,

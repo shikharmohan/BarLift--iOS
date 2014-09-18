@@ -40,6 +40,7 @@
 @property (strong, nonatomic) IBOutlet UIToolbar *dealToolbar;
 @property (strong, nonatomic) IBOutlet UIButton *acceptButton;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *settingsBarButtonItem;
 
 @end
 
@@ -59,6 +60,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[PFUser currentUser] saveInBackground];
     [self setUpView];
     [self testInternetConnection];
     [self setBarInformation];
@@ -101,6 +103,7 @@
 {
     [super viewDidAppear:animated];
 [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(setBarInformation) name: @"UpdateUINotification" object: nil];
+    NSLog(@"%@", [PFUser currentUser]);
     NSLog(@"View DEAL did appear called");
 }
 
@@ -201,7 +204,12 @@
 }
 
 
-#pragma mark - Helper Methods
+
+
+
+
+
+#pragma mark - View Helper Methods
 - (void) setBarInformation
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Deal"];
@@ -261,6 +269,10 @@
     }
 
 }
+
+
+#pragma mark - Accept/Decline Functions
+
 
 - (void) saveAccept
 {
@@ -387,6 +399,9 @@
 //        [self saveElsewhere];
 //    }
 //}
+
+
+
 
 #pragma mark - Reachability
 // Checks if we have an internet connection or not

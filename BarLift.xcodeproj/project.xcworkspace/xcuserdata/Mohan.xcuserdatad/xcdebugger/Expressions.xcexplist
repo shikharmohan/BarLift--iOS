@@ -3,6 +3,28 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[SMSettingsViewController viewDidLoad]:SMSettingsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[PFUser currentUser]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMSettingsViewController tableView:didSelectRowAtIndexPath:]:SMSettingsViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[SMSettingsViewController tableView:cellForRowAtIndexPath:]:SMSettingsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.push[indexPath.row]">
+            </PersistentString>
+            <PersistentString
+               value = "cell.accessoryType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[SMDealViewController prepareForSegue:sender:]:SMDealViewController.m">
          <PersistentStrings>
             <PersistentString
