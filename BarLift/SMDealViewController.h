@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface SMDealViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIButton *declineButton;
+@property (nonatomic) BOOL justDeclined;
+@property (nonatomic) BOOL userElsewhere;
+@property (nonatomic) BOOL userNotGoingOut;
+
 
 @end

@@ -8,6 +8,7 @@
 
 #import "SMDealViewController.h"
 #import "SMBarInfoTranslucentView.h"
+#import "SMPopUpViewController.h"
 #import "UIToolbar+EEToolbarCenterButton.h"
 
 @interface SMDealViewController ()
@@ -19,7 +20,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *barAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *barNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *barLogoImageView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *dealImageView;
 @property (weak, nonatomic) IBOutlet UILabel *dealNameLabel;
@@ -34,14 +34,16 @@
 
 //toolbar
 @property (strong, nonatomic) IBOutlet UIToolbar *dealToolbar;
-@property (strong, nonatomic) IBOutlet UIButton *declineButton;
 @property (strong, nonatomic) IBOutlet UIButton *acceptButton;
 
 
 @end
 
 @implementation SMDealViewController
-
+@synthesize declineButton; //make it public
+@synthesize justDeclined;
+@synthesize userElsewhere;
+@synthesize userNotGoingOut;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -60,24 +62,44 @@
     [self getRandomDealImage];
     self.acceptButton.enabled = YES;
     self.declineButton.enabled = YES;
+    if(justDeclined){
+        self.declineButton.enabled = NO;
+    }
+    if(userElsewhere){
+        [self.currentDeal incrementKey:@"num_elsewhere" byAmount:@1];
+        [self.currentDeal saveInBackground];
+    }
+    else if(userNotGoingOut){
+        [self.currentDeal incrementKey:@"num_not_going_out" byAmount:@1];
+        [self.currentDeal saveInBackground];
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 
 
-- (void) addCenterButton
-{
-    UIImage *centerButtonImage = [UIImage imageNamed:@"verify4.png"];
-    UIImage *centerButtonImageHighlighted = [UIImage imageNamed:@"checkmark16.png"];
-    EEToolbarCenterButtonItem *centerButtonItem = [[EEToolbarCenterButtonItem alloc]
-                                                   initWithImage:centerButtonImage
-                                                   highlightedImage:centerButtonImageHighlighted
-                                                   disabledImage:centerButtonImageHighlighted
-                                                   target:self
-                                                   action:@selector(didTapCenterButton)];
-    
-    self.dealToolbar.centerButtonOverlay.buttonItem = centerButtonItem;
-
-}
+//- (void) addCenterButton
+//{
+//    UIImage *centerButtonImage = [UIImage imageNamed:@"verify4.png"];
+//    UIImage *centerButtonImageHighlighted = [UIImage imageNamed:@"checkmark16.png"];
+//    EEToolbarCenterButtonItem *centerButtonItem = [[EEToolbarCenterButtonItem alloc]
+//                                                   initWithImage:centerButtonImage
+//                                                   highlightedImage:centerButtonImageHighlighted
+//                                                   disabledImage:centerButtonImageHighlighted
+//                                                   target:self
+//                                                   action:@selector(didTapCenterButton)];
+//    
+//    self.dealToolbar.centerButtonOverlay.buttonItem = centerButtonItem;
+//
+//}
 
 
 
@@ -115,9 +137,7 @@
     
     
     //bar info view set up
-    self.barLogoImageView.layer.cornerRadius = self.barLogoImageView.frame.size.height/2;
-    self.barLogoImageView.layer.masksToBounds = YES;
-    self.barLogoImageView.layer.borderWidth = NO;
+
     self.barInfoView.translucentAlpha = 1;
     self.barInfoView.translucentStyle = UIBarStyleBlackTranslucent;
     self.barInfoView.translucentTintColor = [UIColor clearColor];
@@ -136,6 +156,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
 #pragma mark - Navigation
@@ -177,6 +199,8 @@
     [self checkDecline];
     self.acceptButton.enabled = YES;
     self.declineButton.enabled = NO;
+    [self performSegueWithIdentifier:@"declineSegue" sender:self];
+    
 }
 
 
@@ -194,10 +218,6 @@
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if(!error){
             self.currentDeal = object;
-            NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: object[@"image_url"]]];
-            UIImageView *imView = [[UIImageView alloc] initWithImage:[UIImage imageWithData: imageData]];
-            NSLog(@"%@", [object objectForKey:@"name"]);
-            self.barLogoImageView.image = imView.image;
             self.barNameLabel.text = object[@"location_name"];
             self.barAddressLabel.text = object[@"address"];
             self.dealNameLabel.text = object[@"name"];
@@ -249,6 +269,10 @@
         [self.activities addObject:acceptActivity];
         [self.currentDeal incrementKey:@"deal_qty" byAmount:@-1];
         [self.currentDeal incrementKey:@"num_accepted" byAmount:@1];
+        if(justDeclined)
+        {
+            [self.currentDeal incrementKey:@"num_declined" byAmount:@-1];
+        }
         [self.currentDeal saveInBackground];
         
     }];
@@ -262,6 +286,10 @@
     [declineActivity setObject:[PFUser currentUser] forKey:@"user"];
     [declineActivity setObject:self.currentDeal forKey:@"deal"];
     [declineActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if(self.isAcceptedByCurrentUser){
+            [self.currentDeal incrementKey:@"num_accepted" byAmount:@-1];
+            [self.currentDeal incrementKey:@"deal_qty" byAmount:@-1];
+        }
         self.isAcceptedByCurrentUser = NO;
         self.isDeclinedByCurrentUser = YES;
         [self.activities addObject:declineActivity];

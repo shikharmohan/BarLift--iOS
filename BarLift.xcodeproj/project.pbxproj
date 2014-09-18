@@ -41,6 +41,7 @@
 		01938D2D19CA820C00E40326 /* up_right-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2C19CA820C00E40326 /* up_right-50.png */; };
 		01938D3019CA85A500E40326 /* ok-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2E19CA85A500E40326 /* ok-48.png */; };
 		01938D3119CA85A500E40326 /* checkmark-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2F19CA85A500E40326 /* checkmark-50.png */; };
+		01938D3B19CAA36900E40326 /* SMPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D3A19CAA36900E40326 /* SMPopUpViewController.m */; };
 		01E5F08719C39110001B6D35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08619C39110001B6D35 /* Foundation.framework */; };
 		01E5F08919C39110001B6D35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08819C39110001B6D35 /* CoreGraphics.framework */; };
 		01E5F08B19C39110001B6D35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08A19C39110001B6D35 /* UIKit.framework */; };
@@ -114,6 +115,8 @@
 		01938D2C19CA820C00E40326 /* up_right-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "up_right-50.png"; sourceTree = "<group>"; };
 		01938D2E19CA85A500E40326 /* ok-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ok-48.png"; sourceTree = "<group>"; };
 		01938D2F19CA85A500E40326 /* checkmark-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark-50.png"; sourceTree = "<group>"; };
+		01938D3919CAA36900E40326 /* SMPopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPopUpViewController.h; sourceTree = "<group>"; };
+		01938D3A19CAA36900E40326 /* SMPopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPopUpViewController.m; sourceTree = "<group>"; };
 		01E5F08319C39110001B6D35 /* BarLift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarLift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E5F08619C39110001B6D35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01E5F08819C39110001B6D35 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -224,6 +227,15 @@
 			name = CenterToolbarButton;
 			sourceTree = "<group>";
 		};
+		01938D3C19CAA37400E40326 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				01938D3919CAA36900E40326 /* SMPopUpViewController.h */,
+				01938D3A19CAA36900E40326 /* SMPopUpViewController.m */,
+			);
+			name = PopUp;
+			sourceTree = "<group>";
+		};
 		01E5F07A19C39110001B6D35 = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +299,7 @@
 				01E5F09C19C39110001B6D35 /* SMViewController.m */,
 				01E5F09E19C39110001B6D35 /* Images.xcassets */,
 				01E5F08D19C39110001B6D35 /* Supporting Files */,
+				01938D3C19CAA37400E40326 /* PopUp */,
 			);
 			path = BarLift;
 			sourceTree = "<group>";
@@ -475,6 +488,7 @@
 				0103D20219C672F500E41EAC /* SMConstants.m in Sources */,
 				01938D2619CA731F00E40326 /* UIToolbar+EEToolbarCenterButton.m in Sources */,
 				01E5F09319C39110001B6D35 /* main.m in Sources */,
+				01938D3B19CAA36900E40326 /* SMPopUpViewController.m in Sources */,
 				0113601E19C3D04600987370 /* SMUniversityTableViewController.m in Sources */,
 				0103D20819C6984100E41EAC /* SMBarInfoTranslucentView.m in Sources */,
 			);
