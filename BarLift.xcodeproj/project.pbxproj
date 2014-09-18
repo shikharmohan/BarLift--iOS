@@ -35,7 +35,12 @@
 		01938D1A19CA4BA100E40326 /* cross30.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D1719CA4BA100E40326 /* cross30.png */; };
 		01938D1B19CA4BA100E40326 /* checkmark16.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D1819CA4BA100E40326 /* checkmark16.png */; };
 		01938D1C19CA4BA100E40326 /* verify4.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D1919CA4BA100E40326 /* verify4.png */; };
-		01938D1E19CA4DB100E40326 /* remove11.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D1D19CA4DB100E40326 /* remove11.png */; };
+		01938D2519CA731F00E40326 /* EEToolbarCenterButtonOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D2219CA731F00E40326 /* EEToolbarCenterButtonOverlay.m */; };
+		01938D2619CA731F00E40326 /* UIToolbar+EEToolbarCenterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D2419CA731F00E40326 /* UIToolbar+EEToolbarCenterButton.m */; };
+		01938D2B19CA80BD00E40326 /* delete_sign-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2A19CA80BD00E40326 /* delete_sign-32.png */; };
+		01938D2D19CA820C00E40326 /* up_right-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2C19CA820C00E40326 /* up_right-50.png */; };
+		01938D3019CA85A500E40326 /* ok-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2E19CA85A500E40326 /* ok-48.png */; };
+		01938D3119CA85A500E40326 /* checkmark-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2F19CA85A500E40326 /* checkmark-50.png */; };
 		01E5F08719C39110001B6D35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08619C39110001B6D35 /* Foundation.framework */; };
 		01E5F08919C39110001B6D35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08819C39110001B6D35 /* CoreGraphics.framework */; };
 		01E5F08B19C39110001B6D35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08A19C39110001B6D35 /* UIKit.framework */; };
@@ -101,7 +106,14 @@
 		01938D1719CA4BA100E40326 /* cross30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross30.png; sourceTree = "<group>"; };
 		01938D1819CA4BA100E40326 /* checkmark16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark16.png; sourceTree = "<group>"; };
 		01938D1919CA4BA100E40326 /* verify4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = verify4.png; sourceTree = "<group>"; };
-		01938D1D19CA4DB100E40326 /* remove11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove11.png; sourceTree = "<group>"; };
+		01938D2119CA731F00E40326 /* EEToolbarCenterButtonOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEToolbarCenterButtonOverlay.h; sourceTree = "<group>"; };
+		01938D2219CA731F00E40326 /* EEToolbarCenterButtonOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEToolbarCenterButtonOverlay.m; sourceTree = "<group>"; };
+		01938D2319CA731F00E40326 /* UIToolbar+EEToolbarCenterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+EEToolbarCenterButton.h"; sourceTree = "<group>"; };
+		01938D2419CA731F00E40326 /* UIToolbar+EEToolbarCenterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+EEToolbarCenterButton.m"; sourceTree = "<group>"; };
+		01938D2A19CA80BD00E40326 /* delete_sign-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_sign-32.png"; sourceTree = "<group>"; };
+		01938D2C19CA820C00E40326 /* up_right-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "up_right-50.png"; sourceTree = "<group>"; };
+		01938D2E19CA85A500E40326 /* ok-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ok-48.png"; sourceTree = "<group>"; };
+		01938D2F19CA85A500E40326 /* checkmark-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark-50.png"; sourceTree = "<group>"; };
 		01E5F08319C39110001B6D35 /* BarLift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarLift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E5F08619C39110001B6D35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01E5F08819C39110001B6D35 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -201,6 +213,17 @@
 			name = "University Info";
 			sourceTree = "<group>";
 		};
+		01938D2719CA732700E40326 /* CenterToolbarButton */ = {
+			isa = PBXGroup;
+			children = (
+				01938D2119CA731F00E40326 /* EEToolbarCenterButtonOverlay.h */,
+				01938D2219CA731F00E40326 /* EEToolbarCenterButtonOverlay.m */,
+				01938D2319CA731F00E40326 /* UIToolbar+EEToolbarCenterButton.h */,
+				01938D2419CA731F00E40326 /* UIToolbar+EEToolbarCenterButton.m */,
+			);
+			name = CenterToolbarButton;
+			sourceTree = "<group>";
+		};
 		01E5F07A19C39110001B6D35 = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +274,7 @@
 		01E5F08C19C39110001B6D35 /* BarLift */ = {
 			isa = PBXGroup;
 			children = (
+				01938D2719CA732700E40326 /* CenterToolbarButton */,
 				0103D20919C6984700E41EAC /* BarInfo Translucent */,
 				01E5F0C719C39E11001B6D35 /* Deal */,
 				01E5F0C619C39D18001B6D35 /* Login */,
@@ -270,7 +294,10 @@
 		01E5F08D19C39110001B6D35 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				01938D1D19CA4DB100E40326 /* remove11.png */,
+				01938D2E19CA85A500E40326 /* ok-48.png */,
+				01938D2F19CA85A500E40326 /* checkmark-50.png */,
+				01938D2C19CA820C00E40326 /* up_right-50.png */,
+				01938D2A19CA80BD00E40326 /* delete_sign-32.png */,
 				01938D1719CA4BA100E40326 /* cross30.png */,
 				01938D1819CA4BA100E40326 /* checkmark16.png */,
 				01938D1919CA4BA100E40326 /* verify4.png */,
@@ -403,7 +430,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01938D1E19CA4DB100E40326 /* remove11.png in Resources */,
 				01938D1B19CA4BA100E40326 /* checkmark16.png in Resources */,
 				0103D20519C6919900E41EAC /* deal_background.png in Resources */,
 				01E5F09F19C39110001B6D35 /* Images.xcassets in Resources */,
@@ -414,7 +440,11 @@
 				0103D21719C95A5100E41EAC /* facebook-login.png in Resources */,
 				0103D21B19C95BA700E41EAC /* barlift-logo.png in Resources */,
 				01938D1C19CA4BA100E40326 /* verify4.png in Resources */,
+				01938D3119CA85A500E40326 /* checkmark-50.png in Resources */,
+				01938D2B19CA80BD00E40326 /* delete_sign-32.png in Resources */,
+				01938D2D19CA820C00E40326 /* up_right-50.png in Resources */,
 				0103D21919C95B2E00E41EAC /* barliftlogo.png in Resources */,
+				01938D3019CA85A500E40326 /* ok-48.png in Resources */,
 				01E5F09119C39110001B6D35 /* InfoPlist.strings in Resources */,
 				01E5F09A19C39110001B6D35 /* Main.storyboard in Resources */,
 				01938D1A19CA4BA100E40326 /* cross30.png in Resources */,
@@ -441,7 +471,9 @@
 				0113602419C4022200987370 /* SMUniversityTableViewCell.m in Sources */,
 				01E5F09D19C39110001B6D35 /* SMViewController.m in Sources */,
 				01E5F0C519C39D13001B6D35 /* SMLoginViewController.m in Sources */,
+				01938D2519CA731F00E40326 /* EEToolbarCenterButtonOverlay.m in Sources */,
 				0103D20219C672F500E41EAC /* SMConstants.m in Sources */,
+				01938D2619CA731F00E40326 /* UIToolbar+EEToolbarCenterButton.m in Sources */,
 				01E5F09319C39110001B6D35 /* main.m in Sources */,
 				0113601E19C3D04600987370 /* SMUniversityTableViewController.m in Sources */,
 				0103D20819C6984100E41EAC /* SMBarInfoTranslucentView.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import "SMDealViewController.h"
 #import "SMBarInfoTranslucentView.h"
+#import "UIToolbar+EEToolbarCenterButton.h"
+
 @interface SMDealViewController ()
 @property (strong, nonatomic) IBOutlet SMBarInfoTranslucentView *barInfoView;
 @property (weak, nonatomic) IBOutlet UIView *dealInfoView;
@@ -24,18 +26,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *dealDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
-@property (strong,nonatomic) NSMutableArray *activities;
+@property (strong, nonatomic) NSMutableArray *activities;
 @property (strong, nonatomic) PFObject *currentDeal;
 
 @property (nonatomic) BOOL isAcceptedByCurrentUser;
-@property (nonatomic) BOOL isHotByCurrentUser;
 @property (nonatomic) BOOL isDeclinedByCurrentUser;
 
 //toolbar
 @property (strong, nonatomic) IBOutlet UIToolbar *dealToolbar;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *hotBarButtonItem;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *acceptBarButtonItem;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *declineBarButtonItem;
+@property (strong, nonatomic) IBOutlet UIButton *declineButton;
+@property (strong, nonatomic) IBOutlet UIButton *acceptButton;
+
 
 @end
 
@@ -54,12 +55,31 @@
     [super viewDidLoad];
     [self setUpView];
     [self setBarInformation];
-
-    
-  
-    
+   //self.dealToolbar.centerButtonFeatureEnabled = YES;
+    //[self addCenterButton];
+    [self getRandomDealImage];
+    self.acceptButton.enabled = YES;
+    self.declineButton.enabled = YES;
     // Do any additional setup after loading the view.
 }
+
+
+- (void) addCenterButton
+{
+    UIImage *centerButtonImage = [UIImage imageNamed:@"verify4.png"];
+    UIImage *centerButtonImageHighlighted = [UIImage imageNamed:@"checkmark16.png"];
+    EEToolbarCenterButtonItem *centerButtonItem = [[EEToolbarCenterButtonItem alloc]
+                                                   initWithImage:centerButtonImage
+                                                   highlightedImage:centerButtonImageHighlighted
+                                                   disabledImage:centerButtonImageHighlighted
+                                                   target:self
+                                                   action:@selector(didTapCenterButton)];
+    
+    self.dealToolbar.centerButtonOverlay.buttonItem = centerButtonItem;
+
+}
+
+
 
 - (void) viewDidAppear:(BOOL)animated
 {
@@ -84,10 +104,10 @@
     [self.navigationItem setHidesBackButton:YES];
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
         // iOS 6.1 or earlier
-        self.navigationController.navigationBar.tintColor = [UIColor redColor];
+        self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     } else {
         // iOS 7.0 or later
-        self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+        self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
         self.navigationController.navigationBar.translucent = YES;
     }
     
@@ -128,6 +148,38 @@
 }
 */
 
+
+#pragma mark - Button Actions
+//- (void) didTapCenterButton
+//{
+//    NSLog(@"Center button tapped");
+//}
+//
+
+- (IBAction)acceptButtonPressed:(UIButton *)sender
+{
+    if(self.activities == nil)
+    {
+        self.activities = [[NSMutableArray alloc] initWithCapacity:1];
+    }
+    [self checkAccept];
+    self.acceptButton.enabled = NO;
+    self.declineButton.enabled = YES;
+
+}
+
+- (IBAction)declineButtonPressed:(UIButton *)sender
+{
+    if(self.activities == nil)
+    {
+        self.activities = [[NSMutableArray alloc] initWithCapacity:1];
+    }
+    [self checkDecline];
+    self.acceptButton.enabled = YES;
+    self.declineButton.enabled = NO;
+}
+
+
 #pragma mark - Helper Methods
 - (void) setBarInformation
 {
@@ -150,8 +202,7 @@
             self.barAddressLabel.text = object[@"address"];
             self.dealNameLabel.text = object[@"name"];
             self.dealDescriptionLabel.text = [object objectForKey:@"description"];
-            [self getRandomDealImage];
-            
+            [self.activities addObject:object];
             //Calculate the expected size based on the font and linebreak mode of your label
             // FLT_MAX here simply means no constraint in height
         }
@@ -159,7 +210,7 @@
             self.dealNameLabel.text = @"Sorry No Deal Today";
             self.descriptionLabel.text = @"";
             self.dealDescriptionLabel.text = @"";
-            self.currentDeal = NULL;
+            self.currentDeal = (PFObject *) [NSNull null];
             NSLog(@"Parse query for bars didnt work, %@", error);
         }
     }];
@@ -192,20 +243,16 @@
     [acceptActivity setObject:@"accept" forKey:@"type"];
     [acceptActivity setObject:[PFUser currentUser] forKey:@"user"];
     [acceptActivity setObject:self.currentDeal forKey:@"deal"];
-    [self.currentDeal incrementKey:@"deal_qty" byAmount:@-1];
-    [self.currentDeal incrementKey:@"num_accepted" byAmount:@1];
-    [self.currentDeal saveInBackground];
     [acceptActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if(succeeded){
             self.isAcceptedByCurrentUser = YES;
             self.isDeclinedByCurrentUser = NO;
-            self.isHotByCurrentUser = NO;
-            [self.activities addObject:acceptActivity];
-        }
-        else{
-         NSLog(@"Could not save accept activity %@", error);
-        }
+        [self.activities addObject:acceptActivity];
+        [self.currentDeal incrementKey:@"deal_qty" byAmount:@-1];
+        [self.currentDeal incrementKey:@"num_accepted" byAmount:@1];
+        [self.currentDeal saveInBackground];
+        
     }];
+
 }
 
 - (void) saveDecline
@@ -214,42 +261,15 @@
     [declineActivity setObject:@"decline" forKey:@"type"];
     [declineActivity setObject:[PFUser currentUser] forKey:@"user"];
     [declineActivity setObject:self.currentDeal forKey:@"deal"];
-    [self.currentDeal incrementKey:@"num_declined" byAmount:@1];
-    [self.currentDeal saveInBackground];
     [declineActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if(succeeded){
-            self.isAcceptedByCurrentUser = NO;
-            self.isDeclinedByCurrentUser = YES;
-            self.isHotByCurrentUser = NO;
-            [self.activities addObject:declineActivity];
-        }
-        else{
-            NSLog(@"Could not save decline activity %@", error);
-        }
-
+        self.isAcceptedByCurrentUser = NO;
+        self.isDeclinedByCurrentUser = YES;
+        [self.activities addObject:declineActivity];
+        [self.currentDeal incrementKey:@"num_declined" byAmount:@1];
+        [self.currentDeal saveInBackground];
+        NSLog(@"bool updated %@", self.activities);
     }];
-}
 
-- (void) saveHot
-{
-    PFObject *hotActivity = [PFObject objectWithClassName:@"Activity"];
-    [hotActivity setObject:@"hot" forKey:@"type"];
-    [hotActivity setObject:[PFUser currentUser] forKey:@"user"];
-    [hotActivity setObject:self.currentDeal forKey:@"deal"];
-    [self.currentDeal incrementKey:@"num_hot" byAmount:@1];
-    [self.currentDeal saveInBackground];
-    [hotActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if(succeeded){
-            self.isAcceptedByCurrentUser = NO;
-            self.isDeclinedByCurrentUser = NO;
-            self.isHotByCurrentUser = YES;
-            [self.activities addObject:hotActivity];
-        }
-        else{
-            NSLog(@"Could not save decline activity %@", error);
-        }
-        
-    }];
 }
 
 - (void) checkAccept
@@ -258,13 +278,6 @@
         return;
     }
     else if(self.isDeclinedByCurrentUser){
-        for(PFObject *activity in self.activities){
-            [activity deleteInBackground];
-        }
-        [self.activities removeLastObject];
-        [self saveAccept];
-    }
-    else if(self.isHotByCurrentUser){
         for(PFObject *activity in self.activities){
             [activity deleteInBackground];
         }
@@ -289,41 +302,57 @@
         [self.activities removeLastObject];
         [self saveDecline];
     }
-    else if(self.isHotByCurrentUser){
-        for(PFObject *activity in self.activities){
-            [activity deleteInBackground];
-        }
-        [self.activities removeLastObject];
-        [self saveDecline];
-    }
     else
     {
         [self saveDecline];
     }
 }
-- (void) checkHot
-{
-    if(self.isHotByCurrentUser){
-        return;
-    }
-    else if(self.isAcceptedByCurrentUser){
-        for(PFObject *activity in self.activities){
-            [activity deleteInBackground];
-        }
-        [self.activities removeLastObject];
-        [self saveHot];
-    }
-    else if(self.isDeclinedByCurrentUser){
-        for(PFObject *activity in self.activities){
-            [activity deleteInBackground];
-        }
-        [self.activities removeLastObject];
-        [self saveHot];
-    }
-    else
-    {
-        [self saveHot];
-    }
-}
+
+//- (void) saveElsewhere
+//{
+//    PFObject *ElsewhereActivity = [PFObject objectWithClassName:@"Activity"];
+//    [ElsewhereActivity setObject:@"Elsewhere" forKey:@"type"];
+//    [ElsewhereActivity setObject:[PFUser currentUser] forKey:@"user"];
+//    [ElsewhereActivity setObject:self.currentDeal forKey:@"deal"];
+//    [self.currentDeal incrementKey:@"num_Elsewhere" byAmount:@1];
+//    [self.currentDeal saveInBackground];
+//    [ElsewhereActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if(succeeded){
+//            self.isAcceptedByCurrentUser = NO;
+//            self.isDeclinedByCurrentUser = NO;
+//            self.isElsewhereByCurrentUser = YES;
+//            [self.activities addObject:ElsewhereActivity];
+//        }
+//        else{
+//            NSLog(@"Could not save decline activity %@", error);
+//        }
+//        
+//    }];
+//}
+
+//- (void) checkElsewhere
+//{
+//    if(self.isElsewhereByCurrentUser){
+//        return;
+//    }
+//    else if(self.isAcceptedByCurrentUser){
+//        for(PFObject *activity in self.activities){
+//            [activity deleteInBackground];
+//        }
+//        [self.activities removeLastObject];
+//        [self saveElsewhere];
+//    }
+//    else if(self.isDeclinedByCurrentUser){
+//        for(PFObject *activity in self.activities){
+//            [activity deleteInBackground];
+//        }
+//        [self.activities removeLastObject];
+//        [self saveElsewhere];
+//    }
+//    else
+//    {
+//        [self saveElsewhere];
+//    }
+//}
 
 @end

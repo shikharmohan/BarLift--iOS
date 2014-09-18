@@ -155,40 +155,34 @@
                                     <constraint firstAttribute="height" constant="65" id="Sdc-Lf-iTj"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem image="fire9.png" style="plain" id="zp0-6H-r1g">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="faO-Yc-9ZG">
-                                            <rect key="frame" x="16" y="17" width="85" height="32"/>
+                                    <barButtonItem style="plain" id="kf6-Mv-QVO">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3Zn-aP-IRt">
+                                            <rect key="frame" x="16" y="18" width="77" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <state key="normal" title="Notify if Hot!" image="fire9.png">
-                                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                        </button>
-                                        <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </barButtonItem>
-                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="DXd-Gh-HpN"/>
-                                    <barButtonItem image="checkmark16.png" style="plain" id="dHS-7K-joO">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="i0q-B6-y6h">
-                                            <rect key="frame" x="131" y="1" width="64" height="64"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="checkmark16.png">
-                                                <color key="titleShadowColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                        </button>
-                                        <color key="tintColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="bmq-BE-RYS"/>
-                                    <barButtonItem image="remove11.png" style="plain" id="kHg-nl-lW2">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8of-lm-KrN">
-                                            <rect key="frame" x="247" y="11" width="64" height="43"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="remove11.png">
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <state key="normal" title="Decline" image="delete_sign-32.png">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="declineButtonPressed:" destination="9HS-NX-wdP" eventType="touchUpInside" id="5B8-bu-l7q"/>
+                                            </connections>
                                         </button>
-                                        <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                    <barButtonItem width="105" style="plain" systemItem="fixedSpace" id="tOZ-fi-JWZ"/>
+                                    <barButtonItem style="plain" id="ZLM-MT-k8r">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EBx-Te-Ksq">
+                                            <rect key="frame" x="208" y="18" width="91" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <state key="normal" title="Accept" image="checkmark-50.png">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="acceptButtonPressed:" destination="9HS-NX-wdP" eventType="touchUpInside" id="Ant-ge-WIK"/>
+                                            </connections>
+                                        </button>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -204,29 +198,21 @@
                                                 <rect key="frame" x="10" y="22" width="300" height="113"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aKI-cx-qdj">
-                                                        <rect key="frame" x="8" y="15" width="70" height="71"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="70" id="vPO-sb-NZM"/>
-                                                            <constraint firstAttribute="width" constant="70" id="xG5-s0-gRT"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="17" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="Yd6-oW-eqv">
-                                                        <rect key="frame" x="86" y="20" width="209" height="36"/>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="17" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="Yd6-oW-eqv">
+                                                        <rect key="frame" x="20" y="20" width="260" height="36"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="209" id="aUa-aY-7eD"/>
+                                                            <constraint firstAttribute="width" constant="260" id="Jn7-Kz-Cr7"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="4" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="Ysb-yt-cPw">
-                                                        <rect key="frame" x="86" y="63" width="209" height="34"/>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="4" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="Ysb-yt-cPw">
+                                                        <rect key="frame" x="20" y="64" width="260" height="34"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="209" id="3AS-Zw-pUU"/>
+                                                            <constraint firstAttribute="width" constant="260" id="mf7-Tm-FDn"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -235,19 +221,14 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="Ysb-yt-cPw" secondAttribute="trailing" constant="5" id="4Ia-cd-AVS"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Yd6-oW-eqv" secondAttribute="trailing" constant="5" id="4Xh-lO-DyP"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Ysb-yt-cPw" secondAttribute="bottom" constant="8" id="843-ds-avm"/>
-                                                    <constraint firstItem="Ysb-yt-cPw" firstAttribute="leading" secondItem="DoQ-WI-XDF" secondAttribute="leading" constant="86" id="8Pp-d8-14e"/>
-                                                    <constraint firstItem="Yd6-oW-eqv" firstAttribute="leading" secondItem="aKI-cx-qdj" secondAttribute="trailing" constant="8" symbolic="YES" id="9TI-ON-QeO"/>
-                                                    <constraint firstItem="aKI-cx-qdj" firstAttribute="top" secondItem="DoQ-WI-XDF" secondAttribute="top" constant="15" id="AVq-kN-p7r"/>
-                                                    <constraint firstItem="Ysb-yt-cPw" firstAttribute="leading" secondItem="aKI-cx-qdj" secondAttribute="trailing" constant="8" symbolic="YES" id="OAy-q3-QUe"/>
-                                                    <constraint firstItem="Yd6-oW-eqv" firstAttribute="leading" secondItem="DoQ-WI-XDF" secondAttribute="leading" constant="86" id="RIi-WZ-vq6"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Yd6-oW-eqv" secondAttribute="trailing" constant="20" id="25i-UI-8PJ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Ysb-yt-cPw" secondAttribute="bottom" constant="15" id="6eH-5F-9Hp"/>
+                                                    <constraint firstItem="Ysb-yt-cPw" firstAttribute="top" secondItem="Yd6-oW-eqv" secondAttribute="bottom" constant="8" id="AgN-O4-ptV"/>
+                                                    <constraint firstItem="Yd6-oW-eqv" firstAttribute="leading" secondItem="DoQ-WI-XDF" secondAttribute="leading" constant="20" id="Bc9-hH-eHq"/>
+                                                    <constraint firstItem="Yd6-oW-eqv" firstAttribute="top" secondItem="DoQ-WI-XDF" secondAttribute="top" constant="20" id="DmB-3r-SU3"/>
+                                                    <constraint firstItem="Ysb-yt-cPw" firstAttribute="leading" secondItem="DoQ-WI-XDF" secondAttribute="leading" constant="20" id="TK2-KY-Ol4"/>
                                                     <constraint firstAttribute="width" constant="300" id="Xd4-RY-kJ9"/>
-                                                    <constraint firstItem="Ysb-yt-cPw" firstAttribute="top" secondItem="Yd6-oW-eqv" secondAttribute="bottom" constant="8" id="YxO-IM-8Vy"/>
-                                                    <constraint firstItem="Yd6-oW-eqv" firstAttribute="top" secondItem="DoQ-WI-XDF" secondAttribute="top" constant="20" symbolic="YES" id="fp8-xh-FUQ"/>
-                                                    <constraint firstItem="aKI-cx-qdj" firstAttribute="leading" secondItem="DoQ-WI-XDF" secondAttribute="leading" constant="8" id="o2h-6o-2Jj"/>
-                                                    <constraint firstItem="Ysb-yt-cPw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DoQ-WI-XDF" secondAttribute="leading" constant="86" id="yFl-hN-BoE"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Ysb-yt-cPw" secondAttribute="trailing" constant="20" id="nje-hJ-5JC"/>
                                                 </constraints>
                                             </view>
                                             <view alpha="0.80000000000000004" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dip-0I-UdN" userLabel="Deal View">
@@ -339,24 +320,27 @@
                             <constraint firstAttribute="trailing" secondItem="is0-NT-IHv" secondAttribute="trailing" id="Lqd-Bc-d0f"/>
                             <constraint firstItem="1p1-Jt-YQd" firstAttribute="top" secondItem="AMZ-pD-c41" secondAttribute="bottom" constant="65" id="R0x-hT-rcj"/>
                             <constraint firstItem="is0-NT-IHv" firstAttribute="leading" secondItem="BPB-ka-1VD" secondAttribute="leading" id="WCN-a9-bcE"/>
-                            <constraint firstItem="is0-NT-IHv" firstAttribute="top" secondItem="AMZ-pD-c41" secondAttribute="bottom" constant="3" id="fvN-I8-sFV"/>
+                            <constraint firstItem="is0-NT-IHv" firstAttribute="top" secondItem="AMZ-pD-c41" secondAttribute="bottom" id="fvN-I8-sFV"/>
                             <constraint firstAttribute="trailing" secondItem="AMZ-pD-c41" secondAttribute="trailing" id="lrI-Nk-CaR"/>
                             <constraint firstItem="AMZ-pD-c41" firstAttribute="leading" secondItem="BPB-ka-1VD" secondAttribute="leading" id="oJL-n8-H3T"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Today's Deal" id="Oqa-an-x0w">
                         <barButtonItem key="leftBarButtonItem" image="settings18.png" style="plain" id="7bB-ZL-gNz">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="fire9.png" id="Eaa-Uz-dji">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="800"/>
                     <connections>
-                        <outlet property="acceptBarButtonItem" destination="dHS-7K-joO" id="UEy-G6-9qZ"/>
+                        <outlet property="acceptButton" destination="EBx-Te-Ksq" id="4rW-c4-xtu"/>
                         <outlet property="barAddressLabel" destination="Ysb-yt-cPw" id="2Pm-V9-XWk"/>
                         <outlet property="barInfoView" destination="DoQ-WI-XDF" id="Cab-JQ-ysy"/>
-                        <outlet property="barLogoImageView" destination="aKI-cx-qdj" id="2iP-jr-9vU"/>
                         <outlet property="barNameLabel" destination="Yd6-oW-eqv" id="YYr-fP-fWc"/>
                         <outlet property="contentView" destination="U1Y-rp-icO" id="rQP-Kh-S33"/>
                         <outlet property="dealDescriptionLabel" destination="ZbG-17-irm" id="UvB-Dv-yh3"/>
@@ -364,10 +348,9 @@
                         <outlet property="dealInfoView" destination="dip-0I-UdN" id="Zq7-ce-384"/>
                         <outlet property="dealNameLabel" destination="ZWm-7B-dw7" id="7i6-3m-Xw8"/>
                         <outlet property="dealToolbar" destination="is0-NT-IHv" id="4Yd-Jq-OwL"/>
-                        <outlet property="declineBarButtonItem" destination="kHg-nl-lW2" id="cjE-np-uZ2"/>
+                        <outlet property="declineButton" destination="3Zn-aP-IRt" id="3Vp-NN-6wj"/>
                         <outlet property="descriptionLabel" destination="eoR-NO-zyM" id="nt8-Af-jjm"/>
                         <outlet property="friendInfoView" destination="dUy-BZ-NE6" id="eT9-9M-x9J"/>
-                        <outlet property="hotBarButtonItem" destination="zp0-6H-r1g" id="MzB-Ph-tKF"/>
                         <outlet property="scrollView" destination="AMZ-pD-c41" id="4ve-hL-00a"/>
                     </connections>
                 </viewController>
@@ -397,9 +380,9 @@
     <resources>
         <image name="Facebook.png" width="200" height="25"/>
         <image name="barliftlogo.png" width="280" height="129"/>
-        <image name="checkmark16.png" width="64" height="64"/>
+        <image name="checkmark-50.png" width="50" height="50"/>
+        <image name="delete_sign-32.png" width="32" height="32"/>
         <image name="fire9.png" width="32" height="32"/>
-        <image name="remove11.png" width="64" height="43"/>
         <image name="settings18.png" width="24" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
