@@ -65,21 +65,6 @@
     if(justDeclined){
         self.declineButton.enabled = NO;
     }
-    if(userElsewhere){
-        [self.currentDeal incrementKey:@"num_elsewhere" byAmount:@1];
-        [self.currentDeal saveInBackground];
-    }
-    else if(userNotGoingOut){
-        [self.currentDeal incrementKey:@"num_not_going_out" byAmount:@1];
-        [self.currentDeal saveInBackground];
-    }
-    
-    
-    
-    
-    
-    
-    
     
     
     // Do any additional setup after loading the view.
@@ -223,8 +208,16 @@
             self.dealNameLabel.text = object[@"name"];
             self.dealDescriptionLabel.text = [object objectForKey:@"description"];
             [self.activities addObject:object];
-            //Calculate the expected size based on the font and linebreak mode of your label
-            // FLT_MAX here simply means no constraint in height
+
+            if(userElsewhere){
+                [self.currentDeal incrementKey:@"num_elsewhere" byAmount:@1];
+                [self.currentDeal saveInBackground];
+            }
+            else if(userNotGoingOut){
+                [self.currentDeal incrementKey:@"num_not_going_out" byAmount:@1];
+                [self.currentDeal saveInBackground];
+            }
+        
         }
         else{
             self.dealNameLabel.text = @"Sorry No Deal Today";
