@@ -10,7 +10,7 @@
 #import "SMBarInfoTranslucentView.h"
 #import "SMPopUpViewController.h"
 #import "UIToolbar+EEToolbarCenterButton.h"
-
+#import "SMProgressView.h"
 @interface SMDealViewController ()
 @property (strong, nonatomic) IBOutlet SMBarInfoTranslucentView *barInfoView;
 @property (weak, nonatomic) IBOutlet UIView *dealInfoView;
@@ -31,7 +31,8 @@
 
 @property (nonatomic) BOOL isAcceptedByCurrentUser;
 @property (nonatomic) BOOL isDeclinedByCurrentUser;
-
+@property (nonatomic) SMProgressView* progressView;
+@property (nonatomic) NSTimer* timer;
 //toolbar
 @property (strong, nonatomic) IBOutlet UIToolbar *dealToolbar;
 @property (strong, nonatomic) IBOutlet UIButton *acceptButton;
@@ -65,6 +66,10 @@
     if(justDeclined){
         self.declineButton.enabled = NO;
     }
+    
+    self.progressView = [[SMProgressView alloc] initWithFrame:self.friendInfoView.bounds];
+    self.progressView.percent = 75;
+    [self.friendInfoView addSubview:self.progressView];
     
     
     // Do any additional setup after loading the view.
