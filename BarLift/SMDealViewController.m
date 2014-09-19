@@ -428,6 +428,7 @@
 //}
 
 
+#pragma mark - Hot Deal Button
 
 
 #pragma mark - Reachability

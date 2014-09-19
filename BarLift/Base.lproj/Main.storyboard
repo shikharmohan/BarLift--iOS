@@ -393,8 +393,15 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Today's Deal" id="Oqa-an-x0w">
-                        <barButtonItem key="leftBarButtonItem" image="fire9.png" style="plain" id="7bB-ZL-gNz">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="leftBarButtonItem" image="fire9.png" style="plain" id="tK2-yY-heD">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zDD-mI-7BQ">
+                                <rect key="frame" x="16" y="6" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="fire9.png">
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="settings18.png" id="Eaa-Uz-dji">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -420,7 +427,6 @@
                         <outlet property="declineButton" destination="3Zn-aP-IRt" id="3Vp-NN-6wj"/>
                         <outlet property="descriptionLabel" destination="eoR-NO-zyM" id="nt8-Af-jjm"/>
                         <outlet property="friendInfoView" destination="dUy-BZ-NE6" id="eT9-9M-x9J"/>
-                        <outlet property="hotBarButtonItem" destination="7bB-ZL-gNz" id="8QC-ch-Xep"/>
                         <outlet property="scrollView" destination="AMZ-pD-c41" id="4ve-hL-00a"/>
                         <outlet property="settingsBarButtonItem" destination="Eaa-Uz-dji" id="uV0-No-afw"/>
                     </connections>
