@@ -7,8 +7,12 @@
 //
 
 #import "SMSettingsViewController.h"
+#import "Reachability.h"
 
 @interface SMSettingsViewController ()
+@property (strong, nonatomic) Reachability *internetReachableFoo;
+
+
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UIButton *submitButton;
@@ -39,6 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self testInternetConnection];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.days = @[@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday"];
     self.push = [[NSMutableArray alloc] initWithObjects:[PFUser currentUser][@"Monday"],[PFUser currentUser][@"Tuesday"],[PFUser currentUser][@"Wednesday"],[PFUser currentUser][@"Thursday"],[PFUser currentUser][@"Friday"],[PFUser currentUser][@"Saturday"],[PFUser currentUser][@"Sunday"],nil];
@@ -61,9 +66,11 @@
     {
         self.poppinButton.hidden = YES;
     }
-    NSLog(@"%@", locationSettingsArray);
-    
     // Do any additional setup after loading the view.
+    if(!locationSettingsArray)
+    {
+        locationSettingsArray = [[NSMutableArray alloc] initWithObjects:[PFUser currentUser][@"university_name"], nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -108,7 +115,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath   *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     
     UITableViewCell *theCell = [tableView cellForRowAtIndexPath:indexPath];
@@ -233,6 +240,49 @@
     return [locationSettingsArray count];
 }
 
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
+{
+    return [locationSettingsArray objectAtIndex:row];
+    
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
+{
+    NSLog(@"Selected Row %d", row);
+    [PFUser currentUser][@"university_name"] = locationSettingsArray[row];
+    [[PFUser currentUser] saveInBackground];
+
+}
+
+
+#pragma mark - Reachability
+// Checks if we have an internet connection or not
+- (void)testInternetConnection
+{
+    self.internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    self.internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Yayyy, we have the interwebs!");
+        });
+    };
+    
+    // Internet is not reachable
+    self.internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Network Connection Issue" message:@"Please check your connection and try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+            NSLog(@"Someone broke the internet :(");
+        });
+    };
+    
+    [self.internetReachableFoo startNotifier];
+}
 
 
 @end

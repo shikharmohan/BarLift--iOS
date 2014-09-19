@@ -67,13 +67,17 @@
 {
     [super viewDidLoad];
     [self setUpView];
+    NSLog(@"%@", self.currentDeal);
     [self testInternetConnection];
     [self setBarInformation];
+    NSLog(@"%@", self.currentDeal);
    //self.dealToolbar.centerButtonFeatureEnabled = YES;
     //[self addCenterButton];
     [self getRandomDealImage];
-    self.acceptButton.enabled = YES;
-    self.declineButton.enabled = YES;
+    if(!self.currentDeal){
+        self.acceptButton.enabled = YES;
+        self.declineButton.enabled = YES;
+    }
     if(justDeclined){
         self.declineButton.enabled = NO;
     }
@@ -109,7 +113,12 @@
     [super viewDidAppear:animated];
 [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(setBarInformation) name: @"UpdateUINotification" object: nil];
     NSLog(@"%@", [PFUser currentUser]);
+    if(!self.currentDeal){
+        self.acceptButton.enabled = YES;
+        self.declineButton.enabled = YES;
+    }
     [[PFUser currentUser] saveInBackground];
+    [self setBarInformation];
     NSLog(@"View DEAL did appear called");
 }
 
@@ -259,6 +268,9 @@
             self.descriptionLabel.text = @"";
             self.dealDescriptionLabel.text = @"";
             self.currentDeal = (PFObject *) [NSNull null];
+            self.acceptButton.enabled = NO;
+            self.declineButton.enabled = NO;
+            
             NSLog(@"Parse query for bars didnt work, %@", error);
         }
     }];
