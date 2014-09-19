@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SMSettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
-
+@property (strong, nonatomic) PFObject *deal;
 @end

@@ -12,6 +12,7 @@
 #import "UIToolbar+EEToolbarCenterButton.h"
 #import "SMProgressView.h"
 #import "Reachability.h"
+#import "SMSettingsViewController.h"
 @interface SMDealViewController ()
 @property (strong, nonatomic) Reachability *internetReachableFoo;
 
@@ -31,6 +32,9 @@
 
 @property (strong, nonatomic) NSMutableArray *activities;
 @property (strong, nonatomic) PFObject *currentDeal;
+@property (strong, nonatomic) PFObject *todaysDate;
+
+
 
 @property (nonatomic) BOOL isAcceptedByCurrentUser;
 @property (nonatomic) BOOL isDeclinedByCurrentUser;
@@ -156,16 +160,23 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"dealToSettings"])
+    {
+        SMSettingsViewController *vc = [segue destinationViewController];
+        //send deal info
+        [vc performSelector:@selector(setDeal:)
+                 withObject:self.currentDeal];
+    }
+
+
 }
-*/
+
 
 
 #pragma mark - Button Actions

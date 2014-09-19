@@ -9,11 +9,18 @@
 #import "SMSettingsViewController.h"
 
 @interface SMSettingsViewController ()
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UITextField *textField;
+@property (strong, nonatomic) IBOutlet UIButton *submitButton;
+@property (strong, nonatomic) IBOutlet UIButton *poppinButton;
 @property (strong, nonatomic) NSArray *days;
 @property (strong, nonatomic) NSMutableArray *push;
+@property (strong, nonatomic) NSString *todaysDate;
+
 @end
 
 @implementation SMSettingsViewController
+@synthesize deal;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,7 +37,26 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.days = @[@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday"];
     self.push = [[NSMutableArray alloc] initWithObjects:[PFUser currentUser][@"Monday"],[PFUser currentUser][@"Tuesday"],[PFUser currentUser][@"Wednesday"],[PFUser currentUser][@"Thursday"],[PFUser currentUser][@"Friday"],[PFUser currentUser][@"Saturday"],[PFUser currentUser][@"Sunday"],nil];
-    NSLog(@"%@", self.push);
+    [self getDate];
+    //keyboard listeners
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    if([[PFUser currentUser][@"barlift_rep"] isEqualToValue:@YES] && [self.todaysDate isEqualToString:deal[@"deal_date"]])
+    {
+        self.poppinButton.hidden = NO;
+    }
+    else
+    {
+        self.poppinButton.hidden = YES;
+    }
+    
     // Do any additional setup after loading the view.
 }
 
@@ -64,7 +90,6 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"settingsCell"];
     }
     cell.textLabel.text = self.days[indexPath.row];
-    NSLog(@"%@",self.push[indexPath.row]);
     if([self.push[indexPath.row]  isEqual: @YES])
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -92,6 +117,99 @@
         [PFUser currentUser][self.days[indexPath.row]] = @NO;
     }
 
+}
+
+#pragma mark - BarLift Reps
+- (void)keyboardWasShown:(NSNotification *)notification
+{
+    
+    // Step 1: Get the size of the keyboard.
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    
+    // Step 2: Adjust the bottom content inset of your scroll view by the keyboard height.
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    
+    // Step 3: Scroll the target text field into view.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= keyboardSize.height;
+    if (!CGRectContainsPoint(aRect, self.textField.frame.origin) ) {
+        CGPoint scrollPoint = CGPointMake(0.0, self.textField.frame.origin.y - (keyboardSize.height-15));
+        [self.scrollView setContentOffset:scrollPoint animated:YES];
+    }
+}
+- (void) keyboardWillHide:(NSNotification *)notification {
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.textField = textField;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.textField = nil;
+}
+
+- (IBAction)dismissKeyboard:(UITextField *)sender
+{
+    [self checkBarliftRep];
+    [self resignFirstResponder];
+
+}
+
+- (IBAction)submitButtonPressed:(UIButton *)sender
+{
+    [self checkBarliftRep];
+    [self resignFirstResponder];
+}
+
+- (void) checkBarliftRep
+{
+    [PFConfig getConfigInBackgroundWithBlock:^(PFConfig *config, NSError *error) {
+        if(!error)
+        {
+            NSString *key = config[@"barlift_rep_key"];
+            if([key isEqualToString:self.textField.text])
+            {
+                [PFUser currentUser][@"barlift_rep"] = @YES;
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Welcome BarLift Rep!" message:@"You now get access to the It's Poppin' button!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alertView show];
+                [[PFUser currentUser] saveInBackground];
+                self.poppinButton.hidden = NO;
+            }
+            else{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Incorrect Rep Code" message:@"Please try again or contact BarLift." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alertView show];
+
+            }
+        
+        }
+    }];
+
+}
+
+- (IBAction)poppinButtonPressed:(UIButton *)sender {
+    
+    NSLog(@"It's Popping");
+}
+
+
+- (void) getDate
+{
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'"]; // Set date and time styles
+    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
+    self.todaysDate = [dateFormatter stringFromDate:date];
+    
 }
 
 @end
