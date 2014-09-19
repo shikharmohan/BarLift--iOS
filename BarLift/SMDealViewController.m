@@ -44,6 +44,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *acceptButton;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *settingsBarButtonItem;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *hotBarButtonItem;
 
 @end
 
@@ -270,7 +271,6 @@
             self.currentDeal = (PFObject *) [NSNull null];
             self.acceptButton.enabled = NO;
             self.declineButton.enabled = NO;
-            
             NSLog(@"Parse query for bars didnt work, %@", error);
         }
     }];

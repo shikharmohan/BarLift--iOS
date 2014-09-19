@@ -420,6 +420,7 @@
                         <outlet property="declineButton" destination="3Zn-aP-IRt" id="3Vp-NN-6wj"/>
                         <outlet property="descriptionLabel" destination="eoR-NO-zyM" id="nt8-Af-jjm"/>
                         <outlet property="friendInfoView" destination="dUy-BZ-NE6" id="eT9-9M-x9J"/>
+                        <outlet property="hotBarButtonItem" destination="7bB-ZL-gNz" id="8QC-ch-Xep"/>
                         <outlet property="scrollView" destination="AMZ-pD-c41" id="4ve-hL-00a"/>
                         <outlet property="settingsBarButtonItem" destination="Eaa-Uz-dji" id="uV0-No-afw"/>
                     </connections>
