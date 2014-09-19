@@ -60,7 +60,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[PFUser currentUser] saveInBackground];
     [self setUpView];
     [self testInternetConnection];
     [self setBarInformation];
@@ -104,6 +103,7 @@
     [super viewDidAppear:animated];
 [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(setBarInformation) name: @"UpdateUINotification" object: nil];
     NSLog(@"%@", [PFUser currentUser]);
+    [[PFUser currentUser] saveInBackground];
     NSLog(@"View DEAL did appear called");
 }
 

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMSettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SMSettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 
 @end
