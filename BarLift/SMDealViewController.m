@@ -68,6 +68,7 @@
 {
     [super viewDidLoad];
     [self setUpView];
+    self.progressView = [[SMProgressView alloc] initWithFrame:self.friendInfoView.bounds];
     NSLog(@"%@", self.currentDeal);
     [self testInternetConnection];
     [self setBarInformation];
@@ -83,9 +84,7 @@
         self.declineButton.enabled = NO;
     }
     
-    self.progressView = [[SMProgressView alloc] initWithFrame:self.friendInfoView.bounds];
-    self.progressView.percent = 75;
-    [self.friendInfoView addSubview:self.progressView];
+
     
     
     // Do any additional setup after loading the view.
@@ -118,8 +117,13 @@
         self.acceptButton.enabled = YES;
         self.declineButton.enabled = YES;
     }
-    [[PFUser currentUser] saveInBackground];
-    [self setBarInformation];
+    if([[PFUser currentUser] isDirty]){
+        [[PFUser currentUser] saveInBackground];
+    }
+    if(!self.currentDeal && ([self.currentDeal isDirty] || [self.currentDeal isDataAvailable])){
+        [self.currentDeal refresh];
+        [self.currentDeal saveInBackground];
+    }
     NSLog(@"View DEAL did appear called");
 }
 
@@ -172,7 +176,6 @@
 
 
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -207,6 +210,9 @@
         self.activities = [[NSMutableArray alloc] initWithCapacity:1];
     }
     if(self.currentDeal){
+        [self.currentDeal refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            NSLog(@"Updating deal before accepting deal");
+        }];
         [self checkAccept];
     }    self.acceptButton.enabled = NO;
     self.declineButton.enabled = YES;
@@ -220,7 +226,10 @@
         self.activities = [[NSMutableArray alloc] initWithCapacity:1];
     }
     if(self.currentDeal){
-    [self checkDecline];
+        [self.currentDeal refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            NSLog(@"Updating deal before declining deal");
+        }];
+        [self checkDecline];
     }
     self.acceptButton.enabled = YES;
     self.declineButton.enabled = NO;
@@ -262,7 +271,7 @@
                 [self.currentDeal incrementKey:@"num_not_going_out" byAmount:@1];
                 [self.currentDeal saveInBackground];
             }
-        
+            [self createProgressWheel];
         }
         else{
             self.dealNameLabel.text = @"Sorry No Deal Today";
@@ -428,6 +437,7 @@
 //}
 
 
+
 #pragma mark - Hot Deal Button
 
 
@@ -459,5 +469,14 @@
     
     [self.internetReachableFoo startNotifier];
 }
+
+
+#pragma mark - Progress View
+
+- (void) createProgressWheel
+{
+    
+}
+
 
 @end

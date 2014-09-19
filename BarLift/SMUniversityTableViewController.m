@@ -75,7 +75,7 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Deal"];
     [query selectKeys:@[@"community_name"]];
-    [query setCachePolicy:kPFCachePolicyNetworkOnly];
+    [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
         if(!error){
             self.helper = [[NSMutableArray alloc] initWithCapacity:2];
