@@ -35,7 +35,6 @@
 @property (strong, nonatomic) PFObject *todaysDate;
 
 
-
 @property (nonatomic) BOOL isAcceptedByCurrentUser;
 @property (nonatomic) BOOL isDeclinedByCurrentUser;
 @property (nonatomic) SMProgressView* progressView;
@@ -49,10 +48,13 @@
 @end
 
 @implementation SMDealViewController
+
 @synthesize declineButton; //make it public
 @synthesize justDeclined;
 @synthesize userElsewhere;
 @synthesize userNotGoingOut;
+@synthesize locationsArray;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -172,6 +174,8 @@
         //send deal info
         [vc performSelector:@selector(setDeal:)
                  withObject:self.currentDeal];
+        [vc performSelector:@selector(setLocationSettingsArray:)
+                 withObject:locationsArray];
     }
 
 

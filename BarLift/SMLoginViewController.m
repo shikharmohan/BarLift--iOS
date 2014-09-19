@@ -159,14 +159,18 @@
             if([pictureURL absoluteString]){
                 userProfile[@"pictureURL"] = [pictureURL absoluteString];
             }
-            [[PFUser currentUser] setObject:@YES forKey:@"Monday"];
-            [[PFUser currentUser] setObject:@YES forKey:@"Tuesday"];
-            [[PFUser currentUser] setObject:@YES forKey:@"Wednesday"];
-            [[PFUser currentUser] setObject:@YES forKey:@"Thursday"];
-            [[PFUser currentUser] setObject:@YES forKey:@"Friday"];
-            [[PFUser currentUser] setObject:@YES forKey:@"Saturday"];
-            [[PFUser currentUser] setObject:@YES forKey:@"Sunday"];
-            [[PFUser currentUser] setObject:@NO forKey:@"barlift_rep"];
+            NSLog(@"cjreating user: %@", [PFUser currentUser]);
+            if([[PFUser currentUser] isNew]){
+                [[PFUser currentUser] setObject:@YES forKey:@"Monday"];
+                [[PFUser currentUser] setObject:@YES forKey:@"Tuesday"];
+                [[PFUser currentUser] setObject:@YES forKey:@"Wednesday"];
+                [[PFUser currentUser] setObject:@YES forKey:@"Thursday"];
+                [[PFUser currentUser] setObject:@YES forKey:@"Friday"];
+                [[PFUser currentUser] setObject:@YES forKey:@"Saturday"];
+                [[PFUser currentUser] setObject:@YES forKey:@"Sunday"];
+                [[PFUser currentUser] setObject:@NO forKey:@"barlift_rep"];
+            }
+
             [[PFUser currentUser] setObject:userProfile forKey:@"profile"];
             [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if(succeeded){

@@ -7,11 +7,13 @@
 //
 
 #import "SMUniversityTableViewController.h"
-
+#import "SMDealViewController.h"
 @interface SMUniversityTableViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
 @property (weak, nonatomic) IBOutlet UIView *profileView;
+@property (strong, nonatomic) NSMutableArray *helper;
+
 
 @end
 
@@ -76,10 +78,10 @@
     [query setCachePolicy:kPFCachePolicyNetworkOnly];
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
         if(!error){
-            helper = [[NSMutableArray alloc] initWithCapacity:2];
+            self.helper = [[NSMutableArray alloc] initWithCapacity:2];
             for(int i = 0; i < [results count]; i++){
-                if([helper indexOfObject:results[i][@"community_name"]] == NSNotFound){
-                    [helper addObject:results[i][@"community_name"]];
+                if([self.helper indexOfObject:results[i][@"community_name"]] == NSNotFound){
+                    [self.helper addObject:results[i][@"community_name"]];
                 }
             }
         }
@@ -108,7 +110,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [helper count];
+    return [self.helper count];
 }
 
 
@@ -117,8 +119,8 @@
     NSString *cellIdentifier = @"Cell";
     SMUniversityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    NSLog(@"%@", [helper objectAtIndex:indexPath.row]);
-    cell.cellTitle.text = [helper objectAtIndex:indexPath.row];
+    NSLog(@"%@", [self.helper objectAtIndex:indexPath.row]);
+    cell.cellTitle.text = [self.helper objectAtIndex:indexPath.row];
     
     return cell;
 }
@@ -127,7 +129,7 @@
 {
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
     PFUser *user = [PFUser currentUser];
-    [user setObject:[helper objectAtIndex:indexPath.row] forKey:@"university_name"];
+    [user setObject:[self.helper objectAtIndex:indexPath.row] forKey:@"university_name"];
     [user saveInBackground];
     [self performSegueWithIdentifier:@"universityToDealSegue" sender:self];
 }
@@ -170,15 +172,23 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if([segue.identifier isEqualToString:@"universityToDealSegue"])
+    {
+        SMDealViewController *vc = [segue destinationViewController];
+        [vc performSelector:@selector(setLocationsArray:)
+                 withObject:self.helper];
+    
+    }
+    
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

@@ -10,4 +10,5 @@
 
 @interface SMSettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) PFObject *deal;
+@property (strong, nonatomic) NSMutableArray *locationSettingsArray;
 @end

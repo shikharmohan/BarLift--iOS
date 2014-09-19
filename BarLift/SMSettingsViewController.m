@@ -13,6 +13,10 @@
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UIButton *submitButton;
 @property (strong, nonatomic) IBOutlet UIButton *poppinButton;
+@property (strong, nonatomic) IBOutlet UIPickerView *locationPicker;
+
+
+//data
 @property (strong, nonatomic) NSArray *days;
 @property (strong, nonatomic) NSMutableArray *push;
 @property (strong, nonatomic) NSString *todaysDate;
@@ -21,6 +25,7 @@
 
 @implementation SMSettingsViewController
 @synthesize deal;
+@synthesize locationSettingsArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,6 +61,7 @@
     {
         self.poppinButton.hidden = YES;
     }
+    NSLog(@"%@", locationSettingsArray);
     
     // Do any additional setup after loading the view.
 }
@@ -75,7 +81,7 @@
     // Pass the selected object to the new view controller.
 }
 
-#pragma mark - Table View Functions
+#pragma mark - Push Settings
     
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -211,5 +217,22 @@
     self.todaysDate = [dateFormatter stringFromDate:date];
     
 }
+
+
+#pragma mark - Location Settings
+
+// returns the number of 'columns' to display.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
+{
+    return [locationSettingsArray count];
+}
+
+
 
 @end
