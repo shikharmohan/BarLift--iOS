@@ -8,7 +8,6 @@
 
 #import "SMDealViewController.h"
 #import "SMBarInfoTranslucentView.h"
-#import "SMPopUpViewController.h"
 #import "UIToolbar+EEToolbarCenterButton.h"
 #import "SMProgressView.h"
 #import "Reachability.h"
@@ -51,7 +50,6 @@
 @implementation SMDealViewController
 
 @synthesize declineButton; //make it public
-@synthesize justDeclined;
 @synthesize userElsewhere;
 @synthesize userNotGoingOut;
 @synthesize locationsArray;
@@ -80,11 +78,6 @@
         self.acceptButton.enabled = YES;
         self.declineButton.enabled = YES;
     }
-    if(justDeclined){
-        self.declineButton.enabled = NO;
-    }
-    
-
     
     
     // Do any additional setup after loading the view.
@@ -233,8 +226,6 @@
     }
     self.acceptButton.enabled = YES;
     self.declineButton.enabled = NO;
-    [self performSegueWithIdentifier:@"declineSegue" sender:self];
-    
 }
 
 
@@ -322,12 +313,8 @@
         [self.activities addObject:acceptActivity];
         [self.currentDeal incrementKey:@"deal_qty" byAmount:@-1];
         [self.currentDeal incrementKey:@"num_accepted" byAmount:@1];
-        if(justDeclined)
-        {
-            [self.currentDeal incrementKey:@"num_declined" byAmount:@-1];
-        }
+        [self.currentDeal incrementKey:@"num_declined" byAmount:@-1];
         [self.currentDeal saveInBackground];
-        
     }];
 
 }

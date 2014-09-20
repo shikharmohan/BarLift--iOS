@@ -41,7 +41,6 @@
 		01938D2D19CA820C00E40326 /* up_right-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2C19CA820C00E40326 /* up_right-50.png */; };
 		01938D3019CA85A500E40326 /* ok-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2E19CA85A500E40326 /* ok-48.png */; };
 		01938D3119CA85A500E40326 /* checkmark-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2F19CA85A500E40326 /* checkmark-50.png */; };
-		01938D3B19CAA36900E40326 /* SMPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D3A19CAA36900E40326 /* SMPopUpViewController.m */; };
 		01938D3F19CABADC00E40326 /* SMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D3E19CABADC00E40326 /* SMProgressView.m */; };
 		01938D4319CB5E1D00E40326 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D4219CB5E1D00E40326 /* Reachability.m */; };
 		01938D4919CB8E9000E40326 /* SMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D4819CB8E9000E40326 /* SMSettingsViewController.m */; };
@@ -118,8 +117,6 @@
 		01938D2C19CA820C00E40326 /* up_right-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "up_right-50.png"; sourceTree = "<group>"; };
 		01938D2E19CA85A500E40326 /* ok-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ok-48.png"; sourceTree = "<group>"; };
 		01938D2F19CA85A500E40326 /* checkmark-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark-50.png"; sourceTree = "<group>"; };
-		01938D3919CAA36900E40326 /* SMPopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPopUpViewController.h; sourceTree = "<group>"; };
-		01938D3A19CAA36900E40326 /* SMPopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPopUpViewController.m; sourceTree = "<group>"; };
 		01938D3D19CABADC00E40326 /* SMProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMProgressView.h; sourceTree = "<group>"; };
 		01938D3E19CABADC00E40326 /* SMProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMProgressView.m; sourceTree = "<group>"; };
 		01938D4119CB5E1D00E40326 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -239,8 +236,6 @@
 		01938D3C19CAA37400E40326 /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
-				01938D3919CAA36900E40326 /* SMPopUpViewController.h */,
-				01938D3A19CAA36900E40326 /* SMPopUpViewController.m */,
 			);
 			name = PopUp;
 			sourceTree = "<group>";
@@ -538,7 +533,6 @@
 				01938D2619CA731F00E40326 /* UIToolbar+EEToolbarCenterButton.m in Sources */,
 				01E5F09319C39110001B6D35 /* main.m in Sources */,
 				01938D4319CB5E1D00E40326 /* Reachability.m in Sources */,
-				01938D3B19CAA36900E40326 /* SMPopUpViewController.m in Sources */,
 				0113601E19C3D04600987370 /* SMUniversityTableViewController.m in Sources */,
 				0103D20819C6984100E41EAC /* SMBarInfoTranslucentView.m in Sources */,
 			);
