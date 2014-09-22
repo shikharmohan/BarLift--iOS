@@ -88,6 +88,7 @@
         self.acceptButton.enabled = YES;
         self.declineButton.enabled = YES;
     }
+    [self getFacebookFriends];
     
     
     // Do any additional setup after loading the view.
@@ -279,6 +280,7 @@
             self.currentDeal = (PFObject *) [NSNull null];
             self.acceptButton.enabled = NO;
             self.declineButton.enabled = NO;
+            self.goingOutLabel.text = @"0";
             NSLog(@"Parse query for bars didnt work, %@", error);
         }
     }];
@@ -510,14 +512,69 @@
         self.dealsLeftLabel.text = [NSString stringWithFormat:@"%d Deals Left", [dealsLeft integerValue]];
         [self.dealsProgressView setProgress:used animated:YES];
     }
+    
+    //Update people going out tonight
+   // NSNumber *elsewhere = [self.currentDeal objectForKey:@"num_elsewhere"];
+    NSNumber *elsewhere = @21;
+    int totalGoingOut = [accepted integerValue] + [elsewhere integerValue];
+    self.goingOutLabel.text = [NSString stringWithFormat:@"%d", totalGoingOut];
+    
 }
 
 #pragma mark - Facebook Friends View
 
 - (void) getFacebookFriends
 {
-    
+    [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            NSLog(@"%@", result);
+            // result will contain an array with your user's friends in the "data" key
+            NSArray *friendObjects = [result objectForKey:@"data"];
+            NSMutableArray *friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
+            // Create a list of friends' Facebook IDs
+            for (NSDictionary *friendObject in friendObjects) {
+                [friendIds addObject:[friendObject objectForKey:@"id"]];
+            }
+            
+            // Construct a PFUser query that will find friends whose facebook ids
+            // are contained in the current user's friend list.
+            PFQuery *friendQuery = [PFUser query];
+            [friendQuery whereKey:@"fb_id" containedIn:friendIds];
+            
+            // findObjects will return a list of PFUsers that are friends
+            // with the current user
+            [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if(!error)
+                {
+                    NSArray *friendUsers = objects;
+                    for(int i = 0; i < [friendUsers count]; i++){
+                        PFObject *currentFriend = friendUsers[i];
+                        NSURL *url = [NSURL URLWithString:currentFriend[@"profile"][@"pictureURL"]];
+                        NSData *data = [NSData dataWithContentsOfURL:url];
+                        UIImage *img = [[UIImage alloc] initWithData:data];
+                        UIImageView *iv = [[UIImageView alloc] initWithImage:img];
+                        iv.layer.cornerRadius = iv.frame.size.height/2;
+                        iv.layer.masksToBounds = YES;
+                        iv.layer.borderWidth = NO;
+                        
+                        [self.fbFriendsView addSubview:iv];
 
+                    }
+                    NSURL *url = [NSURL URLWithString:[PFUser currentUser][@"profile"][@"pictureURL"]];
+                    NSData *data = [NSData dataWithContentsOfURL:url];
+                    UIImage *img = [[UIImage alloc] initWithData:data];
+                    UIImageView *iv = [[UIImageView alloc] initWithImage:img];
+                    iv.frame = CGRectMake(20,35, 50, 50);
+                    iv.layer.cornerRadius = iv.frame.size.height/2;
+                    iv.layer.masksToBounds = YES;
+                    iv.layer.borderWidth = NO;
+                    
+                    [self.fbFriendsView addSubview:iv];
+                }
+            }];
+            
+        }
+    }];
 
 
 }
