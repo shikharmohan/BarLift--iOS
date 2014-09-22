@@ -159,7 +159,7 @@
             if([pictureURL absoluteString]){
                 userProfile[@"pictureURL"] = [pictureURL absoluteString];
             }
-            NSLog(@"cjreating user: %@", [PFUser currentUser]);
+            NSLog(@"creating user: %@", [PFUser currentUser]);
             if([[PFUser currentUser] isNew]){
                 [[PFUser currentUser] setObject:@YES forKey:@"Monday"];
                 [[PFUser currentUser] setObject:@YES forKey:@"Tuesday"];
@@ -170,6 +170,7 @@
                 [[PFUser currentUser] setObject:@YES forKey:@"Sunday"];
                 [[PFUser currentUser] setObject:@NO forKey:@"barlift_rep"];
             }
+            [[PFUser currentUser] setObject:userProfile[@"fb_id"] forKey:@"fb_id"];
 
             [[PFUser currentUser] setObject:userProfile forKey:@"profile"];
             [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

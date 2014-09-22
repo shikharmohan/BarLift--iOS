@@ -58,7 +58,7 @@
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-    if((deal != (PFObject *)[NSNull null]) && [[PFUser currentUser][@"barlift_rep"] isEqualToValue:@YES] && [self.todaysDate isEqualToString:deal[@"deal_date"]])
+    if((deal != (PFObject *)[NSNull null]) && [[PFUser currentUser][@"barlift_rep"] isEqualToValue:@YES])
     {
         self.poppinButton.hidden = NO;
     }

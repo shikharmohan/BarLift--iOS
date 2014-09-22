@@ -130,6 +130,10 @@
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
     PFUser *user = [PFUser currentUser];
     [user setObject:[self.helper objectAtIndex:indexPath.row] forKey:@"university_name"];
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setObject:@[@"global",[self.helper objectAtIndex:indexPath.row]] forKey:@"channels"];
+    [currentInstallation setObject:[PFUser currentUser] forKey:@"user"];
+    [currentInstallation saveInBackground];
     [user saveInBackground];
     [self performSegueWithIdentifier:@"universityToDealSegue" sender:self];
 }

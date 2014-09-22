@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[SMDealViewController createProgressBar]:SMDealViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[self.currentDeal objectForKey:@&quot;num_accepted&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "accepted/dealsLeft">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[SMSettingsViewController viewDidLoad]:SMSettingsViewController.m">
          <PersistentStrings>
             <PersistentString

@@ -12,18 +12,26 @@
 #import "SMProgressView.h"
 #import "Reachability.h"
 #import "SMSettingsViewController.h"
+
 @interface SMDealViewController ()
+
 @property (strong, nonatomic) Reachability *internetReachableFoo;
 
-@property (strong, nonatomic) IBOutlet SMBarInfoTranslucentView *barInfoView;
-@property (weak, nonatomic) IBOutlet UIView *dealInfoView;
-@property (weak, nonatomic) IBOutlet UIView *friendInfoView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
+@property (weak, nonatomic) IBOutlet UIView *friendInfoView;
+@property (strong, nonatomic) IBOutlet UILabel *acceptedLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dealsLeftLabel;
+@property (strong, nonatomic) IBOutlet UIProgressView *dealsProgressView;
+@property (strong, nonatomic) IBOutlet UILabel *goingOutLabel;
+@property (strong, nonatomic) IBOutlet UIView *fbFriendsView;
+
+@property (strong, nonatomic) IBOutlet SMBarInfoTranslucentView *barInfoView;
 @property (weak, nonatomic) IBOutlet UILabel *barAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *barNameLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *dealInfoView;
 @property (weak, nonatomic) IBOutlet UIImageView *dealImageView;
 @property (weak, nonatomic) IBOutlet UILabel *dealNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dealDescriptionLabel;
@@ -41,9 +49,11 @@
 //toolbar
 @property (strong, nonatomic) IBOutlet UIToolbar *dealToolbar;
 @property (strong, nonatomic) IBOutlet UIButton *acceptButton;
+//decline button is public
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *settingsBarButtonItem;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *hotBarButtonItem;
+@property (strong, nonatomic) IBOutlet UIButton *hotButton;
+@property (nonatomic) BOOL isHot;
 
 @end
 
@@ -84,23 +94,6 @@
 }
 
 
-//- (void) addCenterButton
-//{
-//    UIImage *centerButtonImage = [UIImage imageNamed:@"verify4.png"];
-//    UIImage *centerButtonImageHighlighted = [UIImage imageNamed:@"checkmark16.png"];
-//    EEToolbarCenterButtonItem *centerButtonItem = [[EEToolbarCenterButtonItem alloc]
-//                                                   initWithImage:centerButtonImage
-//                                                   highlightedImage:centerButtonImageHighlighted
-//                                                   disabledImage:centerButtonImageHighlighted
-//                                                   target:self
-//                                                   action:@selector(didTapCenterButton)];
-//    
-//    self.dealToolbar.centerButtonOverlay.buttonItem = centerButtonItem;
-//
-//}
-
-
-
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -110,9 +103,7 @@
         self.acceptButton.enabled = YES;
         self.declineButton.enabled = YES;
     }
-    if([[PFUser currentUser] isDirty]){
-        [[PFUser currentUser] saveInBackground];
-    }
+    if([[PFUser currentUser] isDirty]) [[PFUser currentUser] saveInBackground];
     if(!self.currentDeal && ([self.currentDeal isDirty] || [self.currentDeal isDataAvailable])){
         [self.currentDeal refresh];
         [self.currentDeal saveInBackground];
@@ -196,6 +187,23 @@
 //}
 //
 
+
+
+//- (void) addCenterButton
+//{
+//    UIImage *centerButtonImage = [UIImage imageNamed:@"verify4.png"];
+//    UIImage *centerButtonImageHighlighted = [UIImage imageNamed:@"checkmark16.png"];
+//    EEToolbarCenterButtonItem *centerButtonItem = [[EEToolbarCenterButtonItem alloc]
+//                                                   initWithImage:centerButtonImage
+//                                                   highlightedImage:centerButtonImageHighlighted
+//                                                   disabledImage:centerButtonImageHighlighted
+//                                                   target:self
+//                                                   action:@selector(didTapCenterButton)];
+//
+//    self.dealToolbar.centerButtonOverlay.buttonItem = centerButtonItem;
+//
+//}
+
 - (IBAction)acceptButtonPressed:(UIButton *)sender
 {
     if(self.activities == nil)
@@ -205,8 +213,8 @@
     if(self.currentDeal){
         [self.currentDeal refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             NSLog(@"Updating deal before accepting deal");
+            [self checkAccept];
         }];
-        [self checkAccept];
     }    self.acceptButton.enabled = NO;
     self.declineButton.enabled = YES;
 
@@ -221,9 +229,10 @@
     if(self.currentDeal){
         [self.currentDeal refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             NSLog(@"Updating deal before declining deal");
+            [self checkDecline];
         }];
-        [self checkDecline];
     }
+    
     self.acceptButton.enabled = YES;
     self.declineButton.enabled = NO;
 }
@@ -239,12 +248,11 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Deal"];
     NSDate *date = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'"]; // Set date and time styles
-    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
-    NSString *dateString = [dateFormatter stringFromDate:date];
-    [query whereKey:@"deal_date" equalTo:dateString];
+    NSLog(@"%@",date);
+    [query whereKey:@"deal_start_date" lessThanOrEqualTo:date];
+    [query whereKey:@"deal_end_date" greaterThanOrEqualTo:date];
     [query whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
+    [query whereKey:@"deal_qty" greaterThan:@0];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if(!error){
             self.currentDeal = object;
@@ -262,7 +270,7 @@
                 [self.currentDeal incrementKey:@"num_not_going_out" byAmount:@1];
                 [self.currentDeal saveInBackground];
             }
-            [self createProgressWheel];
+            [self createProgressBar];
         }
         else{
             self.dealNameLabel.text = @"Sorry No Deal Today";
@@ -308,13 +316,16 @@
     [acceptActivity setObject:[PFUser currentUser] forKey:@"user"];
     [acceptActivity setObject:self.currentDeal forKey:@"deal"];
     [acceptActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if(self.isDeclinedByCurrentUser) [self.currentDeal incrementKey:@"num_declined" byAmount:@-1];
             self.isAcceptedByCurrentUser = YES;
             self.isDeclinedByCurrentUser = NO;
         [self.activities addObject:acceptActivity];
-        [self.currentDeal incrementKey:@"deal_qty" byAmount:@-1];
+        if(self.currentDeal[@"deal_qty"] > 0) [self.currentDeal incrementKey:@"deal_qty" byAmount:@-1];
         [self.currentDeal incrementKey:@"num_accepted" byAmount:@1];
-        [self.currentDeal incrementKey:@"num_declined" byAmount:@-1];
-        [self.currentDeal saveInBackground];
+        
+        [self.currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self createProgressBar]; //update progress bar
+        }];
     }];
 
 }
@@ -328,13 +339,15 @@
     [declineActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(self.isAcceptedByCurrentUser){
             [self.currentDeal incrementKey:@"num_accepted" byAmount:@-1];
-            [self.currentDeal incrementKey:@"deal_qty" byAmount:@-1];
+            [self.currentDeal incrementKey:@"deal_qty" byAmount:@1];
         }
         self.isAcceptedByCurrentUser = NO;
         self.isDeclinedByCurrentUser = YES;
         [self.activities addObject:declineActivity];
         [self.currentDeal incrementKey:@"num_declined" byAmount:@1];
-        [self.currentDeal saveInBackground];
+        [self.currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self createProgressBar];
+        }];
         NSLog(@"bool updated %@", self.activities);
     }];
 
@@ -426,6 +439,22 @@
 
 
 #pragma mark - Hot Deal Button
+- (IBAction)hotButtonPressed:(UIButton *)sender {
+    if(!self.isHot){
+        self.isHot = YES;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hot Deal Notification ON" message:@"You will be notified when this deal becomes popular" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+        [self.hotButton setBackgroundColor:[UIColor redColor]];
+    }
+    else if (self.isHot)
+    {
+        self.isHot = NO;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hot Deal Notification OFF" message:@"You will not be notified when this deal becomes popular" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+        [self.hotButton setBackgroundColor:[UIColor clearColor]];
+    }
+    
+}
 
 
 #pragma mark - Reachability
@@ -460,10 +489,39 @@
 
 #pragma mark - Progress View
 
-- (void) createProgressWheel
+- (void) createProgressBar
+{
+    NSNumber *accepted = [self.currentDeal objectForKey:@"num_accepted"];
+    NSNumber *dealsLeft = [self.currentDeal objectForKey:@"deal_qty"];
+    float totalDeals = [accepted floatValue] + [dealsLeft floatValue];
+    NSLog(@"%f", totalDeals);
+    float percent = 0.1;
+    float used = [accepted floatValue]/totalDeals;
+    NSLog(@"used %f", used);
+    if(used < percent)
+    {
+        self.acceptedLabel.text = [NSString stringWithFormat:@"%d Accepted", 10];
+        self.dealsLeftLabel.text = [NSString stringWithFormat:@"%d Deals Left", 100];
+        [self.dealsProgressView setProgress:percent animated:YES];
+    }
+    else
+    {
+        self.acceptedLabel.text = [NSString stringWithFormat:@"%d Accepted", [accepted integerValue]];
+        self.dealsLeftLabel.text = [NSString stringWithFormat:@"%d Deals Left", [dealsLeft integerValue]];
+        [self.dealsProgressView setProgress:used animated:YES];
+    }
+}
+
+#pragma mark - Facebook Friends View
+
+- (void) getFacebookFriends
 {
     
+
+
+
 }
+
 
 
 @end
