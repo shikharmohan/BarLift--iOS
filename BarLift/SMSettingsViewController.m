@@ -67,10 +67,8 @@
         self.poppinButton.hidden = YES;
     }
     // Do any additional setup after loading the view.
-    if(!locationSettingsArray)
-    {
-        locationSettingsArray = [[NSMutableArray alloc] initWithObjects:[PFUser currentUser][@"university_name"], nil];
-    }
+    
+    NSLog(@"Locations array %@", locationSettingsArray);
 }
 
 - (void)didReceiveMemoryWarning
@@ -237,6 +235,7 @@
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
 {
+
     return [locationSettingsArray count];
 }
 
@@ -283,6 +282,7 @@
     
     [self.internetReachableFoo startNotifier];
 }
+
 
 
 

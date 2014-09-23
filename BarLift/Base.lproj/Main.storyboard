@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ZsK-Az-apo">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -85,7 +84,6 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="cellTitle" destination="Fqx-AY-cBQ" id="eFj-p1-eGT"/>
-                                            <segue destination="f35-Dc-pVK" kind="push" identifier="universityToDealSegue" id="uxx-St-RLx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -124,6 +122,7 @@
                         <outlet property="profileImage" destination="C7g-Xo-VA9" id="ZfG-QA-Abq"/>
                         <outlet property="profileView" destination="foN-18-eCS" id="7Jc-7G-hDO"/>
                         <outlet property="universityTableView" destination="Zti-YS-D6u" id="BhD-YK-rOQ"/>
+                        <segue destination="f35-Dc-pVK" kind="push" identifier="universityToDealSegue" id="DQa-Or-E5B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NY3-5g-lgd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -161,7 +160,7 @@
                         <barButtonItem key="rightBarButtonItem" image="settings18.png" id="e7y-Ug-isd">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="Zfl-tI-mFq" kind="push" id="K1n-Gb-PPe"/>
+                                <segue destination="Zfl-tI-mFq" kind="push" identifier="containerToSettingsSegue" id="K1n-Gb-PPe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -645,6 +644,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uxx-St-RLx"/>
+        <segue reference="DQa-Or-E5B"/>
     </inferredMetricsTieBreakers>
 </document>

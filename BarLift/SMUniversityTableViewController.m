@@ -182,12 +182,13 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSLog(@"HEPER %@", self.helper);
     if([segue.identifier isEqualToString:@"universityToDealSegue"])
     {
         SMContainerViewController *vc = [segue destinationViewController];
+        //send deal info
         [vc performSelector:@selector(setLocationsArray:)
                  withObject:self.helper];
-    
     }
     
     // Get the new view controller using [segue destinationViewController].
