@@ -65,9 +65,6 @@
 
 
 
-
-
-
 - (void) scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
     if(self.scrollView.contentOffset.x > 5)

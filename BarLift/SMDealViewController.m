@@ -100,15 +100,25 @@
 {
     [super viewDidAppear:animated];
 [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(setBarInformation) name: @"UpdateUINotification" object: nil];
+    NSLog(@"Current deal before updating %@", currentDeal);
+    NSLog(@"Current user before updating %@", [PFUser currentUser]);
+
     if(!currentDeal){
         self.acceptButton.enabled = YES;
         self.declineButton.enabled = YES;
     }
-    if([[PFUser currentUser] isDirty]) [[PFUser currentUser] saveInBackground];
+    if([[PFUser currentUser] isDirty])
+    {
+        [[PFUser currentUser] saveInBackground];
+        NSLog(@"Came back from settings and updated user info.");
+    }
     if(!currentDeal && ([currentDeal isDirty] || [currentDeal isDataAvailable])){
         [currentDeal refresh];
         [currentDeal saveInBackground];
+        NSLog(@"Came back from settings and updated deal info.");
+
     }
+    [self setBarInformation];
     [self createProgressBar];
     
     NSLog(@"View DEAL did appear called");
@@ -256,6 +266,9 @@
             currentDeal = (PFObject *) [NSNull null];
             self.acceptButton.enabled = NO;
             self.declineButton.enabled = NO;
+            self.barNameLabel.text = @"";
+            self.barAddressLabel.text = @"";
+
             self.goingOutLabel.text = @"0";
             NSLog(@"Parse query for bars didnt work, %@", error);
         }

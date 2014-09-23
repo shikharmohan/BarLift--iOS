@@ -3,12 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[SMDealViewController prepareForSegue:sender:]:SMDealViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "segue.identifier">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "-[SMSettingsViewController tableView:didSelectRowAtIndexPath:]:SMSettingsViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[SMSettingsViewController viewDidLoad]:SMSettingsViewController.m">
@@ -19,10 +14,35 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[SMContainerViewController scrollViewWillBeginDecelerating:]:SMContainerViewController.m">
+         contextName = "-[SMSettingsViewController tableView:cellForRowAtIndexPath:]:SMSettingsViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.scrollView.contentOffset">
+               value = "self.push[indexPath.row]">
+            </PersistentString>
+            <PersistentString
+               value = "cell.accessoryType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMContainerViewController viewDidLoad]:SMContainerViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[SMDealViewController prepareForSegue:sender:]:SMDealViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "segue.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMContainerViewController viewDidAppear:]:SMContainerViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[SMSettingsViewController pickerView:didSelectRow:inComponent:]:SMSettingsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[PFUser currentUser]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -38,16 +58,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[SMSettingsViewController tableView:didSelectRowAtIndexPath:]:SMSettingsViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[SMSettingsViewController tableView:cellForRowAtIndexPath:]:SMSettingsViewController.m">
+         contextName = "-[SMContainerViewController scrollViewWillBeginDecelerating:]:SMContainerViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.push[indexPath.row]">
+               value = "[PFUser currentUser]">
             </PersistentString>
             <PersistentString
-               value = "cell.accessoryType">
+               value = "self.scrollView.contentOffset">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
