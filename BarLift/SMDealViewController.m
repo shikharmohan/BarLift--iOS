@@ -12,6 +12,7 @@
 #import "SMProgressView.h"
 #import "Reachability.h"
 #import "SMSettingsViewController.h"
+#import "SMContainerViewController.h"
 
 @interface SMDealViewController ()
 
@@ -38,7 +39,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @property (strong, nonatomic) NSMutableArray *activities;
-@property (strong, nonatomic) PFObject *currentDeal;
 @property (strong, nonatomic) PFObject *todaysDate;
 
 
@@ -62,7 +62,8 @@
 @synthesize declineButton; //make it public
 @synthesize userElsewhere;
 @synthesize userNotGoingOut;
-@synthesize locationsArray;
+@synthesize currentDeal;
+@synthesize loc;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,14 +78,14 @@
     [super viewDidLoad];
     [self setUpView];
     self.progressView = [[SMProgressView alloc] initWithFrame:self.friendInfoView.bounds];
-    NSLog(@"%@", self.currentDeal);
+    NSLog(@"%@", currentDeal);
     [self testInternetConnection];
     [self setBarInformation];
-    NSLog(@"%@", self.currentDeal);
+    NSLog(@"%@", currentDeal);
    //self.dealToolbar.centerButtonFeatureEnabled = YES;
     //[self addCenterButton];
     [self getRandomDealImage];
-    if(!self.currentDeal){
+    if(!currentDeal){
         self.acceptButton.enabled = YES;
         self.declineButton.enabled = YES;
     }
@@ -99,14 +100,14 @@
 {
     [super viewDidAppear:animated];
 [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(setBarInformation) name: @"UpdateUINotification" object: nil];
-    if(!self.currentDeal){
+    if(!currentDeal){
         self.acceptButton.enabled = YES;
         self.declineButton.enabled = YES;
     }
     if([[PFUser currentUser] isDirty]) [[PFUser currentUser] saveInBackground];
-    if(!self.currentDeal && ([self.currentDeal isDirty] || [self.currentDeal isDataAvailable])){
-        [self.currentDeal refresh];
-        [self.currentDeal saveInBackground];
+    if(!currentDeal && ([currentDeal isDirty] || [currentDeal isDataAvailable])){
+        [currentDeal refresh];
+        [currentDeal saveInBackground];
     }
     [self createProgressBar];
     
@@ -161,9 +162,9 @@
         SMSettingsViewController *vc = [segue destinationViewController];
         //send deal info
         [vc performSelector:@selector(setDeal:)
-                 withObject:self.currentDeal];
+                 withObject:currentDeal];
         [vc performSelector:@selector(setLocationSettingsArray:)
-                 withObject:locationsArray];
+                 withObject:loc];
     }
 
 
@@ -201,8 +202,8 @@
     {
         self.activities = [[NSMutableArray alloc] initWithCapacity:1];
     }
-    if(self.currentDeal){
-        [self.currentDeal refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    if(currentDeal){
+        [currentDeal refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             NSLog(@"Updating deal before accepting deal");
             [self checkAccept];
         }];
@@ -217,8 +218,8 @@
     {
         self.activities = [[NSMutableArray alloc] initWithCapacity:1];
     }
-    if(self.currentDeal){
-        [self.currentDeal refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    if(currentDeal){
+        [currentDeal refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             NSLog(@"Updating deal before declining deal");
             [self checkDecline];
         }];
@@ -239,7 +240,7 @@
     [query whereKey:@"deal_qty" greaterThan:@0];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if(!error){
-            self.currentDeal = object;
+            currentDeal = object;
             self.barNameLabel.text = object[@"location_name"];
             self.barAddressLabel.text = object[@"address"];
             self.dealNameLabel.text = object[@"name"];
@@ -247,12 +248,12 @@
             [self.activities addObject:object];
 
             if(userElsewhere){
-                [self.currentDeal incrementKey:@"num_elsewhere" byAmount:@1];
-                [self.currentDeal saveInBackground];
+                [currentDeal incrementKey:@"num_elsewhere" byAmount:@1];
+                [currentDeal saveInBackground];
             }
             else if(userNotGoingOut){
-                [self.currentDeal incrementKey:@"num_not_going_out" byAmount:@1];
-                [self.currentDeal saveInBackground];
+                [currentDeal incrementKey:@"num_not_going_out" byAmount:@1];
+                [currentDeal saveInBackground];
             }
             [self createProgressBar];
         }
@@ -260,7 +261,7 @@
             self.dealNameLabel.text = @"Sorry No Deal Today";
             self.descriptionLabel.text = @"";
             self.dealDescriptionLabel.text = @"";
-            self.currentDeal = (PFObject *) [NSNull null];
+            currentDeal = (PFObject *) [NSNull null];
             self.acceptButton.enabled = NO;
             self.declineButton.enabled = NO;
             self.goingOutLabel.text = @"0";
@@ -271,7 +272,7 @@
 
 - (void) getRandomDealImage
 {
-    if(!self.currentDeal){
+    if(!currentDeal){
         [PFConfig getConfigInBackgroundWithBlock:^(PFConfig *config, NSError *error) {
             if(!error){
                 NSArray *dealPictureIDs = config[@"deal_pic_names"];
@@ -299,16 +300,16 @@
     PFObject *acceptActivity = [PFObject objectWithClassName:@"Activity"];
     [acceptActivity setObject:@"accept" forKey:@"type"];
     [acceptActivity setObject:[PFUser currentUser] forKey:@"user"];
-    [acceptActivity setObject:self.currentDeal forKey:@"deal"];
+    [acceptActivity setObject:currentDeal forKey:@"deal"];
     [acceptActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if(self.isDeclinedByCurrentUser) [self.currentDeal incrementKey:@"num_declined" byAmount:@-1];
+        if(self.isDeclinedByCurrentUser) [currentDeal incrementKey:@"num_declined" byAmount:@-1];
             self.isAcceptedByCurrentUser = YES;
             self.isDeclinedByCurrentUser = NO;
         [self.activities addObject:acceptActivity];
-        if(self.currentDeal[@"deal_qty"] > 0) [self.currentDeal incrementKey:@"deal_qty" byAmount:@-1];
-        [self.currentDeal incrementKey:@"num_accepted" byAmount:@1];
+        if(currentDeal[@"deal_qty"] > 0) [currentDeal incrementKey:@"deal_qty" byAmount:@-1];
+        [currentDeal incrementKey:@"num_accepted" byAmount:@1];
         
-        [self.currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [self createProgressBar]; //update progress bar
         }];
     }];
@@ -320,17 +321,17 @@
     PFObject *declineActivity = [PFObject objectWithClassName:@"Activity"];
     [declineActivity setObject:@"decline" forKey:@"type"];
     [declineActivity setObject:[PFUser currentUser] forKey:@"user"];
-    [declineActivity setObject:self.currentDeal forKey:@"deal"];
+    [declineActivity setObject:currentDeal forKey:@"deal"];
     [declineActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(self.isAcceptedByCurrentUser){
-            [self.currentDeal incrementKey:@"num_accepted" byAmount:@-1];
-            [self.currentDeal incrementKey:@"deal_qty" byAmount:@1];
+            [currentDeal incrementKey:@"num_accepted" byAmount:@-1];
+            [currentDeal incrementKey:@"deal_qty" byAmount:@1];
         }
         self.isAcceptedByCurrentUser = NO;
         self.isDeclinedByCurrentUser = YES;
         [self.activities addObject:declineActivity];
-        [self.currentDeal incrementKey:@"num_declined" byAmount:@1];
-        [self.currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [currentDeal incrementKey:@"num_declined" byAmount:@1];
+        [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [self createProgressBar];
         }];
         NSLog(@"bool updated %@", self.activities);
@@ -379,9 +380,9 @@
 //    PFObject *ElsewhereActivity = [PFObject objectWithClassName:@"Activity"];
 //    [ElsewhereActivity setObject:@"Elsewhere" forKey:@"type"];
 //    [ElsewhereActivity setObject:[PFUser currentUser] forKey:@"user"];
-//    [ElsewhereActivity setObject:self.currentDeal forKey:@"deal"];
-//    [self.currentDeal incrementKey:@"num_Elsewhere" byAmount:@1];
-//    [self.currentDeal saveInBackground];
+//    [ElsewhereActivity setObject:currentDeal forKey:@"deal"];
+//    [currentDeal incrementKey:@"num_Elsewhere" byAmount:@1];
+//    [currentDeal saveInBackground];
 //    [ElsewhereActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 //        if(succeeded){
 //            self.isAcceptedByCurrentUser = NO;
@@ -476,9 +477,9 @@
 
 - (void) createProgressBar
 {
-    if(!self.currentDeal){
-        NSNumber *accepted = [self.currentDeal objectForKey:@"num_accepted"];
-        NSNumber *dealsLeft = [self.currentDeal objectForKey:@"deal_qty"];
+    if(!currentDeal){
+        NSNumber *accepted = [currentDeal objectForKey:@"num_accepted"];
+        NSNumber *dealsLeft = [currentDeal objectForKey:@"deal_qty"];
         float totalDeals = [accepted floatValue] + [dealsLeft floatValue];
         NSLog(@"%f", totalDeals);
         float percent = 0.1;
@@ -498,7 +499,7 @@
         
         
         //Update people going out tonight
-        // NSNumber *elsewhere = [self.currentDeal objectForKey:@"num_elsewhere"];
+        // NSNumber *elsewhere = [currentDeal objectForKey:@"num_elsewhere"];
         NSNumber *elsewhere = @21;
         int totalGoingOut = [accepted integerValue] + [elsewhere integerValue];
         self.goingOutLabel.text = [NSString stringWithFormat:@"%d", totalGoingOut];

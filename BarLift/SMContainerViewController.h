@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SMContainerViewController : UIViewController <UIScrollViewDelegate>
+@property (strong, nonatomic) NSMutableArray *locationsArray;
 
 @end

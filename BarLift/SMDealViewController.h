@@ -12,6 +12,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *declineButton;
 @property (nonatomic) BOOL userElsewhere;
 @property (nonatomic) BOOL userNotGoingOut;
-@property (strong, nonatomic) NSMutableArray *locationsArray;
-
+@property (strong, nonatomic) PFObject *currentDeal;
+@property (strong) NSMutableArray *loc;
 @end

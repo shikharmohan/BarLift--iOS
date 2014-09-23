@@ -9,13 +9,16 @@
 #import "SMContainerViewController.h"
 #import "SMDealViewController.h"
 #import "SMFriendsViewController.h"
+
 @interface SMContainerViewController ()
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *muteButtonItem;
-
+@property (nonatomic) BOOL muteOn;
+@property (strong, nonatomic) SMDealViewController *dealController;
 @end
 
 @implementation SMContainerViewController
+@synthesize locationsArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,7 +48,9 @@
     
     
     UIViewController * deal = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
+    self.dealController = deal;
     [self addChildViewController:deal];
+    
     [self.scrollView addSubview:deal.view];
     [deal didMoveToParentViewController:self];
     
@@ -55,9 +60,13 @@
     
     [self.scrollView setContentSize:CGSizeMake(2*self.view.frame.size.width, self.view.frame.size.height)];
     
-    
-    
     // Do any additional setup after loading the view.
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [self.dealController performSelector:@selector(setLoc:) withObject:locationsArray];
+    NSLog(@"%@", self.dealController);
 }
 
 
@@ -92,10 +101,17 @@
 }
 */
 - (IBAction)muteButtonPressed:(UIBarButtonItem *)sender {
-    
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hot Deal Notification ON" message:@"You will be notified when this deal becomes popular" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alertView show];
-    [self.muteButtonItem setTintColor:[UIColor redColor]];
+    if(!self.muteOn){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Mute ON" message:@"You will not receive notifications for tonight" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+        [self.muteButtonItem setTintColor:[UIColor redColor]];
+        self.muteOn = YES;
+    }
+    else{
+        [self.muteButtonItem setTintColor:[UIColor whiteColor]];
+        self.muteOn = NO;
+    }
+
 }
 
 @end

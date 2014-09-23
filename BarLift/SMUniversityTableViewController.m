@@ -7,7 +7,7 @@
 //
 
 #import "SMUniversityTableViewController.h"
-#import "SMDealViewController.h"
+#import "SMContainerViewController.h"
 @interface SMUniversityTableViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
@@ -184,7 +184,7 @@
 {
     if([segue.identifier isEqualToString:@"universityToDealSegue"])
     {
-        SMDealViewController *vc = [segue destinationViewController];
+        SMContainerViewController *vc = [segue destinationViewController];
         [vc performSelector:@selector(setLocationsArray:)
                  withObject:self.helper];
     
