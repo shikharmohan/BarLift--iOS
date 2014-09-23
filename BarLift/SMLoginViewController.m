@@ -159,7 +159,6 @@
             if([pictureURL absoluteString]){
                 userProfile[@"pictureURL"] = [pictureURL absoluteString];
             }
-            NSLog(@"creating user: %@", [PFUser currentUser]);
             if([[PFUser currentUser] isNew]){
                 [[PFUser currentUser] setObject:@YES forKey:@"Monday"];
                 [[PFUser currentUser] setObject:@YES forKey:@"Tuesday"];

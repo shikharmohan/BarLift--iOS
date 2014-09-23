@@ -3,13 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[SMDealViewController createProgressBar]:SMDealViewController.m">
+         contextName = "-[SMDealViewController prepareForSegue:sender:]:SMDealViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "[self.currentDeal objectForKey:@&quot;num_accepted&quot;]">
-            </PersistentString>
-            <PersistentString
-               value = "accepted/dealsLeft">
+               value = "segue.identifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -18,6 +15,25 @@
          <PersistentStrings>
             <PersistentString
                value = "[PFUser currentUser]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMContainerViewController scrollViewWillBeginDecelerating:]:SMContainerViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.scrollView.contentOffset">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMDealViewController createProgressBar]:SMDealViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[self.currentDeal objectForKey:@&quot;num_accepted&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "accepted/dealsLeft">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -32,14 +48,6 @@
             </PersistentString>
             <PersistentString
                value = "cell.accessoryType">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[SMDealViewController prepareForSegue:sender:]:SMDealViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "segue.identifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

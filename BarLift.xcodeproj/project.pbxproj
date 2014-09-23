@@ -44,6 +44,12 @@
 		01938D3F19CABADC00E40326 /* SMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D3E19CABADC00E40326 /* SMProgressView.m */; };
 		01938D4319CB5E1D00E40326 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D4219CB5E1D00E40326 /* Reachability.m */; };
 		01938D4919CB8E9000E40326 /* SMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D4819CB8E9000E40326 /* SMSettingsViewController.m */; };
+		01CFE47C19D0F0C900CAC654 /* SMFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFE47B19D0F0C900CAC654 /* SMFriendsViewController.m */; };
+		01CFE48019D0F12D00CAC654 /* SMContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFE47F19D0F12D00CAC654 /* SMContainerViewController.m */; };
+		01CFE48419D11C1F00CAC654 /* mute37.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CFE48319D11C1F00CAC654 /* mute37.png */; };
+		01CFE48819D1226200CAC654 /* BarLiftBG4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01CFE48719D1226200CAC654 /* BarLiftBG4.jpg */; };
+		01CFE48C19D123CE00CAC654 /* BarLiftBG6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01CFE48B19D123CE00CAC654 /* BarLiftBG6.jpg */; };
+		01CFE49019D1246A00CAC654 /* BarliftBG1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01CFE48F19D1246A00CAC654 /* BarliftBG1.jpg */; };
 		01E5F08719C39110001B6D35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08619C39110001B6D35 /* Foundation.framework */; };
 		01E5F08919C39110001B6D35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08819C39110001B6D35 /* CoreGraphics.framework */; };
 		01E5F08B19C39110001B6D35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08A19C39110001B6D35 /* UIKit.framework */; };
@@ -123,6 +129,14 @@
 		01938D4219CB5E1D00E40326 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		01938D4719CB8E9000E40326 /* SMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSettingsViewController.h; sourceTree = "<group>"; };
 		01938D4819CB8E9000E40326 /* SMSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSettingsViewController.m; sourceTree = "<group>"; };
+		01CFE47A19D0F0C900CAC654 /* SMFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMFriendsViewController.h; sourceTree = "<group>"; };
+		01CFE47B19D0F0C900CAC654 /* SMFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMFriendsViewController.m; sourceTree = "<group>"; };
+		01CFE47E19D0F12D00CAC654 /* SMContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMContainerViewController.h; sourceTree = "<group>"; };
+		01CFE47F19D0F12D00CAC654 /* SMContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMContainerViewController.m; sourceTree = "<group>"; };
+		01CFE48319D11C1F00CAC654 /* mute37.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mute37.png; sourceTree = "<group>"; };
+		01CFE48719D1226200CAC654 /* BarLiftBG4.jpg */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = BarLiftBG4.jpg; sourceTree = "<group>"; };
+		01CFE48B19D123CE00CAC654 /* BarLiftBG6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BarLiftBG6.jpg; sourceTree = "<group>"; };
+		01CFE48F19D1246A00CAC654 /* BarliftBG1.jpg */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = BarliftBG1.jpg; sourceTree = "<group>"; };
 		01E5F08319C39110001B6D35 /* BarLift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarLift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E5F08619C39110001B6D35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01E5F08819C39110001B6D35 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -276,6 +290,26 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		01CFE47919D0F0AA00CAC654 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				01CFE47A19D0F0C900CAC654 /* SMFriendsViewController.h */,
+				01CFE47B19D0F0C900CAC654 /* SMFriendsViewController.m */,
+			);
+			name = Friends;
+			sourceTree = "<group>";
+		};
+		01CFE47D19D0F10400CAC654 /* Sliding Container */ = {
+			isa = PBXGroup;
+			children = (
+				01CFE47919D0F0AA00CAC654 /* Friends */,
+				01E5F0C719C39E11001B6D35 /* Deal */,
+				01CFE47E19D0F12D00CAC654 /* SMContainerViewController.h */,
+				01CFE47F19D0F12D00CAC654 /* SMContainerViewController.m */,
+			);
+			name = "Sliding Container";
+			sourceTree = "<group>";
+		};
 		01E5F07A19C39110001B6D35 = {
 			isa = PBXGroup;
 			children = (
@@ -326,9 +360,9 @@
 		01E5F08C19C39110001B6D35 /* BarLift */ = {
 			isa = PBXGroup;
 			children = (
+				01CFE47D19D0F10400CAC654 /* Sliding Container */,
 				01938D4619CB8E7A00E40326 /* Settings */,
 				01938D4519CB69D900E40326 /* Helper Libraries */,
-				01E5F0C719C39E11001B6D35 /* Deal */,
 				01E5F0C619C39D18001B6D35 /* Login */,
 				01E5F09519C39110001B6D35 /* SMAppDelegate.h */,
 				01E5F09619C39110001B6D35 /* SMAppDelegate.m */,
@@ -349,6 +383,10 @@
 		01E5F08D19C39110001B6D35 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				01CFE48F19D1246A00CAC654 /* BarliftBG1.jpg */,
+				01CFE48B19D123CE00CAC654 /* BarLiftBG6.jpg */,
+				01CFE48719D1226200CAC654 /* BarLiftBG4.jpg */,
+				01CFE48319D11C1F00CAC654 /* mute37.png */,
 				01938D2E19CA85A500E40326 /* ok-48.png */,
 				01938D2F19CA85A500E40326 /* checkmark-50.png */,
 				01938D2C19CA820C00E40326 /* up_right-50.png */,
@@ -489,11 +527,15 @@
 				0103D20519C6919900E41EAC /* deal_background.png in Resources */,
 				01E5F09F19C39110001B6D35 /* Images.xcassets in Resources */,
 				01938CFE19C961BC00E40326 /* Facebook@2x.png in Resources */,
+				01CFE48419D11C1F00CAC654 /* mute37.png in Resources */,
 				01938D0319C981A900E40326 /* fire9.png in Resources */,
 				0103D21519C9582000E41EAC /* settings18.png in Resources */,
+				01CFE48819D1226200CAC654 /* BarLiftBG4.jpg in Resources */,
 				0103D21119C7E33200E41EAC /* bar-louie-logo.png in Resources */,
+				01CFE49019D1246A00CAC654 /* BarliftBG1.jpg in Resources */,
 				0103D21719C95A5100E41EAC /* facebook-login.png in Resources */,
 				0103D21B19C95BA700E41EAC /* barlift-logo.png in Resources */,
+				01CFE48C19D123CE00CAC654 /* BarLiftBG6.jpg in Resources */,
 				01938D1C19CA4BA100E40326 /* verify4.png in Resources */,
 				01938D3119CA85A500E40326 /* checkmark-50.png in Resources */,
 				01938D2B19CA80BD00E40326 /* delete_sign-32.png in Resources */,
@@ -529,8 +571,10 @@
 				01938D3F19CABADC00E40326 /* SMProgressView.m in Sources */,
 				01938D4919CB8E9000E40326 /* SMSettingsViewController.m in Sources */,
 				01938D2519CA731F00E40326 /* EEToolbarCenterButtonOverlay.m in Sources */,
+				01CFE48019D0F12D00CAC654 /* SMContainerViewController.m in Sources */,
 				0103D20219C672F500E41EAC /* SMConstants.m in Sources */,
 				01938D2619CA731F00E40326 /* UIToolbar+EEToolbarCenterButton.m in Sources */,
+				01CFE47C19D0F0C900CAC654 /* SMFriendsViewController.m in Sources */,
 				01E5F09319C39110001B6D35 /* main.m in Sources */,
 				01938D4319CB5E1D00E40326 /* Reachability.m in Sources */,
 				0113601E19C3D04600987370 /* SMUniversityTableViewController.m in Sources */,

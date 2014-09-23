@@ -99,7 +99,6 @@
 {
     [super viewDidAppear:animated];
 [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(setBarInformation) name: @"UpdateUINotification" object: nil];
-    NSLog(@"%@", [PFUser currentUser]);
     if(!self.currentDeal){
         self.acceptButton.enabled = YES;
         self.declineButton.enabled = YES;
@@ -109,6 +108,8 @@
         [self.currentDeal refresh];
         [self.currentDeal saveInBackground];
     }
+    [self createProgressBar];
+    
     NSLog(@"View DEAL did appear called");
 }
 
@@ -118,26 +119,15 @@
     
     //add background image
     UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"deal_background.png"] drawInRect:self.view.bounds];
+    
+    
+    
+    [[UIImage imageNamed:@"BarLiftBG4.jpg"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-    
-    //navigation bar set up
-    [self.navigationItem setHidesBackButton:YES];
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        // iOS 6.1 or earlier
-        self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    } else {
-        // iOS 7.0 or later
-        self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
-        self.navigationController.navigationBar.translucent = YES;
-    }
-    
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    
-    
+        
     //bar info view set up
 
     self.barInfoView.translucentAlpha = 1;
@@ -233,15 +223,9 @@
             [self checkDecline];
         }];
     }
-    
     self.acceptButton.enabled = YES;
     self.declineButton.enabled = NO;
 }
-
-
-
-
-
 
 
 #pragma mark - View Helper Methods
@@ -249,7 +233,6 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Deal"];
     NSDate *date = [NSDate date];
-    NSLog(@"%@",date);
     [query whereKey:@"deal_start_date" lessThanOrEqualTo:date];
     [query whereKey:@"deal_end_date" greaterThanOrEqualTo:date];
     [query whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
@@ -493,31 +476,38 @@
 
 - (void) createProgressBar
 {
-    NSNumber *accepted = [self.currentDeal objectForKey:@"num_accepted"];
-    NSNumber *dealsLeft = [self.currentDeal objectForKey:@"deal_qty"];
-    float totalDeals = [accepted floatValue] + [dealsLeft floatValue];
-    NSLog(@"%f", totalDeals);
-    float percent = 0.1;
-    float used = [accepted floatValue]/totalDeals;
-    NSLog(@"used %f", used);
-    if(used < percent)
-    {
-        self.acceptedLabel.text = [NSString stringWithFormat:@"%d Accepted", 10];
-        self.dealsLeftLabel.text = [NSString stringWithFormat:@"%d Deals Left", 100];
-        [self.dealsProgressView setProgress:percent animated:YES];
-    }
-    else
-    {
+    if(!self.currentDeal){
+        NSNumber *accepted = [self.currentDeal objectForKey:@"num_accepted"];
+        NSNumber *dealsLeft = [self.currentDeal objectForKey:@"deal_qty"];
+        float totalDeals = [accepted floatValue] + [dealsLeft floatValue];
+        NSLog(@"%f", totalDeals);
+        float percent = 0.1;
+        float used = [accepted floatValue]/totalDeals;
+        NSLog(@"used %f", used);
+        //    if(used < percent)
+        //    {
+        //        self.acceptedLabel.text = [NSString stringWithFormat:@"%d Accepted", 10];
+        //        self.dealsLeftLabel.text = [NSString stringWithFormat:@"%d Deals Left", 100];
+        //        [self.dealsProgressView setProgress:percent animated:YES];
+        //    }
+        //    else
+        
         self.acceptedLabel.text = [NSString stringWithFormat:@"%d Accepted", [accepted integerValue]];
         self.dealsLeftLabel.text = [NSString stringWithFormat:@"%d Deals Left", [dealsLeft integerValue]];
         [self.dealsProgressView setProgress:used animated:YES];
+        
+        
+        //Update people going out tonight
+        // NSNumber *elsewhere = [self.currentDeal objectForKey:@"num_elsewhere"];
+        NSNumber *elsewhere = @21;
+        int totalGoingOut = [accepted integerValue] + [elsewhere integerValue];
+        self.goingOutLabel.text = [NSString stringWithFormat:@"%d", totalGoingOut];
     }
-    
-    //Update people going out tonight
-   // NSNumber *elsewhere = [self.currentDeal objectForKey:@"num_elsewhere"];
-    NSNumber *elsewhere = @21;
-    int totalGoingOut = [accepted integerValue] + [elsewhere integerValue];
-    self.goingOutLabel.text = [NSString stringWithFormat:@"%d", totalGoingOut];
+    else{
+        self.acceptedLabel.text = [NSString stringWithFormat:@"%d Accepted", 0];
+        self.dealsLeftLabel.text = [NSString stringWithFormat:@"%d Deals Left", 0];
+        [self.dealsProgressView setProgress:0 animated:YES];
+    }
     
 }
 
@@ -560,16 +550,16 @@
                         [self.fbFriendsView addSubview:iv];
 
                     }
-                    NSURL *url = [NSURL URLWithString:[PFUser currentUser][@"profile"][@"pictureURL"]];
-                    NSData *data = [NSData dataWithContentsOfURL:url];
-                    UIImage *img = [[UIImage alloc] initWithData:data];
-                    UIImageView *iv = [[UIImageView alloc] initWithImage:img];
-                    iv.frame = CGRectMake(20,35, 50, 50);
-                    iv.layer.cornerRadius = iv.frame.size.height/2;
-                    iv.layer.masksToBounds = YES;
-                    iv.layer.borderWidth = NO;
-                    
-                    [self.fbFriendsView addSubview:iv];
+//                    NSURL *url = [NSURL URLWithString:[PFUser currentUser][@"profile"][@"pictureURL"]];
+//                    NSData *data = [NSData dataWithContentsOfURL:url];
+//                    UIImage *img = [[UIImage alloc] initWithData:data];
+//                    UIImageView *iv = [[UIImageView alloc] initWithImage:img];
+//                    iv.frame = CGRectMake(20,35, 50, 50);
+//                    iv.layer.cornerRadius = iv.frame.size.height/2;
+//                    iv.layer.masksToBounds = YES;
+//                    iv.layer.borderWidth = NO;
+//                    
+//                    [self.fbFriendsView addSubview:iv];
                 }
             }];
             
