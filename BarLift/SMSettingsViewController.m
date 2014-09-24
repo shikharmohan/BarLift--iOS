@@ -69,6 +69,8 @@
     // Do any additional setup after loading the view.
     
     NSLog(@"Locations array %@", locationSettingsArray);
+    NSInteger index = [locationSettingsArray indexOfObject:[PFUser currentUser][@"university_name"]];
+    if(index != NSNotFound) [self.locationPicker selectRow:index inComponent:0 animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

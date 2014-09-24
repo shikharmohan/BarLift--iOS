@@ -11,6 +11,9 @@
             <PersistentString
                value = "[PFUser currentUser]">
             </PersistentString>
+            <PersistentString
+               value = "self.locationSettingsArray">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState

@@ -248,16 +248,11 @@
             self.dealNameLabel.text = object[@"name"];
             self.dealDescriptionLabel.text = [object objectForKey:@"description"];
             [self.activities addObject:object];
-
-            if(userElsewhere){
-                [currentDeal incrementKey:@"num_elsewhere" byAmount:@1];
-                [currentDeal saveInBackground];
-            }
-            else if(userNotGoingOut){
-                [currentDeal incrementKey:@"num_not_going_out" byAmount:@1];
-                [currentDeal saveInBackground];
-            }
-            [self createProgressBar];
+            [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    [self createProgressBar];
+                    self.acceptButton.enabled = YES;
+                    self.declineButton.enabled = YES;
+            }];
         }
         else{
             self.dealNameLabel.text = @"Sorry No Deal Today";

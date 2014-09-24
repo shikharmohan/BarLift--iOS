@@ -26,14 +26,14 @@
     [self.navigationItem setHidesBackButton:YES];
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
         // iOS 6.1 or earlier
-        self.navigationController.navigationBar.tintColor = [UIColor redColor];
+        self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     } else {
         // iOS 7.0 or later
-        self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+        self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
         self.navigationController.navigationBar.translucent = YES;
     }
     UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"deal_background.png"] drawInRect:self.view.bounds];
+    [[UIImage imageNamed:@"BarLiftBG6.jpg"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.profileView.backgroundColor = [UIColor colorWithPatternImage:image];
