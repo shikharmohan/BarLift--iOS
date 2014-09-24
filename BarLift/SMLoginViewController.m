@@ -172,6 +172,10 @@
             [[PFUser currentUser] setObject:userProfile[@"fb_id"] forKey:@"fb_id"];
 
             [[PFUser currentUser] setObject:userProfile forKey:@"profile"];
+            PFACL *acl = [PFACL ACLWithUser:[PFUser currentUser]];
+            [acl setPublicReadAccess:YES];
+            [[PFUser currentUser] setObject:acl forKey:@"ACL"];
+            
             [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if(succeeded){
                     NSLog(@"User saved successfully");

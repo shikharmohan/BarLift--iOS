@@ -372,11 +372,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMFriendsViewController.m"
-            timestampString = "433225316.255648"
+            timestampString = "433227318.082175"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "-segmentedControlChangedValue:"
             landmarkType = "5">
          </BreakpointContent>
@@ -388,11 +388,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMFriendsViewController.m"
-            timestampString = "433225316.255648"
+            timestampString = "433227318.082175"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "-uisegmentedControlChangedValue:"
             landmarkType = "5">
          </BreakpointContent>
