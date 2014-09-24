@@ -28,9 +28,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[SMContainerViewController viewDidLoad]:SMContainerViewController.m">
-      </ContextState>
-      <ContextState
          contextName = "-[SMDealViewController prepareForSegue:sender:]:SMDealViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -61,10 +58,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[SMFriendsViewController retrieveFromParse]:SMFriendsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "!self.dealNow.currentDeal">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[SMDealViewController createProgressBar]:SMDealViewController.m">
          <PersistentStrings>
             <PersistentString
                value = "[self.currentDeal objectForKey:@&quot;num_accepted&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "!currentDeal">
             </PersistentString>
             <PersistentString
                value = "accepted/dealsLeft">

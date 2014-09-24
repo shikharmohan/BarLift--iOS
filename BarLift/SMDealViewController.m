@@ -477,7 +477,7 @@
 
 - (void) createProgressBar
 {
-    if(!currentDeal){
+    if(currentDeal){
         NSNumber *accepted = [currentDeal objectForKey:@"num_accepted"];
         NSNumber *dealsLeft = [currentDeal objectForKey:@"deal_qty"];
         float totalDeals = [accepted floatValue] + [dealsLeft floatValue];

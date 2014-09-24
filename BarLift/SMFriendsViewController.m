@@ -8,9 +8,16 @@
 
 #import "SMFriendsViewController.h"
 #import "HMSegmentedControl.h"
+#import "SMElsewhereViewController.h"
+#import "SMFriendsTableViewController.h"
+#import "SMDealViewController.h"
 
 @interface SMFriendsViewController ()
 @property (strong, nonatomic) HMSegmentedControl *segmentedControl4;
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *helper;
+@property (strong, nonatomic) SMDealViewController *dealNow;
+
 @end
 
 @implementation SMFriendsViewController
@@ -37,8 +44,11 @@
     self.segmentedControl4.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
     self.segmentedControl4.tag = 2;
     [self.segmentedControl4 addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-    
     [self.view addSubview:self.segmentedControl4];
+    self.tableView = [[UITableView alloc] init];
+    [self.view addSubview:self.tableView];
+    
+   [self retrieveFromParse];
 
 }
 
@@ -49,11 +59,22 @@
 
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    if(segmentedControl.selectedSegmentIndex == 0){
+        //query for Users going
     
-    
+    }
+    else if (segmentedControl.selectedSegmentIndex == 1){
+        //query for users not going
+        [self retrieveFromParse];
+        
+    }
     
     NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
 }
+
+
+
+
 
 
 - (void)uisegmentedControlChangedValue:(UISegmentedControl *)segmentedControl {
@@ -61,6 +82,62 @@
 }
 
 
+
+- (void) retrieveFromParse
+{
+    
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+    [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+
+    if(self.dealNow.currentDeal){
+        [query whereKey:@"type" equalTo:@"decline"];
+        [query whereKey:@"deal" equalTo:self.dealNow.currentDeal];
+        [query selectKeys:@[@"user"]];
+    }
+    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+        if(!error){
+            self.helper = [[NSMutableArray alloc] initWithCapacity:2];
+            for(int i = 0; i < [results count]; i++){
+                if([self.helper indexOfObject:results[i][@"user"]] == NSNotFound){
+                    [self.helper addObject:results[i][@"user"]];
+                }
+            }
+        }
+        else{
+            NSLog(@"%@",error);
+        }
+        [self.tableView reloadData];
+    }];
+    
+}
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return [self.helper count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    NSLog(@"%@", [self.helper objectAtIndex:indexPath.row]);
+    cell.textLabel.text = [self.helper objectAtIndex:indexPath.row];
+    
+    return cell;
+}
 
 /*
 #pragma mark - Navigation
