@@ -42,6 +42,17 @@
          contextName = "-[SMContainerViewController viewDidAppear:]:SMContainerViewController.m">
       </ContextState>
       <ContextState
+         contextName = "-[SMContainerViewController scrollViewDidScroll:]:SMContainerViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.lastContentOffset">
+            </PersistentString>
+            <PersistentString
+               value = "self.scrollView.contentOffset.x">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[SMSettingsViewController pickerView:didSelectRow:inComponent:]:SMSettingsViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -65,6 +76,9 @@
          <PersistentStrings>
             <PersistentString
                value = "[PFUser currentUser]">
+            </PersistentString>
+            <PersistentString
+               value = "">
             </PersistentString>
             <PersistentString
                value = "self.scrollView.contentOffset">

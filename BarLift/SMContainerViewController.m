@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *muteButtonItem;
 @property (nonatomic) BOOL muteOn;
 @property (strong, nonatomic) SMDealViewController *dealController;
+@property (nonatomic) CGFloat lastContentOffset;
 @end
 
 @implementation SMContainerViewController
@@ -65,16 +66,18 @@
 
 
 
+
 - (void) scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
-    if(self.scrollView.contentOffset.x > 5)
+    if (self.lastContentOffset > scrollView.contentOffset.x)
     {
-        if([self.navigationItem.title  isEqual: @"Today's Deal"]) self.navigationItem.title = @"Who's Going";
-        else if ([self.navigationItem.title isEqual:@"Who's Going"]) self.navigationItem.title = @"Today's Deal";
-    }
-    else{
         self.navigationItem.title = @"Today's Deal";
     }
+    else if (self.lastContentOffset < scrollView.contentOffset.x)
+    {
+        self.navigationItem.title = @"Who's Going";
+    }
+    self.lastContentOffset = scrollView.contentOffset.x;
 
 }
 

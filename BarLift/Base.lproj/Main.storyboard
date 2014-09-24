@@ -198,10 +198,10 @@
                                 <items>
                                     <barButtonItem style="plain" id="kf6-Mv-QVO">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3Zn-aP-IRt">
-                                            <rect key="frame" x="16" y="18" width="77" height="30"/>
+                                            <rect key="frame" x="16" y="18" width="138" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <state key="normal" title="Decline" image="delete_sign-32.png">
+                                            <state key="normal" title="Going Elsewhere" image="delete_sign-32.png">
                                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -209,8 +209,9 @@
                                                 <action selector="declineButtonPressed:" destination="9HS-NX-wdP" eventType="touchUpInside" id="5B8-bu-l7q"/>
                                             </connections>
                                         </button>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
-                                    <barButtonItem width="105" style="plain" systemItem="fixedSpace" id="tOZ-fi-JWZ"/>
+                                    <barButtonItem width="52" style="plain" systemItem="fixedSpace" id="tOZ-fi-JWZ"/>
                                     <barButtonItem style="plain" id="ZLM-MT-k8r">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EBx-Te-Ksq">
                                             <rect key="frame" x="208" y="18" width="91" height="30"/>
@@ -448,14 +449,6 @@
                     <view key="view" contentMode="scaleToFill" id="6Ba-L1-pqd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Facebook Freinds shown here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpN-n8-pbx">
-                                <rect key="frame" x="45" y="147" width="231" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -614,7 +607,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Hox-Rx-8N5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7XS-7E-Z2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZsK-Az-apo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gxt-s0-M1U">
@@ -626,6 +618,7 @@
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Dhv-Ai-aul"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7XS-7E-Z2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-202" y="-80"/>
         </scene>
