@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SMFriendsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *friendTableView;
 
 @end

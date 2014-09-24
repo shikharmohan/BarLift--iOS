@@ -14,13 +14,14 @@
 
 @interface SMFriendsViewController ()
 @property (strong, nonatomic) HMSegmentedControl *segmentedControl4;
-@property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *helper;
-@property (strong, nonatomic) SMDealViewController *dealNow;
+@property (strong, nonatomic) PFObject *dealNow;
 
 @end
 
 @implementation SMFriendsViewController
+@synthesize friendTableView;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,10 +46,18 @@
     self.segmentedControl4.tag = 2;
     [self.segmentedControl4 addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.segmentedControl4];
-    self.tableView = [[UITableView alloc] init];
-    [self.view addSubview:self.tableView];
+
+    PFQuery *dealQuery = [PFQuery queryWithClassName:@"Deal"];
+    NSDate *date = [NSDate date];
+    [dealQuery whereKey:@"deal_start_date" lessThanOrEqualTo:date];
+    [dealQuery whereKey:@"deal_end_date" greaterThanOrEqualTo:date];
+    [dealQuery whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
+    [dealQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
+    [dealQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if(!error) self.dealNow = object;
+        [self retrieveAcceptFromParse];
+    }];
     
-   [self retrieveFromParse];
 
 }
 
@@ -61,11 +70,11 @@
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     if(segmentedControl.selectedSegmentIndex == 0){
         //query for Users going
-    
+        [self retrieveAcceptFromParse];
     }
     else if (segmentedControl.selectedSegmentIndex == 1){
         //query for users not going
-        [self retrieveFromParse];
+        [self retrieveDeclineFromParse];
         
     }
     
@@ -81,18 +90,15 @@
     NSLog(@"Selected index %ld", (long)segmentedControl.selectedSegmentIndex);
 }
 
-
-
-- (void) retrieveFromParse
+- (void) retrieveAcceptFromParse
 {
-    
-    
+    [self.dealNow refresh];
     PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
     [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
-
-    if(self.dealNow.currentDeal){
+    
+    if(self.dealNow){
         [query whereKey:@"type" equalTo:@"decline"];
-        [query whereKey:@"deal" equalTo:self.dealNow.currentDeal];
+        [query whereKey:@"deal" equalTo:self.dealNow];
         [query selectKeys:@[@"user"]];
     }
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
@@ -107,9 +113,35 @@
         else{
             NSLog(@"%@",error);
         }
-        [self.tableView reloadData];
+        [friendTableView reloadData];
     }];
+}
+
+- (void) retrieveDeclineFromParse
+{
+    [self.dealNow refresh];
+    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+    [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
     
+    if(self.dealNow){
+        [query whereKey:@"type" equalTo:@"decline"];
+        [query whereKey:@"deal" equalTo:self.dealNow];
+        [query selectKeys:@[@"user"]];
+    }
+    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+        if(!error){
+            self.helper = [[NSMutableArray alloc] initWithCapacity:2];
+            for(int i = 0; i < [results count]; i++){
+                if([self.helper indexOfObject:results[i][@"user"]] == NSNotFound){
+                    [self.helper addObject:results[i][@"user"]];
+                }
+            }
+        }
+        else{
+            NSLog(@"%@",error);
+        }
+        [friendTableView reloadData];
+    }];
 }
 
 
@@ -134,7 +166,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     NSLog(@"%@", [self.helper objectAtIndex:indexPath.row]);
-    cell.textLabel.text = [self.helper objectAtIndex:indexPath.row];
+    
     
     return cell;
 }

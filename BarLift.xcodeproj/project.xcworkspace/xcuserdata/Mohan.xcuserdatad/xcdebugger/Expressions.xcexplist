@@ -28,6 +28,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[SMFriendsViewController retrieveDeclineFromParse]:SMFriendsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.helper">
+            </PersistentString>
+            <PersistentString
+               value = "self.dealNow">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[SMDealViewController prepareForSegue:sender:]:SMDealViewController.m">
          <PersistentStrings>
             <PersistentString

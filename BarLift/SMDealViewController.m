@@ -239,10 +239,10 @@
     [query whereKey:@"deal_start_date" lessThanOrEqualTo:date];
     [query whereKey:@"deal_end_date" greaterThanOrEqualTo:date];
     [query whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
-    [query whereKey:@"deal_qty" greaterThan:@0];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if(!error){
             currentDeal = object;
+  
             self.barNameLabel.text = object[@"location_name"];
             self.barAddressLabel.text = object[@"address"];
             self.dealNameLabel.text = object[@"name"];
@@ -250,8 +250,11 @@
             [self.activities addObject:object];
             [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     [self createProgressBar];
+                if(currentDeal[@"deal_qty"] > 0)
+                {
                     self.acceptButton.enabled = YES;
                     self.declineButton.enabled = YES;
+                }
             }];
         }
         else{
