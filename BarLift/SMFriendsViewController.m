@@ -92,13 +92,8 @@
             self.dealNow = nil;
             self.helper = nil;
         }
-        
     }];
-    
     NSLog(@"FRIENDS view Did appear");
-
-
-
 }
 
 

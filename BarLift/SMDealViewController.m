@@ -125,9 +125,6 @@
     
     //add background image
     UIGraphicsBeginImageContext(self.view.frame.size);
-    
-    
-    
     [[UIImage imageNamed:@"BarLiftBG4.jpg"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -147,6 +144,11 @@
     bottomBorder.backgroundColor = [UIColor grayColor];
     bottomBorder.frame = CGRectMake(0, self.dealInfoView.frame.size.height - borderThickness, self.dealInfoView.frame.size.width, borderThickness);
     [self.dealInfoView addSubview:bottomBorder];
+    
+    if(!currentDeal)
+    {
+        [self.dealToolbar setBackgroundColor:[UIColor whiteColor]];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -206,6 +208,8 @@
         }];
     }    self.acceptButton.enabled = NO;
     self.declineButton.enabled = YES;
+    
+    [self.dealToolbar setBackgroundColor:[UIColor greenColor]];
 
 }
 
@@ -223,6 +227,8 @@
     }
     self.acceptButton.enabled = YES;
     self.declineButton.enabled = NO;
+    [self.dealToolbar setBackgroundColor:[UIColor redColor]];
+
 }
 
 

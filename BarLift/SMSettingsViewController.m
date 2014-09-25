@@ -58,7 +58,7 @@
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-    if((deal != (PFObject *)[NSNull null]) && [[PFUser currentUser][@"barlift_rep"] isEqualToValue:@YES])
+    if((deal != nil) && [[PFUser currentUser][@"barlift_rep"] isEqualToValue:@YES])
     {
         self.poppinButton.hidden = NO;
     }
@@ -210,8 +210,21 @@
 }
 
 - (IBAction)poppinButtonPressed:(UIButton *)sender {
-    
-    NSLog(@"It's Popping");
+    if([PFUser currentUser][@"university_name"] && deal){
+        PFPush *push = [[PFPush alloc] init];
+        [push setChannel:[PFUser currentUser][@"university_name"]];
+        NSString *barName = deal[@"location_name"];
+        NSString *dealName = deal[@"name"];
+        NSString *message = [NSString stringWithFormat:@"It's Poppin! Come on down to %@! %@", barName, dealName];
+        [push setMessage:message];
+        [push sendPushInBackground];
+    }
+    else
+    {
+        self.poppinButton.hidden = YES;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Deal Currently" message:@"Check back later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
 }
 
 
