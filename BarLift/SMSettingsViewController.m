@@ -71,6 +71,9 @@
     NSLog(@"Locations array %@", locationSettingsArray);
     NSInteger index = [locationSettingsArray indexOfObject:[PFUser currentUser][@"university_name"]];
     if(index != NSNotFound) [self.locationPicker selectRow:index inComponent:0 animated:YES];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning

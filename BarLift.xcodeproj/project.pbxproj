@@ -520,6 +520,13 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
+					01E5F08219C39110001B6D35 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					01E5F0A319C39110001B6D35 = {
 						TestTargetID = 01E5F08219C39110001B6D35;
 					};

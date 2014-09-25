@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "BarLift": {
+            "applicationId": "5DZi1FrdZcwBKXIxMplWsqYu3cEEumlmFDB1kKnC", 
+            "masterKey": "KUNHBmLRwJUsnDpcy9CtM5kXTNckJlXNNwlDVQJq"
+        }, 
+        "_default": {
+            "link": "BarLift"
+        }
+    }
+}
