@@ -45,10 +45,11 @@
         [self addChildViewController:friend];
         [self.scrollView addSubview:friend.view];
         [friend didMoveToParentViewController:self];
-    
+        
     
         UIViewController * deal = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
         self.dealController = (SMDealViewController *) deal;
+        if(!self.dealController.currentDeal) self.muteButtonItem.enabled = NO;
         [self addChildViewController:deal];
         [self.scrollView addSubview:deal.view];
         [deal didMoveToParentViewController:self];
@@ -58,13 +59,13 @@
         friend.view.frame = adminFrame;
     
         [self.scrollView setContentSize:CGSizeMake(2*self.view.frame.size.width, self.view.frame.size.height)];
-    
-
-    
     // Do any additional setup after loading the view.
 }
 
-
+- (void) viewDidAppear:(BOOL)animated
+{
+    if(self.dealController.currentDeal) self.muteButtonItem.enabled = YES;
+}
 
 
 - (void) scrollViewWillBeginDecelerating:(UIScrollView *)scrollView

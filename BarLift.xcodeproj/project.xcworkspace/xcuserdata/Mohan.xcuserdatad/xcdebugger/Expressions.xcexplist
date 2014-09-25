@@ -3,51 +3,15 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[SMSettingsViewController tableView:didSelectRowAtIndexPath:]:SMSettingsViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[SMSettingsViewController viewDidLoad]:SMSettingsViewController.m">
+         contextName = "-[SMFriendsViewController retrieveFromParse]:SMFriendsViewController.m">
          <PersistentStrings>
-            <PersistentString
-               value = "[PFUser currentUser]">
-            </PersistentString>
-            <PersistentString
-               value = "self.locationSettingsArray">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[SMSettingsViewController tableView:cellForRowAtIndexPath:]:SMSettingsViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.push[indexPath.row]">
-            </PersistentString>
-            <PersistentString
-               value = "cell.accessoryType">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[SMFriendsViewController retrieveDeclineFromParse]:SMFriendsViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.helper">
-            </PersistentString>
             <PersistentString
                value = "self.dealNow">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[SMDealViewController prepareForSegue:sender:]:SMDealViewController.m">
-         <PersistentStrings>
             <PersistentString
-               value = "segue.identifier">
+               value = "!self.dealNow.currentDeal">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[SMContainerViewController viewDidAppear:]:SMContainerViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[SMContainerViewController scrollViewDidScroll:]:SMContainerViewController.m">
@@ -57,36 +21,6 @@
             </PersistentString>
             <PersistentString
                value = "self.scrollView.contentOffset.x">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[SMSettingsViewController pickerView:didSelectRow:inComponent:]:SMSettingsViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[PFUser currentUser]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[SMFriendsViewController retrieveFromParse]:SMFriendsViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "!self.dealNow.currentDeal">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[SMDealViewController createProgressBar]:SMDealViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[self.currentDeal objectForKey:@&quot;num_accepted&quot;]">
-            </PersistentString>
-            <PersistentString
-               value = "!currentDeal">
-            </PersistentString>
-            <PersistentString
-               value = "accepted/dealsLeft">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -101,6 +35,111 @@
             </PersistentString>
             <PersistentString
                value = "self.scrollView.contentOffset">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMSettingsViewController pickerView:didSelectRow:inComponent:]:SMSettingsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[PFUser currentUser]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMSettingsViewController viewDidLoad]:SMSettingsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[PFUser currentUser]">
+            </PersistentString>
+            <PersistentString
+               value = "self.locationSettingsArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMFriendsViewController tableView:cellForRowAtIndexPath:]:SMFriendsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.helper">
+            </PersistentString>
+            <PersistentString
+               value = "obj[@&quot;first_name&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__41-[SMDealViewController setBarInformation]_block_invoke:SMDealViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentDeal = nil">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMFriendsViewController segmentedControlChangedValue:]:SMFriendsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.dealNow">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMDealViewController prepareForSegue:sender:]:SMDealViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "segue.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMDealViewController createProgressBar]:SMDealViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "accepted/dealsLeft">
+            </PersistentString>
+            <PersistentString
+               value = "currentDeal">
+            </PersistentString>
+            <PersistentString
+               value = "[self.currentDeal objectForKey:@&quot;num_accepted&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "!currentDeal">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__51-[SMFriendsViewController retrieveDeclineFromParse]_block_invoke:SMFriendsViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[SMContainerViewController viewDidAppear:]:SMContainerViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[SMFriendsViewController retrieveDeclineFromParse]:SMFriendsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.helper">
+            </PersistentString>
+            <PersistentString
+               value = "self.dealNow">
+            </PersistentString>
+            <PersistentString
+               value = "self.helper[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMSettingsViewController tableView:didSelectRowAtIndexPath:]:SMSettingsViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[SMSettingsViewController tableView:cellForRowAtIndexPath:]:SMSettingsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.push[indexPath.row]">
+            </PersistentString>
+            <PersistentString
+               value = "cell.accessoryType">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

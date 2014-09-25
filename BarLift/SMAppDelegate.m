@@ -29,8 +29,7 @@
          (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
     }
     
-    return YES;
-    
+
     // Override point for customization after application launch.
     return YES;
 }

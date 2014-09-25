@@ -9,7 +9,6 @@
 #import "SMDealViewController.h"
 #import "SMBarInfoTranslucentView.h"
 #import "UIToolbar+EEToolbarCenterButton.h"
-#import "SMProgressView.h"
 #import "Reachability.h"
 #import "SMSettingsViewController.h"
 #import "SMContainerViewController.h"
@@ -44,7 +43,6 @@
 
 @property (nonatomic) BOOL isAcceptedByCurrentUser;
 @property (nonatomic) BOOL isDeclinedByCurrentUser;
-@property (nonatomic) SMProgressView* progressView;
 @property (nonatomic) NSTimer* timer;
 //toolbar
 @property (strong, nonatomic) IBOutlet UIToolbar *dealToolbar;
@@ -77,7 +75,6 @@
 {
     [super viewDidLoad];
     [self setUpView];
-    self.progressView = [[SMProgressView alloc] initWithFrame:self.friendInfoView.bounds];
     NSLog(@"%@", currentDeal);
     [self testInternetConnection];
     [self setBarInformation];
@@ -89,7 +86,6 @@
         self.acceptButton.enabled = YES;
         self.declineButton.enabled = YES;
     }
-    [self getFacebookFriends];
     
     
     // Do any additional setup after loading the view.
@@ -119,7 +115,6 @@
 
     }
     [self setBarInformation];
-    [self createProgressBar];
     
     NSLog(@"View DEAL did appear called");
 }
@@ -261,13 +256,13 @@
             self.dealNameLabel.text = @"Sorry No Deal Today";
             self.descriptionLabel.text = @"";
             self.dealDescriptionLabel.text = @"";
-            currentDeal = (PFObject *) [NSNull null];
+            currentDeal = nil;
             self.acceptButton.enabled = NO;
             self.declineButton.enabled = NO;
             self.barNameLabel.text = @"";
             self.barAddressLabel.text = @"";
-
             self.goingOutLabel.text = @"0";
+            [self createProgressBar];
             NSLog(@"Parse query for bars didnt work, %@", error);
         }
     }];
@@ -554,16 +549,6 @@
                         [self.fbFriendsView addSubview:iv];
 
                     }
-//                    NSURL *url = [NSURL URLWithString:[PFUser currentUser][@"profile"][@"pictureURL"]];
-//                    NSData *data = [NSData dataWithContentsOfURL:url];
-//                    UIImage *img = [[UIImage alloc] initWithData:data];
-//                    UIImageView *iv = [[UIImageView alloc] initWithImage:img];
-//                    iv.frame = CGRectMake(20,35, 50, 50);
-//                    iv.layer.cornerRadius = iv.frame.size.height/2;
-//                    iv.layer.masksToBounds = YES;
-//                    iv.layer.borderWidth = NO;
-//                    
-//                    [self.fbFriendsView addSubview:iv];
                 }
             }];
             

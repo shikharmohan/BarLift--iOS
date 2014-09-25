@@ -41,7 +41,6 @@
 		01938D2D19CA820C00E40326 /* up_right-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2C19CA820C00E40326 /* up_right-50.png */; };
 		01938D3019CA85A500E40326 /* ok-48.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2E19CA85A500E40326 /* ok-48.png */; };
 		01938D3119CA85A500E40326 /* checkmark-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 01938D2F19CA85A500E40326 /* checkmark-50.png */; };
-		01938D3F19CABADC00E40326 /* SMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D3E19CABADC00E40326 /* SMProgressView.m */; };
 		01938D4319CB5E1D00E40326 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D4219CB5E1D00E40326 /* Reachability.m */; };
 		01938D4919CB8E9000E40326 /* SMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01938D4819CB8E9000E40326 /* SMSettingsViewController.m */; };
 		01CFE47C19D0F0C900CAC654 /* SMFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFE47B19D0F0C900CAC654 /* SMFriendsViewController.m */; };
@@ -126,8 +125,6 @@
 		01938D2C19CA820C00E40326 /* up_right-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "up_right-50.png"; sourceTree = "<group>"; };
 		01938D2E19CA85A500E40326 /* ok-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ok-48.png"; sourceTree = "<group>"; };
 		01938D2F19CA85A500E40326 /* checkmark-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark-50.png"; sourceTree = "<group>"; };
-		01938D3D19CABADC00E40326 /* SMProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMProgressView.h; sourceTree = "<group>"; };
-		01938D3E19CABADC00E40326 /* SMProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMProgressView.m; sourceTree = "<group>"; };
 		01938D4119CB5E1D00E40326 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		01938D4219CB5E1D00E40326 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		01938D4719CB8E9000E40326 /* SMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSettingsViewController.h; sourceTree = "<group>"; };
@@ -398,8 +395,6 @@
 				01E5F09619C39110001B6D35 /* SMAppDelegate.m */,
 				0103D20319C672F900E41EAC /* Constants */,
 				01E5F09819C39110001B6D35 /* Main.storyboard */,
-				01938D3D19CABADC00E40326 /* SMProgressView.h */,
-				01938D3E19CABADC00E40326 /* SMProgressView.m */,
 				0113601219C3BA4F00987370 /* University Info */,
 				01E5F09B19C39110001B6D35 /* SMViewController.h */,
 				01E5F09C19C39110001B6D35 /* SMViewController.m */,
@@ -600,7 +595,6 @@
 				0113602419C4022200987370 /* SMUniversityTableViewCell.m in Sources */,
 				01E5F09D19C39110001B6D35 /* SMViewController.m in Sources */,
 				01E5F0C519C39D13001B6D35 /* SMLoginViewController.m in Sources */,
-				01938D3F19CABADC00E40326 /* SMProgressView.m in Sources */,
 				01938D4919CB8E9000E40326 /* SMSettingsViewController.m in Sources */,
 				01938D2519CA731F00E40326 /* EEToolbarCenterButtonOverlay.m in Sources */,
 				01CFE49E19D2893E00CAC654 /* SMElsewhereViewController.m in Sources */,
