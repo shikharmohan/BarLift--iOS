@@ -32,7 +32,7 @@
     [super viewDidLoad];
     //add background image
     UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"deal_background.png"] drawInRect:self.view.bounds];
+    [[UIImage imageNamed:@"BarLiftBG4.jpg"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     

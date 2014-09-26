@@ -17,21 +17,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ezi-Bv-k7O">
-                                <rect key="frame" x="150" y="222" width="20" height="20"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOm-Zs-YjO">
-                                <rect key="frame" x="44" y="470" width="232" height="37"/>
-                                <state key="normal" title="Login with Facebook" backgroundImage="Facebook.png">
+                                <rect key="frame" x="39" y="293" width="243" height="63"/>
+                                <state key="normal" image="fb.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0lj-DD-iz3"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="barliftlogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="CAd-K0-zYB">
-                                <rect key="frame" x="20" y="68" width="280" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="CAd-K0-zYB">
+                                <rect key="frame" x="70" y="59" width="181" height="174"/>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ezi-Bv-k7O">
+                                <rect key="frame" x="150" y="236" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -226,6 +226,7 @@
                                                 <action selector="acceptButtonPressed:" destination="9HS-NX-wdP" eventType="touchUpInside" id="Ant-ge-WIK"/>
                                             </connections>
                                         </button>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -364,6 +365,7 @@
                                                     <constraint firstItem="IPy-OV-2oK" firstAttribute="top" secondItem="dUy-BZ-NE6" secondAttribute="top" constant="5" id="AGH-Xb-q0d"/>
                                                     <constraint firstItem="ppW-Fh-ZbE" firstAttribute="top" secondItem="IPy-OV-2oK" secondAttribute="bottom" constant="2" id="KZb-uc-VtF"/>
                                                     <constraint firstItem="ppW-Fh-ZbE" firstAttribute="leading" secondItem="dUy-BZ-NE6" secondAttribute="leading" constant="25" id="a4i-dH-tj6"/>
+                                                    <constraint firstAttribute="trailing" secondItem="IPy-OV-2oK" secondAttribute="trailing" constant="25" id="eX6-15-fz2"/>
                                                     <constraint firstAttribute="width" constant="300" id="lSh-di-F7Y"/>
                                                     <constraint firstAttribute="bottom" secondItem="xMF-c8-NOC" secondAttribute="bottom" id="tgi-UN-qU3"/>
                                                 </constraints>
@@ -648,9 +650,10 @@
     </scenes>
     <resources>
         <image name="Facebook.png" width="200" height="25"/>
-        <image name="barliftlogo.png" width="280" height="129"/>
         <image name="checkmark-50.png" width="50" height="50"/>
         <image name="delete_sign-32.png" width="32" height="32"/>
+        <image name="fb.png" width="275" height="67"/>
+        <image name="logo.png" width="200" height="190"/>
         <image name="mute37.png" width="32" height="35"/>
         <image name="settings18.png" width="24" height="24"/>
     </resources>

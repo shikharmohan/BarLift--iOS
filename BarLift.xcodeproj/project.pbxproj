@@ -52,6 +52,8 @@
 		01CFE49619D2766A00CAC654 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFE49519D2766A00CAC654 /* HMSegmentedControl.m */; };
 		01CFE49B19D287D900CAC654 /* SMFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFE49A19D287D900CAC654 /* SMFriendsTableViewController.m */; };
 		01CFE49E19D2893E00CAC654 /* SMElsewhereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFE49D19D2893E00CAC654 /* SMElsewhereViewController.m */; };
+		01CFE4A519D5235600CAC654 /* fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CFE4A419D5235600CAC654 /* fb.png */; };
+		01CFE4A719D523B800CAC654 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CFE4A619D523B800CAC654 /* logo.png */; };
 		01E5F08719C39110001B6D35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08619C39110001B6D35 /* Foundation.framework */; };
 		01E5F08919C39110001B6D35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08819C39110001B6D35 /* CoreGraphics.framework */; };
 		01E5F08B19C39110001B6D35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08A19C39110001B6D35 /* UIKit.framework */; };
@@ -143,6 +145,8 @@
 		01CFE49A19D287D900CAC654 /* SMFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMFriendsTableViewController.m; sourceTree = "<group>"; };
 		01CFE49C19D2893E00CAC654 /* SMElsewhereViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMElsewhereViewController.h; sourceTree = "<group>"; };
 		01CFE49D19D2893E00CAC654 /* SMElsewhereViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMElsewhereViewController.m; sourceTree = "<group>"; };
+		01CFE4A419D5235600CAC654 /* fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb.png; sourceTree = "<group>"; };
+		01CFE4A619D523B800CAC654 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		01E5F08319C39110001B6D35 /* BarLift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarLift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E5F08619C39110001B6D35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01E5F08819C39110001B6D35 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -409,6 +413,8 @@
 		01E5F08D19C39110001B6D35 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				01CFE4A419D5235600CAC654 /* fb.png */,
+				01CFE4A619D523B800CAC654 /* logo.png */,
 				01CFE48F19D1246A00CAC654 /* BarliftBG1.jpg */,
 				01CFE48B19D123CE00CAC654 /* BarLiftBG6.jpg */,
 				01CFE48719D1226200CAC654 /* BarLiftBG4.jpg */,
@@ -560,6 +566,7 @@
 				0103D20519C6919900E41EAC /* deal_background.png in Resources */,
 				01E5F09F19C39110001B6D35 /* Images.xcassets in Resources */,
 				01938CFE19C961BC00E40326 /* Facebook@2x.png in Resources */,
+				01CFE4A519D5235600CAC654 /* fb.png in Resources */,
 				01CFE48419D11C1F00CAC654 /* mute37.png in Resources */,
 				01938D0319C981A900E40326 /* fire9.png in Resources */,
 				0103D21519C9582000E41EAC /* settings18.png in Resources */,
@@ -575,6 +582,7 @@
 				01938D2D19CA820C00E40326 /* up_right-50.png in Resources */,
 				0103D21919C95B2E00E41EAC /* barliftlogo.png in Resources */,
 				01938D3019CA85A500E40326 /* ok-48.png in Resources */,
+				01CFE4A719D523B800CAC654 /* logo.png in Resources */,
 				01E5F09119C39110001B6D35 /* InfoPlist.strings in Resources */,
 				01E5F09A19C39110001B6D35 /* Main.storyboard in Resources */,
 				01938D1A19CA4BA100E40326 /* cross30.png in Resources */,
