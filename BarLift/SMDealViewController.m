@@ -45,8 +45,10 @@
 @property (nonatomic) BOOL isDeclinedByCurrentUser;
 @property (nonatomic) NSTimer* timer;
 //toolbar
-@property (strong, nonatomic) IBOutlet UIToolbar *dealToolbar;
+@property (strong, nonatomic) IBOutlet UIView *dealToolbarView;
 @property (strong, nonatomic) IBOutlet UIButton *acceptButton;
+
+
 //decline button is public
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *settingsBarButtonItem;
@@ -147,7 +149,7 @@
     
     if(!currentDeal)
     {
-        [self.dealToolbar setBackgroundColor:[UIColor whiteColor]];
+        [self.dealToolbarView setBackgroundColor:[UIColor whiteColor]];
     }
 }
 
@@ -206,10 +208,15 @@
             NSLog(@"Updating deal before accepting deal");
             [self checkAccept];
         }];
-    }    self.acceptButton.enabled = NO;
-    self.declineButton.enabled = YES;
+    }
+    CGRect originalFrame = sender.frame;
+    originalFrame.size.width = sender.frame.size.width+120;
     
-    [self.dealToolbar setBackgroundColor:[UIColor greenColor]];
+    [UIView animateWithDuration:1.5 animations:^{
+        sender.frame = originalFrame;
+    }];
+    self.acceptButton.enabled = NO;
+    self.declineButton.enabled = YES;
 
 }
 
@@ -227,7 +234,7 @@
     }
     self.acceptButton.enabled = YES;
     self.declineButton.enabled = NO;
-    [self.dealToolbar setBackgroundColor:[UIColor redColor]];
+
 
 }
 

@@ -189,47 +189,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <toolbar clearsContextBeforeDrawing="NO" alpha="0.84999999999999987" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="is0-NT-IHv">
-                                <rect key="frame" x="0.0" y="745" width="320" height="65"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="OVU-lq-tom"/>
-                                    <constraint firstAttribute="height" constant="65" id="Sdc-Lf-iTj"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem style="plain" id="kf6-Mv-QVO">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3Zn-aP-IRt">
-                                            <rect key="frame" x="16" y="18" width="138" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <state key="normal" title="Going Elsewhere" image="delete_sign-32.png">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="declineButtonPressed:" destination="9HS-NX-wdP" eventType="touchUpInside" id="5B8-bu-l7q"/>
-                                            </connections>
-                                        </button>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    </barButtonItem>
-                                    <barButtonItem width="52" style="plain" systemItem="fixedSpace" id="tOZ-fi-JWZ"/>
-                                    <barButtonItem style="plain" id="ZLM-MT-k8r">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EBx-Te-Ksq">
-                                            <rect key="frame" x="208" y="18" width="91" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <state key="normal" title="Accept" image="checkmark-50.png">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="acceptButtonPressed:" destination="9HS-NX-wdP" eventType="touchUpInside" id="Ant-ge-WIK"/>
-                                            </connections>
-                                        </button>
-                                        <color key="tintColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AMZ-pD-c41">
                                 <rect key="frame" x="0.0" y="62" width="320" height="569"/>
                                 <subviews>
@@ -400,14 +359,45 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pde-mP-cEW">
+                                <rect key="frame" x="0.0" y="631" width="320" height="65"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7m2-Pp-67M">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="65"/>
+                                        <color key="backgroundColor" red="0.27754453719397459" green="0.34989535886019746" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
+                                        <state key="normal" title="GOING ELSEWHERE">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="declineButtonPressed:" destination="9HS-NX-wdP" eventType="touchUpInside" id="Z6i-ZI-NE4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OjH-Df-EHQ">
+                                        <rect key="frame" x="160" y="0.0" width="160" height="65"/>
+                                        <color key="backgroundColor" red="0.83231026785714279" green="0.47741636401185589" blue="0.12739675803675785" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
+                                        <state key="normal" title="ACCEPT">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="acceptButtonPressed:" destination="9HS-NX-wdP" eventType="touchUpInside" id="gUk-XD-73L"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="IBd-S3-Crh"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AMZ-pD-c41" firstAttribute="top" secondItem="BPB-ka-1VD" secondAttribute="top" constant="62" id="DpL-ra-tL8"/>
-                            <constraint firstAttribute="trailing" secondItem="is0-NT-IHv" secondAttribute="trailing" id="Lqd-Bc-d0f"/>
                             <constraint firstItem="1p1-Jt-YQd" firstAttribute="top" secondItem="AMZ-pD-c41" secondAttribute="bottom" constant="65" id="R0x-hT-rcj"/>
-                            <constraint firstItem="is0-NT-IHv" firstAttribute="leading" secondItem="BPB-ka-1VD" secondAttribute="leading" id="WCN-a9-bcE"/>
-                            <constraint firstItem="is0-NT-IHv" firstAttribute="top" secondItem="AMZ-pD-c41" secondAttribute="bottom" id="fvN-I8-sFV"/>
+                            <constraint firstItem="pde-mP-cEW" firstAttribute="top" secondItem="AMZ-pD-c41" secondAttribute="bottom" id="YcU-6B-6EQ"/>
                             <constraint firstAttribute="trailing" secondItem="AMZ-pD-c41" secondAttribute="trailing" id="lrI-Nk-CaR"/>
                             <constraint firstItem="AMZ-pD-c41" firstAttribute="leading" secondItem="BPB-ka-1VD" secondAttribute="leading" id="oJL-n8-H3T"/>
                         </constraints>
@@ -417,7 +407,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="800"/>
                     <connections>
-                        <outlet property="acceptButton" destination="EBx-Te-Ksq" id="4rW-c4-xtu"/>
+                        <outlet property="acceptButton" destination="OjH-Df-EHQ" id="PAB-eC-O7O"/>
                         <outlet property="acceptedLabel" destination="qe6-NI-NtS" id="IHA-Ck-4tn"/>
                         <outlet property="barAddressLabel" destination="Ysb-yt-cPw" id="2Pm-V9-XWk"/>
                         <outlet property="barInfoView" destination="DoQ-WI-XDF" id="Cab-JQ-ysy"/>
@@ -427,10 +417,10 @@
                         <outlet property="dealImageView" destination="KNV-X6-g3E" id="OCF-fs-jmf"/>
                         <outlet property="dealInfoView" destination="dip-0I-UdN" id="Zq7-ce-384"/>
                         <outlet property="dealNameLabel" destination="ZWm-7B-dw7" id="7i6-3m-Xw8"/>
-                        <outlet property="dealToolbar" destination="is0-NT-IHv" id="4Yd-Jq-OwL"/>
+                        <outlet property="dealToolbarView" destination="pde-mP-cEW" id="gio-eA-Cei"/>
                         <outlet property="dealsLeftLabel" destination="IPy-OV-2oK" id="CSl-h0-DVL"/>
                         <outlet property="dealsProgressView" destination="ppW-Fh-ZbE" id="WPm-PC-cfn"/>
-                        <outlet property="declineButton" destination="3Zn-aP-IRt" id="3Vp-NN-6wj"/>
+                        <outlet property="declineButton" destination="7m2-Pp-67M" id="qck-D5-0cK"/>
                         <outlet property="descriptionLabel" destination="eoR-NO-zyM" id="nt8-Af-jjm"/>
                         <outlet property="fbFriendsView" destination="xMF-c8-NOC" id="fXL-b0-CBt"/>
                         <outlet property="friendInfoView" destination="dUy-BZ-NE6" id="eT9-9M-x9J"/>
@@ -439,7 +429,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Lc-PP-VFG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1171" y="389"/>
+            <point key="canvasLocation" x="1171" y="380"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="X8g-Sg-iY8">
@@ -582,6 +572,18 @@
                                             <action selector="poppinButtonPressed:" destination="Zfl-tI-mFq" eventType="touchUpInside" id="0dU-dL-nRi"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXu-tc-dzY">
+                                        <rect key="frame" x="32" y="655" width="297" height="46"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="297" id="E6A-u0-Ych"/>
+                                            <constraint firstAttribute="height" constant="46" id="Yac-EL-e9e"/>
+                                        </constraints>
+                                        <state key="normal" title="Log Out">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="2Hc-t9-SES" firstAttribute="leading" secondItem="pp3-lE-Jk6" secondAttribute="leading" id="3hK-80-a3e"/>
@@ -591,11 +593,14 @@
                                     <constraint firstItem="Uv0-4n-4G2" firstAttribute="trailing" secondItem="2Hc-t9-SES" secondAttribute="trailing" id="FJp-Vo-8Nv"/>
                                     <constraint firstItem="Uv0-4n-4G2" firstAttribute="trailing" secondItem="pp3-lE-Jk6" secondAttribute="trailing" id="HgV-d2-8AE"/>
                                     <constraint firstItem="Uv0-4n-4G2" firstAttribute="centerX" secondItem="MrG-I7-hcg" secondAttribute="centerX" id="KAA-aO-v26"/>
+                                    <constraint firstItem="UXu-tc-dzY" firstAttribute="leading" secondItem="MrG-I7-hcg" secondAttribute="leading" constant="32" id="NnW-5e-XEZ"/>
                                     <constraint firstAttribute="bottom" secondItem="Uv0-4n-4G2" secondAttribute="bottom" constant="344" id="Nqh-fh-aXB"/>
                                     <constraint firstAttribute="trailing" secondItem="QgS-2l-piJ" secondAttribute="trailing" constant="31" id="Ta4-XQ-EOQ"/>
+                                    <constraint firstItem="UXu-tc-dzY" firstAttribute="top" secondItem="okZ-Ae-DOg" secondAttribute="bottom" constant="610" id="VN7-HG-E7F"/>
                                     <constraint firstItem="pp3-lE-Jk6" firstAttribute="top" secondItem="Uv0-4n-4G2" secondAttribute="bottom" constant="13" id="Xgu-ZC-Sou"/>
                                     <constraint firstItem="okZ-Ae-DOg" firstAttribute="top" secondItem="MrG-I7-hcg" secondAttribute="top" constant="20" symbolic="YES" id="caV-MA-YpN"/>
                                     <constraint firstItem="Uv0-4n-4G2" firstAttribute="trailing" secondItem="okZ-Ae-DOg" secondAttribute="trailing" id="edF-no-9uI"/>
+                                    <constraint firstAttribute="trailing" secondItem="UXu-tc-dzY" secondAttribute="trailing" constant="31" id="gir-HU-WWC"/>
                                     <constraint firstItem="Uv0-4n-4G2" firstAttribute="top" secondItem="MrG-I7-hcg" secondAttribute="top" constant="53" id="hnF-0v-KCZ"/>
                                     <constraint firstItem="QgS-2l-piJ" firstAttribute="top" secondItem="MEi-12-ufN" secondAttribute="bottom" constant="18" id="l2Z-eI-wO9"/>
                                     <constraint firstAttribute="bottom" secondItem="QgS-2l-piJ" secondAttribute="bottom" constant="63" id="lVU-SC-RXw"/>
@@ -650,8 +655,6 @@
     </scenes>
     <resources>
         <image name="Facebook.png" width="200" height="25"/>
-        <image name="checkmark-50.png" width="50" height="50"/>
-        <image name="delete_sign-32.png" width="32" height="32"/>
         <image name="fb.png" width="275" height="67"/>
         <image name="logo.png" width="200" height="190"/>
         <image name="mute37.png" width="32" height="35"/>

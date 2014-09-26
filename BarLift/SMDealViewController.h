@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMDealViewController : UIViewController
+@interface SMDealViewController : UIViewController <UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *declineButton;
 @property (nonatomic) BOOL userElsewhere;
 @property (nonatomic) BOOL userNotGoingOut;
