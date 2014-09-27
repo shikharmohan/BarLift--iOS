@@ -65,7 +65,7 @@
                                                 selector:@selector(resetMute)
                                                 userInfo: nil repeats:YES];
     
-    //reset mute button almost day
+    //reset mute button almost every day
     [t fire];
     // Do any additional setup after loading the view.
 }

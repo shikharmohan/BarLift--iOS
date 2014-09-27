@@ -77,7 +77,16 @@
     [self setUpView];
     NSLog(@"%@", currentDeal);
     [self testInternetConnection];
-    [self setBarInformation];
+    
+    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 60.0
+                                                  target: self
+                                                selector:@selector(setBarInformation)
+                                                userInfo: nil repeats:YES];
+    
+    //get bar information every minute
+    [t fire];
+
+    
     NSLog(@"%@", currentDeal);
    //self.dealToolbar.centerButtonFeatureEnabled = YES;
     //[self addCenterButton];
@@ -252,11 +261,23 @@
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if(!error){
             currentDeal = object;
-  
-            self.barNameLabel.text = object[@"location_name"];
-            self.barAddressLabel.text = object[@"address"];
-            self.dealNameLabel.text = object[@"name"];
-            self.dealDescriptionLabel.text = [object objectForKey:@"description"];
+            //special deal
+            if(object[@"special_deal_included"] && object[@"sp_deal_qty"] > 0)
+            {
+                self.barNameLabel.text = object[@"location_name"];
+                self.barAddressLabel.text = object[@"address"];
+                self.dealNameLabel.text = object[@"sp_deal_name"];
+                self.dealDescriptionLabel.text = [object objectForKey:@"sp_deal_description"];
+            }
+            else
+            {
+                self.barNameLabel.text = object[@"location_name"];
+                self.barAddressLabel.text = object[@"address"];
+                self.dealNameLabel.text = object[@"name"];
+                self.dealDescriptionLabel.text = [object objectForKey:@"description"];
+            }
+            
+
             [self.activities addObject:object];
             [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     [self createProgressBar];
@@ -268,7 +289,7 @@
             }];
         }
         else{
-            self.dealNameLabel.text = @"Sorry No Deal Today";
+            self.dealNameLabel.text = @"Sorry No Deal Right Now \n Check Back Later";
             self.descriptionLabel.text = @"";
             self.dealDescriptionLabel.text = @"";
             currentDeal = nil;
