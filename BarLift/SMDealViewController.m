@@ -52,8 +52,6 @@
 //decline button is public
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *settingsBarButtonItem;
-@property (strong, nonatomic) IBOutlet UIButton *hotButton;
-@property (nonatomic) BOOL isHot;
 
 @end
 
@@ -351,7 +349,6 @@
         }];
         NSLog(@"bool updated %@", self.activities);
     }];
-
 }
 
 - (void) checkAccept
@@ -438,24 +435,6 @@
 //}
 
 
-
-#pragma mark - Hot Deal Button
-- (IBAction)hotButtonPressed:(UIButton *)sender {
-    if(!self.isHot){
-        self.isHot = YES;
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hot Deal Notification ON" message:@"You will be notified when this deal becomes popular" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
-        [self.hotButton setBackgroundColor:[UIColor redColor]];
-    }
-    else if (self.isHot)
-    {
-        self.isHot = NO;
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hot Deal Notification OFF" message:@"You will not be notified when this deal becomes popular" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
-        [self.hotButton setBackgroundColor:[UIColor clearColor]];
-    }
-    
-}
 
 
 #pragma mark - Reachability

@@ -59,7 +59,26 @@
         friend.view.frame = adminFrame;
     
         [self.scrollView setContentSize:CGSizeMake(2*self.view.frame.size.width, self.view.frame.size.height)];
+    
+    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 60000.0
+                                                  target: self
+                                                selector:@selector(resetMute)
+                                                userInfo: nil repeats:YES];
+    
+    //reset mute button almost day
+    [t fire];
     // Do any additional setup after loading the view.
+}
+
+- (void) resetMute
+{
+    if(self.muteOn)
+    {
+        [PFPush unsubscribeFromChannelInBackground:@"Mute"];
+        [self.muteButtonItem setTintColor:[UIColor whiteColor]];
+        self.muteOn = NO;
+    }
+
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -111,11 +130,13 @@
 - (IBAction)muteButtonPressed:(UIBarButtonItem *)sender {
     if(!self.muteOn){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Mute ON" message:@"You will not receive notifications for tonight" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [PFPush subscribeToChannelInBackground:@"Mute"];
         [alertView show];
         [self.muteButtonItem setTintColor:[UIColor redColor]];
         self.muteOn = YES;
     }
     else{
+        [PFPush unsubscribeFromChannelInBackground:@"Mute"];
         [self.muteButtonItem setTintColor:[UIColor whiteColor]];
         self.muteOn = NO;
     }

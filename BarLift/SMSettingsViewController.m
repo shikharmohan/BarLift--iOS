@@ -216,13 +216,22 @@
 
 - (IBAction)poppinButtonPressed:(UIButton *)sender {
     if([PFUser currentUser][@"university_name"] && deal){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEEE"];
+        NSString *dayName = [dateFormatter stringFromDate:[NSDate date]];
+        
         PFPush *push = [[PFPush alloc] init];
-        [push setChannel:[PFUser currentUser][@"university_name"]];
+        PFQuery *query = [PFInstallation query];
+        [query whereKey:@"channels" containedIn:@[[PFUser currentUser][@"university_name"]]];
+        [query whereKey:@"channels" containedIn:@[dayName]];
+        [query whereKey:@"channels" notContainedIn:@[@"Mute"]];
+        
         NSString *barName = deal[@"location_name"];
         NSString *dealName = deal[@"name"];
         NSString *message = [NSString stringWithFormat:@"It's Poppin! Come on down to %@! %@", barName, dealName];
         [push setMessage:message];
         [push sendPushInBackground];
+        
     }
     else
     {
