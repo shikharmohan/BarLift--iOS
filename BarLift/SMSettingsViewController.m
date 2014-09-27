@@ -126,11 +126,13 @@
     if (theCell.accessoryType == UITableViewCellAccessoryNone) {
         theCell.accessoryType = UITableViewCellAccessoryCheckmark;
         [PFUser currentUser][self.days[indexPath.row]] = @YES;
+        [PFPush subscribeToChannelInBackground:self.days[indexPath.row]];
     }
     
     else if (theCell.accessoryType == UITableViewCellAccessoryCheckmark) {
         theCell.accessoryType = UITableViewCellAccessoryNone;
         [PFUser currentUser][self.days[indexPath.row]] = @NO;
+        [PFPush unsubscribeFromChannelInBackground:self.days[indexPath.row]];
     }
 
 }

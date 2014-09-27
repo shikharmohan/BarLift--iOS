@@ -84,7 +84,11 @@
    //self.dealToolbar.centerButtonFeatureEnabled = YES;
     //[self addCenterButton];
     [self getRandomDealImage];
-    if(!currentDeal){
+    if(currentDeal){
+        self.acceptButton.enabled = YES;
+        self.declineButton.enabled = YES;
+    }
+    else{
         self.acceptButton.enabled = YES;
         self.declineButton.enabled = YES;
     }
@@ -101,7 +105,7 @@
     NSLog(@"Current deal before updating %@", currentDeal);
     NSLog(@"Current user before updating %@", [PFUser currentUser]);
 
-    if(!currentDeal){
+    if(currentDeal){
         self.acceptButton.enabled = YES;
         self.declineButton.enabled = YES;
     }
