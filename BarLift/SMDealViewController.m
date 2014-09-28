@@ -264,7 +264,6 @@
             [self.declinedView setFrame:uiFrame];
             [self.acceptedView setFrame:uiFrame1];
         }];
-        self.declinedView.hidden = YES;
     }
     else if(self.acceptedView.hidden)
     {
@@ -274,8 +273,14 @@
         [UIView animateWithDuration:1.5f animations:^{
             [self.acceptedView setFrame:uiFrame1];
         }];
-        self.declinedView.hidden = YES;
     }
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionFade;
+    animation.duration = 1.0;
+    [self.declinedView.layer addAnimation:animation forKey:nil];
+    
+    self.declinedView.hidden = YES;
+
     self.acceptButton.enabled = NO;
     self.declineButton.enabled = YES;
     [self.acceptButton setBackgroundColor:[UIColor grayColor]];
@@ -318,7 +323,13 @@
         }];
         self.acceptedView.hidden = YES;
     }
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionFade;
+    animation.duration = 1.0;
+    [self.acceptedView.layer addAnimation:animation forKey:nil];
     
+    self.acceptedView.hidden = YES;
+
     self.acceptButton.enabled = YES;
     self.declineButton.enabled = NO;
     [self.acceptButton setBackgroundColor:[UIColor orangeColor]];
