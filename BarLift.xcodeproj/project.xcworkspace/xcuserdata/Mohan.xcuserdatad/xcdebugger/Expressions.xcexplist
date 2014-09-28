@@ -77,12 +77,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[SMSettingsViewController poppinButtonPressed:]:SMSettingsViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "-[SMFriendsViewController segmentedControlChangedValue:]:SMFriendsViewController.m">
          <PersistentStrings>
             <PersistentString
                value = "self.dealNow">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "+[PFInternalUtils calculateMD5:]:PFInternalUtils.m">
       </ContextState>
       <ContextState
          contextName = "-[SMDealViewController prepareForSegue:sender:]:SMDealViewController.m">

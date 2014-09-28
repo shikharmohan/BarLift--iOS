@@ -48,6 +48,10 @@
 @property (strong, nonatomic) IBOutlet UIView *dealToolbarView;
 @property (strong, nonatomic) IBOutlet UIButton *acceptButton;
 
+@property (strong, nonatomic) UIView *acceptedView;
+@property (strong, nonatomic) UIView *declinedView;
+
+
 
 //decline button is public
 
@@ -101,6 +105,42 @@
         [self.declineButton setBackgroundColor:[UIColor grayColor]];
     }
     
+    self.acceptedView = [[UIView alloc] initWithFrame:(CGRectMake(350, 200, 320, 75))];
+    [self.acceptedView setBackgroundColor:[UIColor colorWithRed:110.0/255.0 green:150.0/255.0 blue:51.0/255.0 alpha:1]];
+    [self.view addSubview:self.acceptedView];
+    NSString * text = @"DEAL ACCEPTED!";
+
+    CGSize labelSize = self.acceptedView.frame.size;
+    UILabel *fromLabel = [[UILabel alloc]initWithFrame:CGRectMake(91, 15, labelSize.width, labelSize.height)];
+    fromLabel.text = text;
+    fromLabel.numberOfLines = 1;
+    fromLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines; // or UIBaselineAdjustmentAlignCenters, or UIBaselineAdjustmentNone
+    fromLabel.adjustsFontSizeToFitWidth = YES;
+    fromLabel.adjustsLetterSpacingToFitWidth = YES;
+    fromLabel.minimumScaleFactor = 30.0f;
+    fromLabel.clipsToBounds = YES;
+    fromLabel.backgroundColor = [UIColor clearColor];
+    fromLabel.textColor = [UIColor whiteColor];
+    fromLabel.textAlignment = NSTextAlignmentLeft;
+    [fromLabel setCenter:self.acceptedView.center];
+    [self.acceptedView addSubview:fromLabel];
+    
+    
+    self.declinedView = [[UIView alloc] initWithFrame:(CGRectMake(350, 200, 320, 75))];
+    if(!self.isAcceptedByCurrentUser && !self.isDeclinedByCurrentUser)
+    {
+        self.acceptedView.hidden = YES;
+        self.declinedView.hidden = YES;
+    
+    }
+    else if (self.isAcceptedByCurrentUser)
+    {
+        self.acceptedView.hidden = NO;
+    }
+    else if(self.isDeclinedByCurrentUser)
+    {
+        self.declinedView.hidden = NO;
+    }
     
     // Do any additional setup after loading the view.
 }
@@ -212,18 +252,21 @@
             [self checkAccept];
         }];
     }
-    CGRect originalFrame = sender.frame;
-    originalFrame.size.width = sender.frame.size.width+120;
+
+//    //View Flys in
+//    self.acceptedView.hidden = NO;
+//    CGRect uiFrame1 = self.acceptedView.frame;
+//    uiFrame1.origin.x -= 350;
+//    [UIView animateWithDuration:1.5f animations:^{
+//        [self.acceptedView setFrame:uiFrame1];
+//        //self.containerFrame.frame = uiFrame2;
+//    }];
     
-    [UIView animateWithDuration:1.5 animations:^{
-        sender.frame = originalFrame;
-    }];
     self.acceptButton.enabled = NO;
     self.declineButton.enabled = YES;
     [self.acceptButton setBackgroundColor:[UIColor grayColor]];
     [self.declineButton setBackgroundColor:[UIColor blueColor]];
-
-
+    
 }
 
 - (IBAction)declineButtonPressed:(UIButton *)sender
@@ -266,7 +309,7 @@
             [self.activities addObject:object];
             [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     [self createProgressBar];
-                if(currentDeal[@"deal_qty"] > 0)
+                if(currentDeal[@"deal_qty"] > 0 && (!self.isAcceptedByCurrentUser && !self.isDeclinedByCurrentUser))
                 {
                     self.acceptButton.enabled = YES;
                     [self.acceptButton setBackgroundColor:[UIColor orangeColor]];
