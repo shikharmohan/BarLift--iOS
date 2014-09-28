@@ -106,29 +106,25 @@
     }
     
     self.acceptedView = [[UIView alloc] initWithFrame:(CGRectMake(350, 195, 320, 75))];
-    [self.acceptedView setBackgroundColor:[UIColor colorWithRed:110.0/255.0 green:150.0/255.0 blue:51.0/255.0 alpha:1]];
+    [self.acceptedView setBackgroundColor:[UIColor orangeColor]];
     [self.view addSubview:self.acceptedView];
     self.declinedView = [[UIView alloc] initWithFrame:(CGRectMake(350, 195, 320, 75))];
     [self.declinedView setBackgroundColor:[UIColor colorWithRed:79.0/255.0 green:119.0/255.0 blue:179.0/255.0 alpha:1]];
     [self.view addSubview:self.declinedView];
 
-    NSString * text = @"DEAL ACCEPTED!";
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 15, 250, 45)];
+    [label setText:@"DEAL ACCEPTED!"];
+    [label setFont:[UIFont fontWithName:@"STHeitiTC-Light" size:28.0f]];
+    [label setTextColor:[UIColor whiteColor]];
+    [self.acceptedView addSubview:label];
 
-    CGSize labelSize = self.acceptedView.frame.size;
-    UILabel *fromLabel = [[UILabel alloc]init];
-    fromLabel.text = text;
-    [fromLabel setFont:[UIFont fontWithName:@"STHeitiSC-Light" size:16.0f]];
-    fromLabel.numberOfLines = 1;
-    fromLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters; // or UIBaselineAdjustmentAlignCenters, or UIBaselineAdjustmentNone
-    fromLabel.adjustsFontSizeToFitWidth = YES;
-    fromLabel.adjustsLetterSpacingToFitWidth = YES;
-    fromLabel.minimumScaleFactor = 30.0f;
-    fromLabel.clipsToBounds = YES;
-    fromLabel.backgroundColor = [UIColor clearColor];
-    fromLabel.textColor = [UIColor whiteColor];
-    fromLabel.textAlignment = NSTextAlignmentLeft;
-    [self.acceptedView addSubview:fromLabel];
-    fromLabel.center = self.acceptedView.center;
+    
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(30, 15, 300, 45)];
+    [label2 setText:@"GOING ELSEWHERE"];
+    [label2 setFont:[UIFont fontWithName:@"STHeitiTC-Light" size:28.0f]];
+    [label2 setTextColor:[UIColor whiteColor]];
+    [self.declinedView addSubview:label2];
+
     
     
     if(!self.isAcceptedByCurrentUser && !self.isDeclinedByCurrentUser)
@@ -283,7 +279,7 @@
     self.acceptButton.enabled = NO;
     self.declineButton.enabled = YES;
     [self.acceptButton setBackgroundColor:[UIColor grayColor]];
-    [self.declineButton setBackgroundColor:[UIColor blueColor]];
+    [self.declineButton setBackgroundColor:[UIColor colorWithRed:79.0/255.0 green:119.0/255.0 blue:179.0/255.0 alpha:1]];
     
 }
 
@@ -346,7 +342,7 @@
     {
         self.acceptButton.enabled = YES;
         [self.acceptButton setBackgroundColor:[UIColor orangeColor]];
-        [self.declineButton setBackgroundColor:[UIColor blueColor]];
+        [self.declineButton setBackgroundColor:[UIColor colorWithRed:79.0/255.0 green:119.0/255.0 blue:179.0/255.0 alpha:1]];
         self.declineButton.enabled = YES;    
     }
     PFQuery *query = [PFQuery queryWithClassName:@"Deal"];
@@ -369,7 +365,7 @@
                 {
                     self.acceptButton.enabled = YES;
                     [self.acceptButton setBackgroundColor:[UIColor orangeColor]];
-                    [self.declineButton setBackgroundColor:[UIColor blueColor]];
+                    [self.declineButton setBackgroundColor:[UIColor colorWithRed:79.0/255.0 green:119.0/255.0 blue:179.0/255.0 alpha:1]];
                     self.declineButton.enabled = YES;
                 }
             }];
