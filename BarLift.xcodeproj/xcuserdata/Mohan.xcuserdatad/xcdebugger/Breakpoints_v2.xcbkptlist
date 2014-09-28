@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMDealViewController.m"
-            timestampString = "433566901.432763"
+            timestampString = "433569229.899608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "438"
-            endingLineNumber = "438"
+            startingLineNumber = "494"
+            endingLineNumber = "494"
             landmarkName = "-checkDecline"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMDealViewController.m"
-            timestampString = "433566901.432763"
+            timestampString = "433569229.899608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "476"
+            endingLineNumber = "476"
             landmarkName = "-checkAccept"
             landmarkType = "5">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMDealViewController.m"
-            timestampString = "433566901.432763"
+            timestampString = "433569229.899608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "455"
+            endingLineNumber = "455"
             landmarkName = "-saveDecline"
             landmarkType = "5">
          </BreakpointContent>
@@ -210,11 +210,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMDealViewController.m"
-            timestampString = "433566901.432763"
+            timestampString = "433569229.899608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
             landmarkName = "-setBarInformation"
             landmarkType = "5">
          </BreakpointContent>
@@ -226,11 +226,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMDealViewController.m"
-            timestampString = "433566901.432763"
+            timestampString = "433569229.899608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "574"
-            endingLineNumber = "574"
+            startingLineNumber = "630"
+            endingLineNumber = "630"
             landmarkName = "-getFacebookFriends"
             landmarkType = "5">
          </BreakpointContent>
@@ -370,11 +370,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMDealViewController.m"
-            timestampString = "433566901.432763"
+            timestampString = "433569229.899608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "531"
-            endingLineNumber = "531"
+            startingLineNumber = "587"
+            endingLineNumber = "587"
             landmarkName = "-createProgressBar"
             landmarkType = "5">
          </BreakpointContent>
@@ -402,11 +402,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMDealViewController.m"
-            timestampString = "433566901.432763"
+            timestampString = "433569229.899608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "532"
-            endingLineNumber = "532"
+            startingLineNumber = "588"
+            endingLineNumber = "588"
             landmarkName = "-createProgressBar"
             landmarkType = "5">
          </BreakpointContent>
@@ -434,11 +434,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMDealViewController.m"
-            timestampString = "433566901.432763"
+            timestampString = "433569229.899608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "337"
-            endingLineNumber = "337"
+            startingLineNumber = "393"
+            endingLineNumber = "393"
             landmarkName = "-setBarInformation"
             landmarkType = "5">
          </BreakpointContent>
@@ -450,11 +450,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMDealViewController.m"
-            timestampString = "433566901.432763"
+            timestampString = "433569229.899608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
             landmarkName = "-setBarInformation"
             landmarkType = "5">
          </BreakpointContent>
@@ -514,11 +514,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMDealViewController.m"
-            timestampString = "433566901.432763"
+            timestampString = "433569229.899608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "-setBarInformation"
             landmarkType = "5">
          </BreakpointContent>
@@ -594,11 +594,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BarLift/SMDealViewController.m"
-            timestampString = "433566901.432763"
+            timestampString = "433569229.899608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
             landmarkName = "-setBarInformation"
             landmarkType = "5">
             <Locations>
@@ -631,6 +631,22 @@
                   offsetFromSymbolStart = "54">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BarLift/SMDealViewController.m"
+            timestampString = "433569018.018184"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
+            landmarkName = "-setBarInformation"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

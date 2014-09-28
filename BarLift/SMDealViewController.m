@@ -105,16 +105,21 @@
         [self.declineButton setBackgroundColor:[UIColor grayColor]];
     }
     
-    self.acceptedView = [[UIView alloc] initWithFrame:(CGRectMake(350, 200, 320, 75))];
+    self.acceptedView = [[UIView alloc] initWithFrame:(CGRectMake(350, 195, 320, 75))];
     [self.acceptedView setBackgroundColor:[UIColor colorWithRed:110.0/255.0 green:150.0/255.0 blue:51.0/255.0 alpha:1]];
     [self.view addSubview:self.acceptedView];
+    self.declinedView = [[UIView alloc] initWithFrame:(CGRectMake(350, 195, 320, 75))];
+    [self.declinedView setBackgroundColor:[UIColor colorWithRed:79.0/255.0 green:119.0/255.0 blue:179.0/255.0 alpha:1]];
+    [self.view addSubview:self.declinedView];
+
     NSString * text = @"DEAL ACCEPTED!";
 
     CGSize labelSize = self.acceptedView.frame.size;
-    UILabel *fromLabel = [[UILabel alloc]initWithFrame:CGRectMake(91, 15, labelSize.width, labelSize.height)];
+    UILabel *fromLabel = [[UILabel alloc]init];
     fromLabel.text = text;
+    [fromLabel setFont:[UIFont fontWithName:@"STHeitiSC-Light" size:16.0f]];
     fromLabel.numberOfLines = 1;
-    fromLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines; // or UIBaselineAdjustmentAlignCenters, or UIBaselineAdjustmentNone
+    fromLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters; // or UIBaselineAdjustmentAlignCenters, or UIBaselineAdjustmentNone
     fromLabel.adjustsFontSizeToFitWidth = YES;
     fromLabel.adjustsLetterSpacingToFitWidth = YES;
     fromLabel.minimumScaleFactor = 30.0f;
@@ -122,11 +127,10 @@
     fromLabel.backgroundColor = [UIColor clearColor];
     fromLabel.textColor = [UIColor whiteColor];
     fromLabel.textAlignment = NSTextAlignmentLeft;
-    [fromLabel setCenter:self.acceptedView.center];
     [self.acceptedView addSubview:fromLabel];
+    fromLabel.center = self.acceptedView.center;
     
     
-    self.declinedView = [[UIView alloc] initWithFrame:(CGRectMake(350, 200, 320, 75))];
     if(!self.isAcceptedByCurrentUser && !self.isDeclinedByCurrentUser)
     {
         self.acceptedView.hidden = YES;
@@ -253,15 +257,29 @@
         }];
     }
 
-//    //View Flys in
-//    self.acceptedView.hidden = NO;
-//    CGRect uiFrame1 = self.acceptedView.frame;
-//    uiFrame1.origin.x -= 350;
-//    [UIView animateWithDuration:1.5f animations:^{
-//        [self.acceptedView setFrame:uiFrame1];
-//        //self.containerFrame.frame = uiFrame2;
-//    }];
-    
+    //View Flys in
+    if(self.isDeclinedByCurrentUser){
+        CGRect uiFrame = self.declinedView.frame;
+        uiFrame.origin.x += 350;
+        self.acceptedView.hidden = NO;
+        CGRect uiFrame1 = self.acceptedView.frame;
+        uiFrame1.origin.x -= 350;
+        [UIView animateWithDuration:1.5f animations:^{
+            [self.declinedView setFrame:uiFrame];
+            [self.acceptedView setFrame:uiFrame1];
+        }];
+        self.declinedView.hidden = YES;
+    }
+    else if(self.acceptedView.hidden)
+    {
+        self.acceptedView.hidden = NO;
+        CGRect uiFrame1 = self.acceptedView.frame;
+        uiFrame1.origin.x -= 350;
+        [UIView animateWithDuration:1.5f animations:^{
+            [self.acceptedView setFrame:uiFrame1];
+        }];
+        self.declinedView.hidden = YES;
+    }
     self.acceptButton.enabled = NO;
     self.declineButton.enabled = YES;
     [self.acceptButton setBackgroundColor:[UIColor grayColor]];
@@ -281,6 +299,30 @@
             [self checkDecline];
         }];
     }
+    
+    if(self.isAcceptedByCurrentUser){
+        CGRect uiFrame = self.acceptedView.frame;
+        uiFrame.origin.x += 350;
+        self.declinedView.hidden = NO;
+        CGRect uiFrame1 = self.declinedView.frame;
+        uiFrame1.origin.x -= 350;
+        [UIView animateWithDuration:1.5f animations:^{
+            [self.acceptedView setFrame:uiFrame];
+            [self.declinedView setFrame:uiFrame1];
+        }];
+        self.acceptedView.hidden = YES;
+    }
+    else if(self.declinedView.hidden)
+    {
+        self.declinedView.hidden = NO;
+        CGRect uiFrame1 = self.declinedView.frame;
+        uiFrame1.origin.x -= 350;
+        [UIView animateWithDuration:1.5f animations:^{
+            [self.declinedView setFrame:uiFrame1];
+        }];
+        self.acceptedView.hidden = YES;
+    }
+    
     self.acceptButton.enabled = YES;
     self.declineButton.enabled = NO;
     [self.acceptButton setBackgroundColor:[UIColor orangeColor]];
@@ -293,6 +335,20 @@
 #pragma mark - View Helper Methods
 - (void) setBarInformation
 {
+    if(!currentDeal)
+    {
+        self.acceptedView.hidden = YES;
+        self.declinedView.hidden = YES;
+        self.isAcceptedByCurrentUser = NO;
+        self.isDeclinedByCurrentUser = NO;
+    }
+    if(!self.isAcceptedByCurrentUser && !self.isDeclinedByCurrentUser)
+    {
+        self.acceptButton.enabled = YES;
+        [self.acceptButton setBackgroundColor:[UIColor orangeColor]];
+        [self.declineButton setBackgroundColor:[UIColor blueColor]];
+        self.declineButton.enabled = YES;    
+    }
     PFQuery *query = [PFQuery queryWithClassName:@"Deal"];
     NSDate *date = [NSDate date];
     [query whereKey:@"deal_start_date" lessThanOrEqualTo:date];
