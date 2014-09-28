@@ -50,8 +50,6 @@
 		01CFE48C19D123CE00CAC654 /* BarLiftBG6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01CFE48B19D123CE00CAC654 /* BarLiftBG6.jpg */; };
 		01CFE49019D1246A00CAC654 /* BarliftBG1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01CFE48F19D1246A00CAC654 /* BarliftBG1.jpg */; };
 		01CFE49619D2766A00CAC654 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFE49519D2766A00CAC654 /* HMSegmentedControl.m */; };
-		01CFE49B19D287D900CAC654 /* SMFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFE49A19D287D900CAC654 /* SMFriendsTableViewController.m */; };
-		01CFE49E19D2893E00CAC654 /* SMElsewhereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CFE49D19D2893E00CAC654 /* SMElsewhereViewController.m */; };
 		01CFE4A519D5235600CAC654 /* fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CFE4A419D5235600CAC654 /* fb.png */; };
 		01CFE4A719D523B800CAC654 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CFE4A619D523B800CAC654 /* logo.png */; };
 		01E5F08719C39110001B6D35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E5F08619C39110001B6D35 /* Foundation.framework */; };
@@ -141,10 +139,6 @@
 		01CFE48F19D1246A00CAC654 /* BarliftBG1.jpg */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = BarliftBG1.jpg; sourceTree = "<group>"; };
 		01CFE49419D2766A00CAC654 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
 		01CFE49519D2766A00CAC654 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
-		01CFE49919D287D900CAC654 /* SMFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMFriendsTableViewController.h; sourceTree = "<group>"; };
-		01CFE49A19D287D900CAC654 /* SMFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMFriendsTableViewController.m; sourceTree = "<group>"; };
-		01CFE49C19D2893E00CAC654 /* SMElsewhereViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMElsewhereViewController.h; sourceTree = "<group>"; };
-		01CFE49D19D2893E00CAC654 /* SMElsewhereViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMElsewhereViewController.m; sourceTree = "<group>"; };
 		01CFE4A419D5235600CAC654 /* fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb.png; sourceTree = "<group>"; };
 		01CFE4A619D523B800CAC654 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		01E5F08319C39110001B6D35 /* BarLift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarLift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,7 +297,6 @@
 		01CFE47919D0F0AA00CAC654 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
-				01CFE49819D287C500CAC654 /* Table View */,
 				01CFE47A19D0F0C900CAC654 /* SMFriendsViewController.h */,
 				01CFE47B19D0F0C900CAC654 /* SMFriendsViewController.m */,
 			);
@@ -328,17 +321,6 @@
 				01CFE49519D2766A00CAC654 /* HMSegmentedControl.m */,
 			);
 			name = "Segmented Control";
-			sourceTree = "<group>";
-		};
-		01CFE49819D287C500CAC654 /* Table View */ = {
-			isa = PBXGroup;
-			children = (
-				01CFE49919D287D900CAC654 /* SMFriendsTableViewController.h */,
-				01CFE49A19D287D900CAC654 /* SMFriendsTableViewController.m */,
-				01CFE49C19D2893E00CAC654 /* SMElsewhereViewController.h */,
-				01CFE49D19D2893E00CAC654 /* SMElsewhereViewController.m */,
-			);
-			name = "Table View";
 			sourceTree = "<group>";
 		};
 		01E5F07A19C39110001B6D35 = {
@@ -605,14 +587,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				01E5F09719C39110001B6D35 /* SMAppDelegate.m in Sources */,
-				01CFE49B19D287D900CAC654 /* SMFriendsTableViewController.m in Sources */,
 				01E5F0CA19C39E24001B6D35 /* SMDealViewController.m in Sources */,
 				0113602419C4022200987370 /* SMUniversityTableViewCell.m in Sources */,
 				01E5F09D19C39110001B6D35 /* SMViewController.m in Sources */,
 				01E5F0C519C39D13001B6D35 /* SMLoginViewController.m in Sources */,
 				01938D4919CB8E9000E40326 /* SMSettingsViewController.m in Sources */,
 				01938D2519CA731F00E40326 /* EEToolbarCenterButtonOverlay.m in Sources */,
-				01CFE49E19D2893E00CAC654 /* SMElsewhereViewController.m in Sources */,
 				01CFE49619D2766A00CAC654 /* HMSegmentedControl.m in Sources */,
 				01CFE48019D0F12D00CAC654 /* SMContainerViewController.m in Sources */,
 				0103D20219C672F500E41EAC /* SMConstants.m in Sources */,

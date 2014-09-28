@@ -8,8 +8,6 @@
 
 #import "SMFriendsViewController.h"
 #import "HMSegmentedControl.h"
-#import "SMElsewhereViewController.h"
-#import "SMFriendsTableViewController.h"
 #import "SMDealViewController.h"
 
 @interface SMFriendsViewController ()
@@ -48,7 +46,16 @@
     self.segmentedControl4.tag = 2;
     [self.segmentedControl4 addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.segmentedControl4];
+    
+    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 5.0
+                                                  target: self
+                                                selector:@selector(getFriends)
+                                                userInfo: nil repeats:YES];
+}
 
+
+ -(void) getFriends
+{
     PFQuery *dealQuery = [PFQuery queryWithClassName:@"Deal"];
     NSDate *date = [NSDate date];
     [dealQuery whereKey:@"deal_start_date" lessThanOrEqualTo:date];
@@ -68,31 +75,30 @@
         }
         
     }];
-
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
     
-    PFQuery *dealQuery = [PFQuery queryWithClassName:@"Deal"];
-    NSDate *date = [NSDate date];
-    [dealQuery whereKey:@"deal_start_date" lessThanOrEqualTo:date];
-    [dealQuery whereKey:@"deal_end_date" greaterThanOrEqualTo:date];
-    [dealQuery whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
-    [dealQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
-    [dealQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if(!error)
-        {
-            self.dealNow = object;
-            [self retrieveAcceptFromParse];
-        }
-        else{
-            NSLog(@"Error getting deal in Friends View Controller");
-            self.dealNow = nil;
-            self.helper = nil;
-        }
-    }];
+//    PFQuery *dealQuery = [PFQuery queryWithClassName:@"Deal"];
+//    NSDate *date = [NSDate date];
+//    [dealQuery whereKey:@"deal_start_date" lessThanOrEqualTo:date];
+//    [dealQuery whereKey:@"deal_end_date" greaterThanOrEqualTo:date];
+//    [dealQuery whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
+//    [dealQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
+//    [dealQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//        if(!error)
+//        {
+//            self.dealNow = object;
+//            [self retrieveAcceptFromParse];
+//        }
+//        else{
+//            NSLog(@"Error getting deal in Friends View Controller");
+//            self.dealNow = nil;
+//            self.helper = nil;
+//        }
+//    }];
     NSLog(@"FRIENDS view Did appear");
 }
 
