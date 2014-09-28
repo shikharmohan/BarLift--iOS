@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ZsK-Az-apo">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -151,13 +152,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Today's Deal" id="o8R-W8-xWK">
-                        <barButtonItem key="leftBarButtonItem" image="mute37.png" id="1Gz-cb-nsb">
+                        <barButtonItem key="leftBarButtonItem" image="mute-32.png" id="1Gz-cb-nsb">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="muteButtonPressed:" destination="f35-Dc-pVK" id="sqk-dw-o1B"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="settings18.png" id="e7y-Ug-isd">
+                        <barButtonItem key="rightBarButtonItem" image="settings-32.png" id="e7y-Ug-isd">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="Zfl-tI-mFq" kind="push" identifier="containerToSettingsSegue" id="K1n-Gb-PPe"/>
@@ -277,18 +278,18 @@
                                                 <rect key="frame" x="10" y="331" width="300" height="132"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xMF-c8-NOC">
-                                                        <rect key="frame" x="0.0" y="77" width="300" height="55"/>
+                                                        <rect key="frame" x="0.0" y="77" width="300" height="38"/>
                                                         <subviews>
-                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swipe to see who's going ---------->" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUf-KM-Jjk">
-                                                                <rect key="frame" x="12" y="20" width="279" height="21"/>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swipe to see who's going >" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUf-KM-Jjk">
+                                                                <rect key="frame" x="11" y="8" width="279" height="21"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="17"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="55" id="G0I-wn-Cb2"/>
-                                                            <constraint firstAttribute="width" constant="300" id="KM8-3c-vpr"/>
+                                                            <constraint firstAttribute="height" constant="38" id="HtM-nH-TDh"/>
+                                                            <constraint firstAttribute="width" constant="300" id="tMQ-5a-YcX"/>
                                                         </constraints>
                                                     </view>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progressViewStyle="bar" progressImage="Facebook.png" translatesAutoresizingMaskIntoConstraints="NO" id="ppW-Fh-ZbE">
@@ -315,17 +316,18 @@
                                                 <constraints>
                                                     <constraint firstItem="ppW-Fh-ZbE" firstAttribute="top" secondItem="IPy-OV-2oK" secondAttribute="bottom" constant="2" id="0FH-JP-Nsl"/>
                                                     <constraint firstItem="IPy-OV-2oK" firstAttribute="leading" secondItem="qe6-NI-NtS" secondAttribute="trailing" constant="61" id="0Vf-tX-X9G"/>
-                                                    <constraint firstItem="xMF-c8-NOC" firstAttribute="leading" secondItem="dUy-BZ-NE6" secondAttribute="leading" id="0t5-nS-Zd0"/>
                                                     <constraint firstItem="ppW-Fh-ZbE" firstAttribute="top" secondItem="qe6-NI-NtS" secondAttribute="bottom" constant="2" id="1y2-G9-hA7"/>
                                                     <constraint firstItem="qe6-NI-NtS" firstAttribute="top" secondItem="dUy-BZ-NE6" secondAttribute="top" constant="5" id="1zW-e7-hgN"/>
-                                                    <constraint firstAttribute="trailing" secondItem="xMF-c8-NOC" secondAttribute="trailing" id="2BP-KC-M9j"/>
                                                     <constraint firstAttribute="trailing" secondItem="ppW-Fh-ZbE" secondAttribute="trailing" constant="25" id="8Ac-JW-Yql"/>
                                                     <constraint firstItem="IPy-OV-2oK" firstAttribute="top" secondItem="dUy-BZ-NE6" secondAttribute="top" constant="5" id="AGH-Xb-q0d"/>
                                                     <constraint firstItem="ppW-Fh-ZbE" firstAttribute="top" secondItem="IPy-OV-2oK" secondAttribute="bottom" constant="2" id="KZb-uc-VtF"/>
+                                                    <constraint firstItem="xMF-c8-NOC" firstAttribute="top" secondItem="ppW-Fh-ZbE" secondAttribute="bottom" constant="14" id="LT4-zy-Plp"/>
                                                     <constraint firstItem="ppW-Fh-ZbE" firstAttribute="leading" secondItem="dUy-BZ-NE6" secondAttribute="leading" constant="25" id="a4i-dH-tj6"/>
                                                     <constraint firstAttribute="trailing" secondItem="IPy-OV-2oK" secondAttribute="trailing" constant="25" id="eX6-15-fz2"/>
+                                                    <constraint firstAttribute="trailing" secondItem="xMF-c8-NOC" secondAttribute="trailing" id="f76-1l-TgM"/>
                                                     <constraint firstAttribute="width" constant="300" id="lSh-di-F7Y"/>
-                                                    <constraint firstAttribute="bottom" secondItem="xMF-c8-NOC" secondAttribute="bottom" id="tgi-UN-qU3"/>
+                                                    <constraint firstAttribute="bottom" secondItem="xMF-c8-NOC" secondAttribute="bottom" constant="17" id="oMQ-r2-gyL"/>
+                                                    <constraint firstItem="xMF-c8-NOC" firstAttribute="leading" secondItem="dUy-BZ-NE6" secondAttribute="leading" id="qfZ-VN-2Qf"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -656,8 +658,8 @@
         <image name="Facebook.png" width="200" height="25"/>
         <image name="fb.png" width="275" height="67"/>
         <image name="logo.png" width="200" height="190"/>
-        <image name="mute37.png" width="32" height="35"/>
-        <image name="settings18.png" width="24" height="24"/>
+        <image name="mute-32.png" width="32" height="32"/>
+        <image name="settings-32.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
