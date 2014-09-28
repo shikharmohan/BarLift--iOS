@@ -342,7 +342,7 @@
         self.isAcceptedByCurrentUser = NO;
         self.isDeclinedByCurrentUser = NO;
     }
-    if(!self.isAcceptedByCurrentUser && !self.isDeclinedByCurrentUser)
+    if(currentDeal && !self.isAcceptedByCurrentUser && !self.isDeclinedByCurrentUser)
     {
         self.acceptButton.enabled = YES;
         [self.acceptButton setBackgroundColor:[UIColor orangeColor]];
