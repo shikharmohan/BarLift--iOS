@@ -108,7 +108,7 @@
     self.acceptedView = [[UIView alloc] initWithFrame:(CGRectMake(350, 195, 320, 75))];
     [self.acceptedView setBackgroundColor:[UIColor orangeColor]];
     [self.view addSubview:self.acceptedView];
-    self.declinedView = [[UIView alloc] initWithFrame:(CGRectMake(350, 195, 320, 75))];
+    self.declinedView = [[UIView alloc] initWithFrame:(CGRectMake(-350, 195, 320, 75))];
     [self.declinedView setBackgroundColor:[UIColor colorWithRed:79.0/255.0 green:119.0/255.0 blue:179.0/255.0 alpha:1]];
     [self.view addSubview:self.declinedView];
 
@@ -256,7 +256,7 @@
     //View Flys in
     if(self.isDeclinedByCurrentUser){
         CGRect uiFrame = self.declinedView.frame;
-        uiFrame.origin.x += 350;
+        uiFrame.origin.x -= 350;
         self.acceptedView.hidden = NO;
         CGRect uiFrame1 = self.acceptedView.frame;
         uiFrame1.origin.x -= 350;
@@ -301,7 +301,7 @@
         uiFrame.origin.x += 350;
         self.declinedView.hidden = NO;
         CGRect uiFrame1 = self.declinedView.frame;
-        uiFrame1.origin.x -= 350;
+        uiFrame1.origin.x += 350;
         [UIView animateWithDuration:1.5f animations:^{
             [self.acceptedView setFrame:uiFrame];
             [self.declinedView setFrame:uiFrame1];
@@ -312,7 +312,7 @@
     {
         self.declinedView.hidden = NO;
         CGRect uiFrame1 = self.declinedView.frame;
-        uiFrame1.origin.x -= 350;
+        uiFrame1.origin.x += 350;
         [UIView animateWithDuration:1.5f animations:^{
             [self.declinedView setFrame:uiFrame1];
         }];
