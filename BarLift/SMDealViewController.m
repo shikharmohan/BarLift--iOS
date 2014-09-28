@@ -415,44 +415,96 @@
 
 - (void) saveAccept
 {
-    PFObject *acceptActivity = [PFObject objectWithClassName:@"Activity"];
-    [acceptActivity setObject:@"accept" forKey:@"type"];
-    [acceptActivity setObject:[PFUser currentUser] forKey:@"user"];
-    [acceptActivity setObject:currentDeal forKey:@"deal"];
-    [acceptActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if(self.isDeclinedByCurrentUser) [currentDeal incrementKey:@"num_declined" byAmount:@-1];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query whereKey:@"deal" equalTo:currentDeal];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject * object, NSError *error) {
+        if (!error) {
+            [object setObject:@"accept" forKey:@"type"];
+            [object saveInBackground];
+            if(self.isDeclinedByCurrentUser) [currentDeal incrementKey:@"num_declined" byAmount:@-1];
             self.isAcceptedByCurrentUser = YES;
             self.isDeclinedByCurrentUser = NO;
-        [self.activities addObject:acceptActivity];
-        if(currentDeal[@"deal_qty"] > 0) [currentDeal incrementKey:@"deal_qty" byAmount:@-1];
-        [currentDeal incrementKey:@"num_accepted" byAmount:@1];
-        
-        [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self createProgressBar]; //update progress bar
-        }];
+            if(currentDeal[@"deal_qty"] > 0) [currentDeal incrementKey:@"deal_qty" byAmount:@-1];
+            [currentDeal incrementKey:@"num_accepted" byAmount:@1];
+            
+            [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                [self createProgressBar]; //update progress bar
+            }];
+        }
+        else if([[error userInfo][@"code"] isEqualToValue:@101])
+        {
+            PFObject *acceptActivity = [PFObject objectWithClassName:@"Activity"];
+            [acceptActivity setObject:@"accept" forKey:@"type"];
+            [acceptActivity setObject:[PFUser currentUser] forKey:@"user"];
+            [acceptActivity setObject:currentDeal forKey:@"deal"];
+            [acceptActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if(self.isDeclinedByCurrentUser) [currentDeal incrementKey:@"num_declined" byAmount:@-1];
+                self.isAcceptedByCurrentUser = YES;
+                self.isDeclinedByCurrentUser = NO;
+                if(currentDeal[@"deal_qty"] > 0) [currentDeal incrementKey:@"deal_qty" byAmount:@-1];
+                [currentDeal incrementKey:@"num_accepted" byAmount:@1];
+                
+                [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    [self createProgressBar]; //update progress bar
+                }];
+            }];
+            NSLog(@"Error: %@", error);
+        }
+        else{
+            NSLog(@"Error: %@", error);
+        }
     }];
+
 
 }
 
 - (void) saveDecline
 {
-    PFObject *declineActivity = [PFObject objectWithClassName:@"Activity"];
-    [declineActivity setObject:@"decline" forKey:@"type"];
-    [declineActivity setObject:[PFUser currentUser] forKey:@"user"];
-    [declineActivity setObject:currentDeal forKey:@"deal"];
-    [declineActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if(self.isAcceptedByCurrentUser){
-            [currentDeal incrementKey:@"num_accepted" byAmount:@-1];
-            [currentDeal incrementKey:@"deal_qty" byAmount:@1];
+    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query whereKey:@"deal" equalTo:currentDeal];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject * object, NSError *error) {
+        if (!error) {
+            [object setObject:@"decline" forKey:@"type"];
+            [object saveInBackground];
+            if(self.isAcceptedByCurrentUser){
+                [currentDeal incrementKey:@"num_accepted" byAmount:@-1];
+                [currentDeal incrementKey:@"deal_qty" byAmount:@1];
+            }
+            self.isAcceptedByCurrentUser = NO;
+            self.isDeclinedByCurrentUser = YES;
+            [currentDeal incrementKey:@"num_declined" byAmount:@1];
+            [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                [self createProgressBar];
+            }];
         }
-        self.isAcceptedByCurrentUser = NO;
-        self.isDeclinedByCurrentUser = YES;
-        [self.activities addObject:declineActivity];
-        [currentDeal incrementKey:@"num_declined" byAmount:@1];
-        [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self createProgressBar];
-        }];
-        NSLog(@"bool updated %@", self.activities);
+        else if([[error userInfo][@"code"] isEqualToValue:@101])
+        {
+            PFObject *declineActivity = [PFObject objectWithClassName:@"Activity"];
+            [declineActivity setObject:@"decline" forKey:@"type"];
+            [declineActivity setObject:[PFUser currentUser] forKey:@"user"];
+            [declineActivity setObject:currentDeal forKey:@"deal"];
+            [declineActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if(self.isAcceptedByCurrentUser){
+                    [currentDeal incrementKey:@"num_accepted" byAmount:@-1];
+                    [currentDeal incrementKey:@"deal_qty" byAmount:@1];
+                }
+                self.isAcceptedByCurrentUser = NO;
+                self.isDeclinedByCurrentUser = YES;
+                [self.activities addObject:declineActivity];
+                [currentDeal incrementKey:@"num_declined" byAmount:@1];
+                [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    [self createProgressBar];
+                }];
+                NSLog(@"bool updated %@", self.activities);
+            }];
+            NSLog(@"Error: %@", error);
+        }
+        else{
+            NSLog(@"Error: %@", error);
+        }
     }];
 }
 
@@ -462,10 +514,6 @@
         return;
     }
     else if(self.isDeclinedByCurrentUser){
-        for(PFObject *activity in self.activities){
-            [activity deleteInBackground];
-        }
-        [self.activities removeLastObject];
         [self saveAccept];
     }
     else
@@ -480,10 +528,6 @@
         return;
     }
     else if(self.isAcceptedByCurrentUser){
-        for(PFObject *activity in self.activities){
-            [activity deleteInBackground];
-        }
-        [self.activities removeLastObject];
         [self saveDecline];
     }
     else

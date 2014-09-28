@@ -139,6 +139,17 @@
          contextName = "-[SMSettingsViewController tableView:didSelectRowAtIndexPath:]:SMSettingsViewController.m">
       </ContextState>
       <ContextState
+         contextName = "__35-[SMDealViewController saveDecline]_block_invoke:SMDealViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "error.description">
+            </PersistentString>
+            <PersistentString
+               value = "[error userInfo][@&quot;code&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[SMSettingsViewController tableView:cellForRowAtIndexPath:]:SMSettingsViewController.m">
          <PersistentStrings>
             <PersistentString
