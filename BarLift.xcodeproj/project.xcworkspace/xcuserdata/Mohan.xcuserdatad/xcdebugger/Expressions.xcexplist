@@ -3,6 +3,22 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[SMLoginViewController viewDidLoad]:SMLoginViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[PFUser currentUser]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__41-[SMDealViewController setBarInformation]_block_invoke:SMDealViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentDeal = nil">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[SMFriendsViewController retrieveFromParse]:SMFriendsViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -14,15 +30,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[SMContainerViewController scrollViewDidScroll:]:SMContainerViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.lastContentOffset">
-            </PersistentString>
-            <PersistentString
-               value = "self.scrollView.contentOffset.x">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "-[SMContainerViewController viewDidAppear:]:SMContainerViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[SMContainerViewController scrollViewWillBeginDecelerating:]:SMContainerViewController.m">
@@ -39,64 +47,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[SMSettingsViewController pickerView:didSelectRow:inComponent:]:SMSettingsViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[PFUser currentUser]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[SMSettingsViewController viewDidLoad]:SMSettingsViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[PFUser currentUser]">
-            </PersistentString>
-            <PersistentString
-               value = "self.locationSettingsArray">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[SMFriendsViewController tableView:cellForRowAtIndexPath:]:SMFriendsViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.helper">
-            </PersistentString>
-            <PersistentString
-               value = "obj[@&quot;first_name&quot;]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__41-[SMDealViewController setBarInformation]_block_invoke:SMDealViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "currentDeal = nil">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[SMSettingsViewController poppinButtonPressed:]:SMSettingsViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[SMFriendsViewController segmentedControlChangedValue:]:SMFriendsViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.dealNow">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "+[PFInternalUtils calculateMD5:]:PFInternalUtils.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[SMDealViewController prepareForSegue:sender:]:SMDealViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "segue.identifier">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[SMDealViewController createProgressBar]:SMDealViewController.m">
@@ -116,10 +67,31 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__51-[SMFriendsViewController retrieveDeclineFromParse]_block_invoke:SMFriendsViewController.m">
+         contextName = "-[SMLoginViewController loginButtonPressed:]:SMLoginViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[PFUser currentUser]">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[SMContainerViewController viewDidAppear:]:SMContainerViewController.m">
+         contextName = "-[SMLoginViewController viewDidAppear:]:SMLoginViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[PFUser currentUser]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMSettingsViewController tableView:didSelectRowAtIndexPath:]:SMSettingsViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__34-[SMDealViewController saveAccept]_block_invoke:SMDealViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[error userInfo][@&quot;code&quot;]">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[SMFriendsViewController retrieveDeclineFromParse]:SMFriendsViewController.m">
@@ -136,15 +108,81 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__34-[SMDealViewController saveAccept]_block_invoke:SMDealViewController.m">
+         contextName = "-[SMDealViewController setBarInformation]:SMDealViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "[error userInfo][@&quot;code&quot;]">
+               value = "[PFUser currentUser]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[SMSettingsViewController tableView:didSelectRowAtIndexPath:]:SMSettingsViewController.m">
+         contextName = "__51-[SMFriendsViewController retrieveDeclineFromParse]_block_invoke:SMFriendsViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[SMSettingsViewController tableView:cellForRowAtIndexPath:]:SMSettingsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.push[indexPath.row]">
+            </PersistentString>
+            <PersistentString
+               value = "cell.accessoryType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__44-[SMLoginViewController loginButtonPressed:]_block_invoke:SMLoginViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[SMSettingsViewController viewDidLoad]:SMSettingsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[PFUser currentUser]">
+            </PersistentString>
+            <PersistentString
+               value = "self.locationSettingsArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMContainerViewController scrollViewDidScroll:]:SMContainerViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.lastContentOffset">
+            </PersistentString>
+            <PersistentString
+               value = "self.scrollView.contentOffset.x">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMFriendsViewController tableView:cellForRowAtIndexPath:]:SMFriendsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.helper">
+            </PersistentString>
+            <PersistentString
+               value = "obj[@&quot;first_name&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMSettingsViewController pickerView:didSelectRow:inComponent:]:SMSettingsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[PFUser currentUser]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SMDealViewController prepareForSegue:sender:]:SMDealViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "segue.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "+[PFInternalUtils calculateMD5:]:PFInternalUtils.m">
       </ContextState>
       <ContextState
          contextName = "__35-[SMDealViewController saveDecline]_block_invoke:SMDealViewController.m">
@@ -158,13 +196,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[SMSettingsViewController tableView:cellForRowAtIndexPath:]:SMSettingsViewController.m">
+         contextName = "-[SMFriendsViewController segmentedControlChangedValue:]:SMFriendsViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.push[indexPath.row]">
-            </PersistentString>
-            <PersistentString
-               value = "cell.accessoryType">
+               value = "self.dealNow">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

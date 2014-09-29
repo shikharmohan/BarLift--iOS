@@ -90,7 +90,7 @@
     
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
-    NSArray *permissionsArray = @[@"public_profile", @"email", @"user_friends", @"user_location", @"user_birthday"];
+    NSArray *permissionsArray = @[@"public_profile", @"email", @"user_friends"];
     
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
         [self.activityIndicator stopAnimating];
@@ -111,8 +111,12 @@
         else
         {
             [self updateUserInformation];
-            [self performSegueWithIdentifier:@"loginToUnivSegue" sender:self];
-
+            if(!user[@"university_name"]){
+                [self performSegueWithIdentifier:@"loginToUnivSegue" sender:self];
+            }
+            else{
+                [self performSegueWithIdentifier:@"loginToDealViewSegue" sender:self];
+            }
         }
         
     }];

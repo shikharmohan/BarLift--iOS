@@ -342,61 +342,63 @@
 #pragma mark - View Helper Methods
 - (void) setBarInformation
 {
-    if(!currentDeal)
-    {
-        self.acceptedView.hidden = YES;
-        self.declinedView.hidden = YES;
-        self.isAcceptedByCurrentUser = NO;
-        self.isDeclinedByCurrentUser = NO;
-    }
-    if(currentDeal && !self.isAcceptedByCurrentUser && !self.isDeclinedByCurrentUser)
-    {
-        self.acceptButton.enabled = YES;
-        [self.acceptButton setBackgroundColor:[UIColor orangeColor]];
-        [self.declineButton setBackgroundColor:[UIColor colorWithRed:79.0/255.0 green:119.0/255.0 blue:179.0/255.0 alpha:1]];
-        self.declineButton.enabled = YES;    
-    }
-    PFQuery *query = [PFQuery queryWithClassName:@"Deal"];
-    NSDate *date = [NSDate date];
-    [query whereKey:@"deal_start_date" lessThanOrEqualTo:date];
-    [query whereKey:@"deal_end_date" greaterThanOrEqualTo:date];
-    [query whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
-    [query setCachePolicy:kPFCachePolicyCacheElseNetwork];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if(!error){
-            currentDeal = object;
+    if([PFUser currentUser] && [PFUser currentUser][@"university_name"]){
+        if(!currentDeal)
+        {
+            self.acceptedView.hidden = YES;
+            self.declinedView.hidden = YES;
+            self.isAcceptedByCurrentUser = NO;
+            self.isDeclinedByCurrentUser = NO;
+        }
+        if(currentDeal && !self.isAcceptedByCurrentUser && !self.isDeclinedByCurrentUser)
+        {
+            self.acceptButton.enabled = YES;
+            [self.acceptButton setBackgroundColor:[UIColor orangeColor]];
+            [self.declineButton setBackgroundColor:[UIColor colorWithRed:79.0/255.0 green:119.0/255.0 blue:179.0/255.0 alpha:1]];
+            self.declineButton.enabled = YES;
+        }
+        PFQuery *query = [PFQuery queryWithClassName:@"Deal"];
+        NSDate *date = [NSDate date];
+        [query whereKey:@"deal_start_date" lessThanOrEqualTo:date];
+        [query whereKey:@"deal_end_date" greaterThanOrEqualTo:date];
+        [query whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
+        [query setCachePolicy:kPFCachePolicyCacheElseNetwork];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            if(!error){
+                currentDeal = object;
                 self.barNameLabel.text = object[@"location_name"];
                 self.barAddressLabel.text = object[@"address"];
                 self.dealNameLabel.text = object[@"name"];
                 self.dealDescriptionLabel.text = [object objectForKey:@"description"];
-            [self.activities addObject:object];
-            [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                [self.activities addObject:object];
+                [currentDeal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     [self createProgressBar];
-                if(currentDeal[@"deal_qty"] > 0 && (!self.isAcceptedByCurrentUser && !self.isDeclinedByCurrentUser))
-                {
-                    self.acceptButton.enabled = YES;
-                    [self.acceptButton setBackgroundColor:[UIColor orangeColor]];
-                    [self.declineButton setBackgroundColor:[UIColor colorWithRed:79.0/255.0 green:119.0/255.0 blue:179.0/255.0 alpha:1]];
-                    self.declineButton.enabled = YES;
-                }
-            }];
-        }
-        else if (error){
-            self.dealNameLabel.text = @"Sorry No Deal Right Now \n Check Back Later";
-            self.descriptionLabel.text = @"";
-            self.dealDescriptionLabel.text = @"";
-            currentDeal = nil;
-            self.acceptButton.enabled = NO;
-            self.declineButton.enabled = NO;
-            [self.acceptButton setBackgroundColor:[UIColor grayColor]];
-            [self.declineButton setBackgroundColor:[UIColor grayColor]];
-            self.barNameLabel.text = @"";
-            self.barAddressLabel.text = @"";
-            self.goingOutLabel.text = @"0";
-            [self createProgressBar];
-            NSLog(@"Parse query for bars didnt work, %@", error);
-        }
-    }];
+                    if(currentDeal[@"deal_qty"] > 0 && (!self.isAcceptedByCurrentUser && !self.isDeclinedByCurrentUser))
+                    {
+                        self.acceptButton.enabled = YES;
+                        [self.acceptButton setBackgroundColor:[UIColor orangeColor]];
+                        [self.declineButton setBackgroundColor:[UIColor colorWithRed:79.0/255.0 green:119.0/255.0 blue:179.0/255.0 alpha:1]];
+                        self.declineButton.enabled = YES;
+                    }
+                }];
+            }
+            else if (error){
+                self.dealNameLabel.text = @"Sorry No Deal Right Now \n Check Back Later";
+                self.descriptionLabel.text = @"";
+                self.dealDescriptionLabel.text = @"";
+                currentDeal = nil;
+                self.acceptButton.enabled = NO;
+                self.declineButton.enabled = NO;
+                [self.acceptButton setBackgroundColor:[UIColor grayColor]];
+                [self.declineButton setBackgroundColor:[UIColor grayColor]];
+                self.barNameLabel.text = @"";
+                self.barAddressLabel.text = @"";
+                self.goingOutLabel.text = @"0";
+                [self createProgressBar];
+                NSLog(@"Parse query for bars didnt work, %@", error);
+            }
+        }];
+    }
 }
 
 - (void) getRandomDealImage

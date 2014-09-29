@@ -67,6 +67,12 @@
         self.poppinButton.hidden = YES;
     }
     // Do any additional setup after loading the view.
+    if(locationSettingsArray)
+    {
+        [self retrieveFromParse];
+    
+    }
+    
     
     if([PFUser currentUser]){
         NSLog(@"Locations array %@", locationSettingsArray);
@@ -76,6 +82,7 @@
         self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
         self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,8 +96,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
 }
 
 #pragma mark - Push Settings
@@ -216,11 +222,18 @@
 
 }
 - (IBAction)loginButtonPressed:(UIButton *)sender {
-    [[PFFacebookUtils session] closeAndClearTokenInformation];
-    [PFUser logOut];
-    [self performSegueWithIdentifier:@"toLogin" sender:self];
+        if ([PFUser currentUser]) {
+            [[PFFacebookUtils session] closeAndClearTokenInformation];
+            [PFUser logOut];
+        } else {
+            NSLog(@"currentUser: %@", [PFUser currentUser]);
+        }
+
+    [self.navigationController popToRootViewControllerAnimated:YES];
 
 }
+
+
 
 - (IBAction)poppinButtonPressed:(UIButton *)sender {
     if([PFUser currentUser][@"university_name"] && deal){
@@ -262,6 +275,27 @@
 
 
 #pragma mark - Location Settings
+
+
+- (void) retrieveFromParse
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"Deal"];
+    [query selectKeys:@[@"community_name"]];
+    [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+        if(!error){
+            locationSettingsArray = [[NSMutableArray alloc] initWithCapacity:2];
+            for(int i = 0; i < [results count]; i++){
+                if([locationSettingsArray indexOfObject:results[i][@"community_name"]] == NSNotFound){
+                    [locationSettingsArray addObject:results[i][@"community_name"]];
+                }
+            }
+        }
+        else{
+            NSLog(@"%@",error);
+        }
+    }];
+}
 
 // returns the number of 'columns' to display.
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView

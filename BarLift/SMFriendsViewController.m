@@ -61,25 +61,28 @@
 
  -(void) getFriends
 {
-    PFQuery *dealQuery = [PFQuery queryWithClassName:@"Deal"];
-    NSDate *date = [NSDate date];
-    [dealQuery whereKey:@"deal_start_date" lessThanOrEqualTo:date];
-    [dealQuery whereKey:@"deal_end_date" greaterThanOrEqualTo:date];
-    [dealQuery whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
-    [dealQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
-    [dealQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if(!error)
-        {
-            self.dealNow = object;
-            [self retrieveAcceptFromParse];
-        }
-        else{
-            NSLog(@"Error getting deal in Friends View Controller");
-            self.dealNow = nil;
-            self.helper = nil;
-        }
-        
-    }];
+    if([PFUser currentUser] && [PFUser currentUser][@"university_name"]){
+        PFQuery *dealQuery = [PFQuery queryWithClassName:@"Deal"];
+        NSDate *date = [NSDate date];
+        [dealQuery whereKey:@"deal_start_date" lessThanOrEqualTo:date];
+        [dealQuery whereKey:@"deal_end_date" greaterThanOrEqualTo:date];
+        [dealQuery whereKey:@"community_name" equalTo:[PFUser currentUser][@"university_name"]];
+        [dealQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
+        [dealQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            if(!error)
+            {
+                self.dealNow = object;
+                [self retrieveAcceptFromParse];
+            }
+            else{
+                NSLog(@"Error getting deal in Friends View Controller");
+                self.dealNow = nil;
+                self.helper = nil;
+            }
+            
+        }];
+    }
+
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -144,69 +147,73 @@
 
 - (void) retrieveAcceptFromParse
 {
-    [self.dealNow refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
-        [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
-        
-        if(self.dealNow){
-            [query whereKey:@"type" equalTo:@"accept"];
-            [query whereKey:@"deal" equalTo:self.dealNow];
-            [query whereKey:@"user" notEqualTo:[PFUser currentUser]];
-            [query includeKey:@"user"];
-        }
-        [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-            if(!error){
-                self.helper = [[NSMutableArray alloc] initWithCapacity:2];
-                for(int i = 0; i < [results count]; i++){
-                    PFObject *act = [results objectAtIndex:i];
-                    PFObject *user = act[@"user"];
-                    PFObject *profile = user[@"profile"];
-                    if([self.helper indexOfObject:profile] == NSNotFound){
-                        [self.helper addObject:profile];
+    if([PFUser currentUser] && [PFUser currentUser][@"university_name"]){
+        [self.dealNow refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+            [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+            
+            if(self.dealNow){
+                [query whereKey:@"type" equalTo:@"accept"];
+                [query whereKey:@"deal" equalTo:self.dealNow];
+                [query whereKey:@"user" notEqualTo:[PFUser currentUser]];
+                [query includeKey:@"user"];
+            }
+            [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+                if(!error){
+                    self.helper = [[NSMutableArray alloc] initWithCapacity:2];
+                    for(int i = 0; i < [results count]; i++){
+                        PFObject *act = [results objectAtIndex:i];
+                        PFObject *user = act[@"user"];
+                        PFObject *profile = user[@"profile"];
+                        if([self.helper indexOfObject:profile] == NSNotFound){
+                            [self.helper addObject:profile];
+                        }
                     }
                 }
-            }
-            else{
-                NSLog(@"%@",error);
-            }
-            [friendTableView reloadData];
+                else{
+                    NSLog(@"%@",error);
+                }
+                [friendTableView reloadData];
+            }];
+            
         }];
-
-    }];
+    }
 }
 
 - (void) retrieveDeclineFromParse
 {
-    
-    [self.dealNow refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
-        [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
-        
-        if(self.dealNow){
-            [query whereKey:@"type" equalTo:@"decline"];
-            [query whereKey:@"deal" equalTo:self.dealNow];
-            [query whereKey:@"user" notEqualTo:[PFUser currentUser]];
-            [query includeKey:@"user"];
-        }
-        [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-            if(!error){
-                self.helper = [[NSMutableArray alloc] initWithCapacity:2];
-                for(int i = 0; i < [results count]; i++){
-                    PFObject *act = [results objectAtIndex:i];
-                    PFObject *user = act[@"user"];
-                    PFObject *profile = user[@"profile"];
-                    if([self.helper indexOfObject:profile] == NSNotFound){
-                        [self.helper addObject:profile];
+    if([PFUser currentUser] && [PFUser currentUser][@"university_name"]){
+        [self.dealNow refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+            [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+            
+            if(self.dealNow){
+                [query whereKey:@"type" equalTo:@"decline"];
+                [query whereKey:@"deal" equalTo:self.dealNow];
+                [query whereKey:@"user" notEqualTo:[PFUser currentUser]];
+                [query includeKey:@"user"];
+            }
+            [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+                if(!error){
+                    self.helper = [[NSMutableArray alloc] initWithCapacity:2];
+                    for(int i = 0; i < [results count]; i++){
+                        PFObject *act = [results objectAtIndex:i];
+                        PFObject *user = act[@"user"];
+                        PFObject *profile = user[@"profile"];
+                        if([self.helper indexOfObject:profile] == NSNotFound){
+                            [self.helper addObject:profile];
+                        }
                     }
                 }
-            }
-            else{
-                NSLog(@"%@",error);
-            }
-            [friendTableView reloadData];
+                else{
+                    NSLog(@"%@",error);
+                }
+                [friendTableView reloadData];
+            }];
+            
         }];
-        
-    }];}
+    }
+}
 
 #pragma mark - Table view data source
 
