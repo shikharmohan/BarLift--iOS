@@ -585,7 +585,6 @@
                                         </state>
                                         <connections>
                                             <action selector="loginButtonPressed:" destination="Zfl-tI-mFq" eventType="touchUpInside" id="Bbm-R1-9S8"/>
-                                            <segue destination="vXZ-lx-hvc" kind="push" identifier="toLogin" id="568-uP-q1T"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -670,7 +669,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="568-uP-q1T"/>
         <segue reference="N7T-JH-oNM"/>
     </inferredMetricsTieBreakers>
 </document>

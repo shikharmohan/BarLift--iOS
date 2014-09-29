@@ -49,8 +49,6 @@
     if([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
         [self updateUserInformation];
-        NSLog(@"Taking you to deal");
-        [self performSegueWithIdentifier:@"loginToDealViewSegue" sender:self];
     }
 }
 
