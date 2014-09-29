@@ -72,7 +72,13 @@
             if(!error)
             {
                 self.dealNow = object;
-                [self retrieveAcceptFromParse];
+                if(self.segmentedControl4.selectedSegmentIndex == 0){
+                    [self retrieveAcceptFromParse];
+                }
+                else if (self.segmentedControl4.selectedSegmentIndex == 1)
+                {
+                    [self retrieveDeclineFromParse];
+                }
             }
             else{
                 NSLog(@"Error getting deal in Friends View Controller");

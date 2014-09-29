@@ -119,6 +119,14 @@
          contextName = "__51-[SMFriendsViewController retrieveDeclineFromParse]_block_invoke:SMFriendsViewController.m">
       </ContextState>
       <ContextState
+         contextName = "__37-[SMFriendsViewController getFriends]_block_invoke:SMFriendsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.segmentedControl4.selectedSegmentIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[SMSettingsViewController tableView:cellForRowAtIndexPath:]:SMSettingsViewController.m">
          <PersistentStrings>
             <PersistentString
