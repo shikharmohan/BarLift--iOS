@@ -51,6 +51,11 @@
                                                   target: self
                                                 selector:@selector(getFriends)
                                                 userInfo: nil repeats:YES];
+    
+    for(int i = 0; i < 12; i++){
+        [self.helper addObject:[PFUser currentUser]];
+    }
+    
 }
 
 

@@ -444,7 +444,7 @@
                 [self createProgressBar]; //update progress bar
             }];
         }
-        else if([[error userInfo][@"code"] isEqualToValue:@101])
+        else if([[error userInfo][@"code"] isEqual:@101])
         {
             PFObject *acceptActivity = [PFObject objectWithClassName:@"Activity"];
             [acceptActivity setObject:@"accept" forKey:@"type"];

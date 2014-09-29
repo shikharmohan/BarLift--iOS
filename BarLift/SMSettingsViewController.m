@@ -68,12 +68,14 @@
     }
     // Do any additional setup after loading the view.
     
-    NSLog(@"Locations array %@", locationSettingsArray);
-    NSInteger index = [locationSettingsArray indexOfObject:[PFUser currentUser][@"university_name"]];
-    if(index != NSNotFound) [self.locationPicker selectRow:index inComponent:0 animated:YES];
-    
-    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    if([PFUser currentUser]){
+        NSLog(@"Locations array %@", locationSettingsArray);
+        NSInteger index = [locationSettingsArray indexOfObject:[PFUser currentUser][@"university_name"]];
+        if(index != NSNotFound) [self.locationPicker selectRow:index inComponent:0 animated:YES];
+        
+        self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -211,6 +213,12 @@
         
         }
     }];
+
+}
+- (IBAction)loginButtonPressed:(UIButton *)sender {
+    [[PFFacebookUtils session] closeAndClearTokenInformation];
+    [PFUser logOut];
+    [self performSegueWithIdentifier:@"toLogin" sender:self];
 
 }
 
