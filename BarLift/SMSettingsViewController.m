@@ -67,7 +67,7 @@
         self.poppinButton.hidden = YES;
     }
     // Do any additional setup after loading the view.
-    if(locationSettingsArray)
+    if(!locationSettingsArray)
     {
         [self retrieveFromParse];
     
@@ -294,6 +294,7 @@
         else{
             NSLog(@"%@",error);
         }
+        [self.locationPicker reloadAllComponents];
     }];
 }
 
