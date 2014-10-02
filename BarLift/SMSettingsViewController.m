@@ -253,6 +253,7 @@
         [push setMessage:message];
         [push sendPushInBackground];
         
+        
     }
     else
     {
@@ -260,6 +261,8 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Deal Currently" message:@"Check back later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
     }
+    
+    [self.poppinButton setBackgroundColor:[UIColor grayColor]];
 }
 
 

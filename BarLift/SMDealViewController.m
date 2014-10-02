@@ -89,7 +89,6 @@
     
     //get bar information every minute
     [t fire];
-
     
    //self.dealToolbar.centerButtonFeatureEnabled = YES;
     //[self addCenterButton];
@@ -105,7 +104,7 @@
         [self.declineButton setBackgroundColor:[UIColor grayColor]];
     }
     
-    self.acceptedView = [[UIView alloc] initWithFrame:(CGRectMake(350, 195, 320, 75))];
+    self.acceptedView = [[UIView alloc] initWithFrame:(CGRectMake(-350, 195, 320, 75))];
     [self.acceptedView setBackgroundColor:[UIColor orangeColor]];
     [self.view addSubview:self.acceptedView];
     self.declinedView = [[UIView alloc] initWithFrame:(CGRectMake(-350, 195, 320, 75))];
@@ -141,7 +140,6 @@
     {
         self.declinedView.hidden = NO;
     }
-    
     // Do any additional setup after loading the view.
 }
 
@@ -165,7 +163,8 @@
 
     }
     [self setBarInformation];
-    
+    [self checkLikeDislike];
+
     NSLog(@"View DEAL did appear called");
 }
 
@@ -194,6 +193,7 @@
     bottomBorder.backgroundColor = [UIColor grayColor];
     bottomBorder.frame = CGRectMake(0, self.dealInfoView.frame.size.height - borderThickness, self.dealInfoView.frame.size.width, borderThickness);
     [self.dealInfoView addSubview:bottomBorder];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -259,7 +259,7 @@
         uiFrame.origin.x -= 350;
         self.acceptedView.hidden = NO;
         CGRect uiFrame1 = self.acceptedView.frame;
-        uiFrame1.origin.x -= 350;
+        uiFrame1.origin.x += 350;
         [UIView animateWithDuration:1.5f animations:^{
             [self.declinedView setFrame:uiFrame];
             [self.acceptedView setFrame:uiFrame1];
@@ -269,7 +269,7 @@
     {
         self.acceptedView.hidden = NO;
         CGRect uiFrame1 = self.acceptedView.frame;
-        uiFrame1.origin.x -= 350;
+        uiFrame1.origin.x += 350;
         [UIView animateWithDuration:1.5f animations:^{
             [self.acceptedView setFrame:uiFrame1];
         }];
@@ -303,7 +303,7 @@
     
     if(self.isAcceptedByCurrentUser){
         CGRect uiFrame = self.acceptedView.frame;
-        uiFrame.origin.x += 350;
+        uiFrame.origin.x -= 350;
         self.declinedView.hidden = NO;
         CGRect uiFrame1 = self.declinedView.frame;
         uiFrame1.origin.x += 350;
@@ -338,6 +338,62 @@
 
 }
 
+- (void) checkLikeDislike
+{
+    if([PFUser currentUser] && [PFUser currentUser][@"university_name"] && currentDeal){
+        PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+        [query whereKey:@"deal" equalTo:currentDeal];
+        [query whereKey:@"user" equalTo:[PFUser currentUser]];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            if(!error)
+            {
+                if([object[@"type"]  isEqual: @"accept"])
+                {
+                    if(!self.isAcceptedByCurrentUser){
+                        self.acceptedView.hidden = NO;
+                        CGRect uiFrame1 = self.acceptedView.frame;
+                        uiFrame1.origin.x += 350;
+                        [UIView animateWithDuration:1.5f animations:^{
+                            [self.acceptedView setFrame:uiFrame1];
+                        }];
+                    }
+
+
+                    self.isAcceptedByCurrentUser = YES;
+                    self.acceptButton.enabled = NO;
+                    self.declineButton.enabled = YES;
+                    [self.acceptButton setBackgroundColor:[UIColor grayColor]];
+                    [self.declineButton setBackgroundColor:[UIColor colorWithRed:79.0/255.0 green:119.0/255.0 blue:179.0/255.0 alpha:1]];
+                }
+                else
+                {
+                    if(!self.isDeclinedByCurrentUser){
+                        self.declinedView.hidden = NO;
+                        CGRect uiFrame1 = self.declinedView.frame;
+                        uiFrame1.origin.x += 350;
+                        [UIView animateWithDuration:1.5f animations:^{
+                            [self.declinedView setFrame:uiFrame1];
+                        }];
+                    }
+                    self.isDeclinedByCurrentUser = YES;
+                    self.acceptButton.enabled = YES;
+                    self.declineButton.enabled = NO;
+                    [self.acceptButton setBackgroundColor:[UIColor orangeColor]];
+                    [self.declineButton setBackgroundColor:[UIColor grayColor]];
+
+                }
+            }
+            else
+            {
+                return;
+            }
+        }];
+    
+    
+    }
+
+
+}
 
 #pragma mark - View Helper Methods
 - (void) setBarInformation
