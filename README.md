@@ -6,7 +6,7 @@ Drink Spontaneously - currently pending App Store approval. Estimated launch: Oc
 Screenshots: 
 
 Splash/Login Screen:
-![ScreenShot](/screenshots/IMG_3506.png=320x568?raw=true)
+![ScreenShot](/screenshots/IMG_3506.png =320x568?raw=true)
 
 Deal View:
 ![ScreenShot](/screenshots/IMG_4196.png?raw=true)
