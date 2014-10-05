@@ -1,7 +1,7 @@
 BarLift--iOS
 ============
 
-Drink Spontaneously - currently pending App Store approval.
+Drink Spontaneously - currently pending App Store approval. Estimated launch: Oct 24 - Oct 31, 2014
 
 Screenshots: 
 
@@ -9,29 +9,29 @@ Splash/Login Screen:
 ![ScreenShot](/screenshots/IMG_3506.png?raw=true)
 
 Deal View:
-![ScreenShot](https://raw.github.com/shikharmohan/BarLift--iOS/screenshots/IMG_4196.png)
+![ScreenShot](/screenshots/IMG_4196.png?raw=true)
 
 Accepted Deal:
-![ScreenShot](https://raw.github.com/shikharmohan/BarLift--iOS/screenshots/IMG_8942.png)
+![ScreenShot](/screenshots/IMG_8942.png?raw=true)
 
 Going Elsewhere:
-![ScreenShot](https://raw.github.com/shikharmohan/BarLift--iOS/screenshots/IMG_7595.png)
+![ScreenShot](/screenshots/IMG_7595.png?raw=true)
 
 Friends View Transition: 
-![ScreenShot](https://raw.github.com/shikharmohan/BarLift--iOS/screenshots/IMG_3410.png)
+![ScreenShot](/screenshots/IMG_3410.png?raw=true)
 
 Accepted Friends:
-![ScreenShot](https://raw.github.com/shikharmohan/BarLift--iOS/screenshots/IMG_0542.png)
+![ScreenShot](/screenshots/IMG_0542.png?raw=true)
 
 Going Elsewhere Friends:
-![ScreenShot](https://raw.github.com/shikharmohan/BarLift--iOS/screenshots/IMG_2962.png)
+![ScreenShot](/screenshots/IMG_2962.png?raw=true)
 
 It's Poppin (Allow's BarLift reps to send ad hoc push notification when bar/restaurant is very active):
-![ScreenShot](https://raw.github.com/shikharmohan/BarLift--iOS/screenshots/IMG_6931.png)
+![ScreenShot](/screenshots/IMG_6931.png?raw=true)
 
 Mute (mutes notification for a given deal): 
-![ScreenShot](https://raw.github.com/shikharmohan/BarLift--iOS/screenshots/IMG_8302.png)
+![ScreenShot](/screenshots/IMG_8302.png?raw=true)
 
 Settings:
-![ScreenShot](https://raw.github.com/shikharmohan/BarLift--iOS/screenshots/IMG_8746.png)
+![ScreenShot](/screenshots/IMG_8746.png)
 
