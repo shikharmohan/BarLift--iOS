@@ -43,22 +43,7 @@
     self.profileImage.layer.masksToBounds = YES;
     self.profileImage.layer.borderWidth = NO;
     
-    //get fb profile pic
-    PFQuery *query = [PFQuery queryWithClassName:kSMPhotoClassKey];
-    [query whereKey:@"user" equalTo:[PFUser currentUser]];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if([objects count] > 0)
-        {
-            PFObject *photo = objects[0];
-            PFFile *pictureFile = photo[@"profile_image"];
-            [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                self.profileImage.image = [UIImage imageWithData:data];
-            }];
-        }
-    }];
-    
-    //set fb name
-    self.firstName.text = [PFUser currentUser][@"profile"][@"name"];
+
     //get list of universities
     [self performSelector:@selector(retrieveFromParse)];
     // Uncomment the following line to preserve selection between presentations.
@@ -84,6 +69,22 @@
                     [self.helper addObject:results[i][@"community_name"]];
                 }
             }
+            //get fb profile pic
+            PFQuery *query = [PFQuery queryWithClassName:kSMPhotoClassKey];
+            [query whereKey:@"user" equalTo:[PFUser currentUser]];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if([objects count] > 0)
+                {
+                    PFObject *photo = objects[0];
+                    PFFile *pictureFile = photo[@"profile_image"];
+                    [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                        self.profileImage.image = [UIImage imageWithData:data];
+                    }];
+                }
+            }];
+            
+            //set fb name
+            self.firstName.text = [PFUser currentUser][@"profile"][@"name"];
         }
         else{
             NSLog(@"%@",error);

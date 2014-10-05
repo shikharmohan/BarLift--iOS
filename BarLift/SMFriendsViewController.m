@@ -35,7 +35,7 @@
     }
     
     self.segmentedControl4 = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 64, 320, 50)];
-    self.segmentedControl4.sectionTitles = @[@"BarLift", @"Going Elsewhere"];
+    self.segmentedControl4.sectionTitles = @[@"Accepted", @"Going Elsewhere"];
     self.segmentedControl4.selectedSegmentIndex = 0;
     self.segmentedControl4.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
     self.segmentedControl4.textColor = [UIColor whiteColor];
@@ -169,10 +169,12 @@
                     self.helper = [[NSMutableArray alloc] initWithCapacity:2];
                     for(int i = 0; i < [results count]; i++){
                         PFObject *act = [results objectAtIndex:i];
-                        PFObject *user = act[@"user"];
-                        PFObject *profile = user[@"profile"];
-                        if([self.helper indexOfObject:profile] == NSNotFound){
-                            [self.helper addObject:profile];
+                        if(act[@"user"]){
+                            PFObject *user = act[@"user"];
+                            PFObject *profile = user[@"profile"];
+                            if([self.helper indexOfObject:profile] == NSNotFound){
+                                [self.helper addObject:profile];
+                            }
                         }
                     }
                 }
