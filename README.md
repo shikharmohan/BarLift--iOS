@@ -6,7 +6,7 @@ Drink Spontaneously - currently pending App Store approval.
 Screenshots: 
 
 Splash/Login Screen:
-![ScreenShot](https://raw.github.com/shikharmohan/BarLift--iOS/screenshots/IMG_3506.png)
+![ScreenShot](/screenshots/IMG_3506.png?raw=true)
 
 Deal View:
 ![ScreenShot](https://raw.github.com/shikharmohan/BarLift--iOS/screenshots/IMG_4196.png)
