@@ -129,7 +129,7 @@
 
 - (IBAction)muteButtonPressed:(UIBarButtonItem *)sender {
     if(!self.muteOn){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Mute ON" message:@"You will not receive notifications for tonight" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Mute ON" message:@"You will not receive notifications for tonight's deal" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [PFPush subscribeToChannelInBackground:@"Mute"];
         [alertView show];
         [self.muteButtonItem setTintColor:[UIColor redColor]];

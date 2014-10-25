@@ -38,8 +38,8 @@
     self.segmentedControl4.sectionTitles = @[@"Accepted", @"Going Elsewhere"];
     self.segmentedControl4.selectedSegmentIndex = 0;
     self.segmentedControl4.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
-    self.segmentedControl4.textColor = [UIColor whiteColor];
-    self.segmentedControl4.selectedTextColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1];
+    self.segmentedControl4.textColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1];
+    self.segmentedControl4.selectedTextColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     self.segmentedControl4.selectionIndicatorColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1];
     self.segmentedControl4.selectionStyle = HMSegmentedControlSelectionStyleBox;
     self.segmentedControl4.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
