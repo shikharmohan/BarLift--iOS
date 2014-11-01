@@ -1,7 +1,7 @@
 BarLift--iOS
 ============
 
-Drink Spontaneously - currently pending App Store approval. Estimated launch: Oct 24 - Oct 31, 2014
+Drink Spontaneously - currently pending App Store approval. Estimated launch: Mid-November
 
 Screenshots: 
 
